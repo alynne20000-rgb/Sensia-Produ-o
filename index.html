@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1f4b3f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<title>Sensia Produção</title>
+<style>
+:root{--bg:#f4f6f5;--card:#fff;--text:#17211e;--muted:#66736f;--border:#dce3e0;--accent:#1f4b3f;--soft:#e7f0ed;--danger:#a13d3d}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
+.app{max-width:760px;margin:auto;padding:16px 14px 88px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}
+h1{font-size:22px;margin:0}.date{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px}.metric strong{display:block;font-size:24px}.metric span{font-size:13px;color:var(--muted)}
+.callout{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:12px;margin:12px 0}
+.nav{display:flex;gap:8px;overflow:auto;padding:4px 0 10px}.nav button{white-space:nowrap;border:1px solid var(--border);background:var(--card);padding:9px 12px;border-radius:12px}
+.nav button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.panel{display:none}.panel.active{display:block}.section{margin:12px 0}.section h2{font-size:17px;margin:0 0 10px}
+input,textarea,select{width:100%;border:1px solid var(--border);border-radius:12px;padding:11px;background:#fff;font:inherit;color:var(--text)}
+textarea{resize:vertical}.row{display:flex;gap:8px}.row>*{flex:1}.btn{border:0;border-radius:12px;padding:11px 14px;background:var(--accent);color:#fff;font-weight:600}.btn.secondary{background:#fff;color:var(--text);border:1px solid var(--border)}
+.item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border)}.item:last-child{border-bottom:0}
+.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;background:var(--soft)}.p1{background:var(--accent);color:#fff}.p2{background:#dce9e5}.p3{background:#eef1f0}
+.small{font-size:13px;color:var(--muted)}.progress{height:10px;background:var(--border);border-radius:999px;overflow:hidden}.progress>div{height:100%;background:var(--accent)}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);border-top:1px solid var(--border);display:flex;justify-content:center;padding:8px}
+.bottom .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:760px;width:100%}.bottom button{border:0;background:transparent;padding:8px;font-size:12px;color:var(--muted)}.bottom button.active{color:var(--accent);font-weight:700}
+details summary{cursor:pointer;font-weight:600}.danger{color:var(--danger)}
+@media (max-width:420px){.app{padding-left:10px;padding-right:10px}.grid{gap:8px}.card{padding:12px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div><h1>Sensia Produção</h1><div id="dateLabel" class="date"></div></div>
+    <button id="installBtn" class="btn secondary" style="display:none">Instalar</button>
+  </div>
+
+  <div class="grid">
+    <div class="card metric"><span>Meta mensal</span><strong id="metricPct">0%</strong><span>concluída</span></div>
+    <div class="card metric"><span>Pendências críticas</span><strong id="metricCritical">0</strong><span>abertas</span></div>
+  </div>
+
+  <div class="callout"><b>Foco do dia:</b> fechar frentes antes de abrir novas e priorizar o que libera a próxima etapa.</div>
+
+  <div class="nav" id="topNav"></div>
+
+  <section id="hoje" class="panel active">
+    <div class="section card">
+      <h2>🎯 Entregas de hoje</h2>
+      <div id="todayList"></div>
+      <div class="row" style="margin-top:10px"><input id="todayInput" placeholder="Adicionar entrega"><button id="addToday" class="btn">+</button></div>
+    </div>
+    <div class="section card"><h2>↩️ Ficou de ontem</h2><textarea id="carryover" rows="3"></textarea></div>
+    <div class="section card"><h2>🚧 Impedimentos</h2><textarea id="blockers" rows="3" placeholder="Material, projeto, acesso, equipe, interferência..."></textarea></div>
+    <div class="section card"><h2>✅ Fechamento do dia</h2><textarea id="delivered" rows="3" placeholder="O que foi realmente entregue hoje?"></textarea></div>
+  </section>
+
+  <section id="mop" class="panel"><div id="mopList"></div></section>
+  <section id="emp" class="panel"><div class="callout"><b>Pergunta padrão:</b> “Qual item da minha meta você entrega hoje?”</div><div id="empList"></div></section>
+
+  <section id="pend" class="panel">
+    <div class="section card">
+      <h2>🚨 Pendências críticas</h2><div id="pendList"></div>
+      <input id="pendItem" placeholder="Pendência" style="margin-top:10px">
+      <div class="row" style="margin-top:8px"><input id="pendResp" placeholder="Responsável"><input id="pendPrazo" type="date"></div>
+      <textarea id="pendAcao" rows="2" placeholder="Ação necessária" style="margin-top:8px"></textarea>
+      <button id="addPend" class="btn" style="width:100%;margin-top:8px">Adicionar pendência</button>
+    </div>
+  </section>
+
+  <section id="blocos" class="panel"><div id="blockList"></div></section>
+
+  <section id="meta" class="panel">
+    <div class="section card"><h2>Meta Agosto/26</h2><div class="progress"><div id="progressBar" style="width:0%"></div></div><div id="metaList" style="margin-top:10px"></div></div>
+  </section>
+</div>
+
+<div class="bottom"><div class="wrap" id="bottomNav"></div></div>
+
+<script>
+const DATA = {"mop": [{"priority": "P1", "people": "Michel + Sergio", "service": "Impermeabilização", "front": "Bl. 02 — 1º pav.", "goal": "Finalizar retoque de shaft e liberar sequência"}, {"priority": "P1", "people": "Edmilson + apoio", "service": "Impermeabilização", "front": "Bl. 01 — 3º pav.", "goal": "Concluir e depois seguir para o 2º pavimento"}, {"priority": "P2", "people": "Jefferson + Alison", "service": "Esquadrias", "front": "Portas / halls", "goal": "Manter dupla fixa até zerar lista"}, {"priority": "P2", "people": "Matheus + Lucas", "service": "Peitoril", "front": "Coberturas", "goal": "Priorizar Bl. 09"}, {"priority": "P2", "people": "João Moura + Francisco", "service": "Reserviço", "front": "Bl. 09", "goal": "Zerar pendências"}, {"priority": "P3", "people": "Cristian Eduardo", "service": "Quebra / vão", "front": "Escada", "goal": "Executar conforme liberação"}, {"priority": "P3", "people": "Equipe pós-forma", "service": "Pós-forma", "front": "Frentes liberadas", "goal": "Manter produção e fornecer reforço quando necessário"}], "empreiteiros": [{"name": "MH Abreu", "scope": "Drywall • shaft • gesso • forro"}, {"name": "RR", "scope": "Cerâmica • piso/azulejo • rejunte"}, {"name": "RA Pisos", "scope": "Contrapiso — cobertura Bl. 03"}, {"name": "F. Oliveira", "scope": "Portas de madeira • laminado"}, {"name": "Termogera", "scope": "Churrasqueiras — Bl. 09 e 10"}, {"name": "Plataforma", "scope": "Escadas — Bl. 10, 03, 07 e 08"}], "metas": ["Casa de Máquinas — Bloco 04", "Cerâmica cobertura — Bloco 09", "Peitoril coberturas — Bloco 09", "Lavagem paredes cobertura — Bloco 03", "Drywall coberturas — Blocos 10 e 03", "Shaft apartamentos — Blocos 02 e 01", "Shaft halls — Blocos 11 e 02", "Janelas e portas de alumínio", "Contrapiso cobertura — Bloco 03", "Impermeabilizações — Blocos 02, 01 e 10", "Piso / Azulejo", "Rejunte", "Gesso — Blocos 03, 05 e 11", "Forro de gesso — Bloco 02", "Portas de madeira e laminado", "Louças e bancadas", "Churrasqueiras — Blocos 09 e 10", "Escadas cobertura — Blocos 10, 03, 07 e 08"], "blocos": {"Bloco 01": ["Impermeabilização 3º pav.", "Impermeabilização 2º pav.", "Estrutura/fechamento de shaft"], "Bloco 02": ["Impermeabilização 1º pav.", "Piso/Azulejo 3º e 2º pav.", "Rejunte 3º pav.", "Forro 1º, 2º e 3º pav.", "Shaft halls"], "Bloco 03": ["Lavagem cobertura", "Drywall cobertura", "Contrapiso cobertura", "Gesso cobertura", "Portas/laminado", "Escada cobertura"], "Bloco 04": ["Casa de Máquinas — acesso e reservatório"], "Bloco 05": ["Gesso cobertura"], "Bloco 09": ["Cerâmica cobertura", "Peitoril cobertura", "Bancadas pendentes", "Churrasqueira", "Reserviço"], "Bloco 10": ["Drywall cobertura", "Portas/halls", "Impermeabilização cobertura", "Louças e bancadas", "Churrasqueira", "Escada cobertura"], "Bloco 11": ["Shaft halls", "Portas/halls", "Gesso 1º e 2º pav.", "Piso/Rejunte 1º pav."], "Blocos 07/08": ["Escadas de cobertura"]}};
+const STORAGE_KEY='sensia_producao_v1';
+let state = JSON.parse(localStorage.getItem(STORAGE_KEY)||'null') || {days:{},meta:{},emp:{}};
+let deferredPrompt=null;
+
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function todayKey(){const d=new Date(); return d.toISOString().slice(0,10)}
+function day(){const k=todayKey(); if(!state.days[k]) state.days[k]={targets:[],carryover:'',blockers:'',delivered:'',pend:[]}; return state.days[k]}
+function fmtDate(){return new Intl.DateTimeFormat('pt-BR',{weekday:'long',day:'2-digit',month:'long'}).format(new Date())}
+document.getElementById('dateLabel').textContent=fmtDate();
+
+const tabs=[['hoje','Hoje'],['mop','MOP'],['emp','Empreiteiros'],['pend','Pendências'],['blocos','Blocos'],['meta','Meta']];
+function go(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
+  document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));
+}
+document.getElementById('topNav').innerHTML=tabs.map(x=>`<button data-go="${x[0]}">${x[1]}</button>`).join('');
+document.getElementById('bottomNav').innerHTML=[['hoje','Hoje'],['emp','Cobrar'],['pend','Pendências'],['meta','Meta']].map(x=>`<button data-go="${x[0]}">${x[1]}</button>`).join('');
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(b.dataset.go)});
+go('hoje');
+
+function renderToday(){
+  const d=day(), box=document.getElementById('todayList');
+  box.innerHTML=d.targets.length?d.targets.map((t,i)=>`<label class="item"><input type="checkbox" data-target="${i}" ${t.done?'checked':''} style="width:auto;margin-top:4px"><span>${t.text}</span></label>`).join(''):'<div class="small">Adicione as entregas que precisam ser fechadas hoje.</div>';
+  document.getElementById('carryover').value=d.carryover;
+  document.getElementById('blockers').value=d.blockers;
+  document.getElementById('delivered').value=d.delivered;
+}
+document.getElementById('addToday').onclick=()=>{const i=document.getElementById('todayInput');if(!i.value.trim())return;day().targets.push({text:i.value.trim(),done:false});i.value='';save();renderToday()};
+document.getElementById('todayInput').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('addToday').click()});
+document.addEventListener('change',e=>{if(e.target.dataset.target!==undefined){day().targets[+e.target.dataset.target].done=e.target.checked;save()}});
+['carryover','blockers','delivered'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{day()[id]=e.target.value;save()}));
+
+function renderMop(){
+  document.getElementById('mopList').innerHTML=DATA.mop.map(x=>`<div class="section card"><span class="badge ${x.priority.toLowerCase()}">${x.priority}</span><h2 style="margin-top:8px">${x.people}</h2><div>${x.service} • ${x.front}</div><div class="small" style="margin-top:6px">→ ${x.goal}</div></div>`).join('');
+}
+
+function renderEmp(){
+  document.getElementById('empList').innerHTML=DATA.empreiteiros.map((x,i)=>{const s=state.emp[i]||{delivery:'',status:'Cobrar',block:''};return `<div class="section card"><h2>${x.name}</h2><div class="small">${x.scope}</div><input class="empDelivery" data-i="${i}" value="${s.delivery||''}" placeholder="Entrega prometida hoje" style="margin-top:10px"><div class="row" style="margin-top:8px"><select class="empStatus" data-i="${i}"><option ${s.status==='Cobrar'?'selected':''}>Cobrar</option><option ${s.status==='Em andamento'?'selected':''}>Em andamento</option><option ${s.status==='Entregue'?'selected':''}>Entregue</option><option ${s.status==='Travado'?'selected':''}>Travado</option></select><input class="empBlock" data-i="${i}" value="${s.block||''}" placeholder="Impedimento"></div></div>`}).join('');
+}
+document.addEventListener('input',e=>{if(e.target.classList.contains('empDelivery')||e.target.classList.contains('empBlock')){const i=e.target.dataset.i;state.emp[i]=state.emp[i]||{};state.emp[i][e.target.classList.contains('empDelivery')?'delivery':'block']=e.target.value;save()}});
+document.addEventListener('change',e=>{if(e.target.classList.contains('empStatus')){const i=e.target.dataset.i;state.emp[i]=state.emp[i]||{};state.emp[i].status=e.target.value;save()}});
+
+function renderPend(){
+  const p=day().pend, box=document.getElementById('pendList');
+  box.innerHTML=p.length?p.map((x,i)=>`<label class="item"><input type="checkbox" data-pend="${i}" ${x.done?'checked':''} style="width:auto;margin-top:4px"><span><b>${x.item}</b><br><span class="small">${x.resp||'Sem responsável'} • ${x.prazo||'Sem prazo'}</span><br><span class="small">${x.acao||''}</span></span></label>`).join(''):'<div class="small">Nenhuma pendência crítica cadastrada.</div>';
+  updateMetrics();
+}
+document.getElementById('addPend').onclick=()=>{const item=document.getElementById('pendItem').value.trim();if(!item)return;day().pend.push({item,resp:document.getElementById('pendResp').value.trim(),prazo:document.getElementById('pendPrazo').value,acao:document.getElementById('pendAcao').value.trim(),done:false});['pendItem','pendResp','pendPrazo','pendAcao'].forEach(id=>document.getElementById(id).value='');save();renderPend()};
+document.addEventListener('change',e=>{if(e.target.dataset.pend!==undefined){day().pend[+e.target.dataset.pend].done=e.target.checked;save();renderPend()}});
+
+function renderBlocks(){document.getElementById('blockList').innerHTML=Object.entries(DATA.blocos).map(([b,itens])=>`<details class="section card"><summary>${b}</summary><div style="margin-top:10px">${itens.map(i=>`<div class="item"><span>${i}</span></div>`).join('')}</div></details>`).join('')}
+
+function renderMeta(){
+  document.getElementById('metaList').innerHTML=DATA.metas.map((x,i)=>`<label class="item"><input type="checkbox" data-meta="${i}" ${state.meta[i]?'checked':''} style="width:auto;margin-top:4px"><span>${x}</span></label>`).join('');
+  updateMetrics();
+}
+document.addEventListener('change',e=>{if(e.target.dataset.meta!==undefined){state.meta[e.target.dataset.meta]=e.target.checked;save();renderMeta()}});
+
+function updateMetrics(){
+  const done=DATA.metas.filter((_,i)=>state.meta[i]).length, pct=Math.round(done/DATA.metas.length*100);
+  document.getElementById('metricPct').textContent=pct+'%';document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('metricCritical').textContent=day().pend.filter(x=>!x.done).length;
+}
+
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').style.display='inline-block'});
+document.getElementById('installBtn').onclick=async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('installBtn').style.display='none'};
+
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js'))}
+renderToday();renderMop();renderEmp();renderPend();renderBlocks();renderMeta();
+</script>
+</body>
+</html>

@@ -1,8 +1,210 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1f4b3f"><link rel="manifest" href="manifest.webmanifest"><title>Sensia Produção</title><style>
-:root{--bg:#f4f6f5;--card:#fff;--text:#17211e;--muted:#66736f;--border:#dce3e0;--accent:#1f4b3f;--soft:#e7f0ed;--danger:#a13d3d}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}.app{max-width:760px;margin:auto;padding:14px 12px 88px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}h1{font-size:22px;margin:0}.sub,.small{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:13px}.metric strong{display:block;font-size:24px}.metric span{font-size:13px;color:var(--muted)}.callout{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:12px;margin:10px 0}.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:10px 0}.nav button{border:1px solid var(--border);background:#fff;border-radius:12px;padding:9px 4px;font-size:13px}.nav button.active{background:var(--accent);color:#fff}.panel{display:none}.panel.active{display:block}.section{margin:10px 0}.section h2{font-size:17px;margin:0 0 9px}input,textarea,select{width:100%;border:1px solid var(--border);border-radius:12px;padding:10px;background:#fff;font:inherit}.row{display:flex;gap:8px}.row>*{flex:1}.btn{border:0;border-radius:12px;padding:10px 13px;background:var(--accent);color:#fff;font-weight:600}.btn.secondary{background:#fff;color:var(--text);border:1px solid var(--border)}.item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border)}.item:last-child{border-bottom:0}.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;background:var(--soft)}.progress{height:10px;background:var(--border);border-radius:999px;overflow:hidden}.progress>div{height:100%;background:var(--accent)}.bottom{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--border);padding:7px}.bottom .wrap{display:grid;grid-template-columns:repeat(4,1fr);max-width:760px;margin:auto}.bottom button{border:0;background:transparent;padding:7px 3px;font-size:12px;color:var(--muted)}.bottom button.active{color:var(--accent);font-weight:700}details summary{cursor:pointer;font-weight:600}
-</style></head><body><div class="app"><div class="top"><div><h1>Sensia Produção</h1><div id="dateLabel" class="sub"></div></div><button id="installBtn" class="btn secondary" style="display:none">Instalar</button></div><div class="grid"><div class="card metric"><span>Meta mensal</span><strong id="metricPct">0%</strong><span>concluída</span></div><div class="card metric"><span>Pendências abertas</span><strong id="metricCritical">0</strong><span>no dia</span></div></div><div class="callout"><b>Foco do dia:</b> fechar frentes antes de abrir novas e priorizar o que libera a próxima etapa.</div><div class="nav" id="topNav"></div>
-<section id="hoje" class="panel active"><div class="section card"><h2>📅 Dia de trabalho</h2><div class="row"><input id="workDate" type="date"><button id="todayBtn" class="btn secondary">Hoje</button></div></div><div class="section card"><h2>🎯 Entregas do dia</h2><div id="todayList"></div><div class="row" style="margin-top:8px"><input id="todayInput" placeholder="Adicionar entrega"><button id="addToday" class="btn">+</button></div></div><div class="section card"><h2>↩️ Ficou de ontem</h2><textarea id="carryover" rows="3"></textarea></div><div class="section card"><h2>🚧 Impedimentos</h2><textarea id="blockers" rows="3"></textarea></div><div class="section card"><h2>✅ Fechamento do dia</h2><textarea id="delivered" rows="3"></textarea></div><div class="section card"><h2>➡️ Levar para amanhã</h2><button id="carryForward" class="btn secondary" style="width:100%">Copiar entregas não concluídas</button></div></section>
-<section id="mop" class="panel"><div class="callout"><b>MOP:</b> altere a frente de cada pessoa conforme o dia.</div><div id="mopList"></div></section><section id="emp" class="panel"><div class="callout"><b>Cobrança:</b> registre promessa, status e impedimento por dia.</div><div id="empList"></div></section><section id="pend" class="panel"><div class="section card"><h2>🚨 Pendências críticas</h2><div id="pendList"></div><input id="pendItem" placeholder="Pendência" style="margin-top:8px"><div class="row" style="margin-top:8px"><input id="pendResp" placeholder="Responsável"><input id="pendPrazo" type="date"></div><textarea id="pendAcao" rows="2" placeholder="Ação necessária" style="margin-top:8px"></textarea><button id="addPend" class="btn" style="width:100%;margin-top:8px">Adicionar pendência</button></div></section><section id="blocos" class="panel"><div id="blockList"></div></section><section id="meta" class="panel"><div class="section card"><h2>Meta Agosto/26</h2><div class="progress"><div id="progressBar"></div></div><div id="metaList" style="margin-top:8px"></div></div></section><section id="historico" class="panel"><div class="section card"><h2>🗂️ Histórico diário</h2><div id="historyList"></div></div><div class="section card"><h2>💾 Backup</h2><button id="exportBtn" class="btn" style="width:100%">Exportar backup</button><label class="btn secondary" style="display:block;text-align:center;margin-top:8px">Importar backup<input id="importFile" type="file" accept=".json,application/json" style="display:none"></label></div></section></div><div class="bottom"><div class="wrap" id="bottomNav"></div></div>
-<script>const DATA={"mop_people": [["Carlos Henrique Leonardo", "Pedreiro", "Pós-forma"], ["Thiago Silva", "Pedreiro", "Pós-forma"], ["Benedito Faustino", "Pedreiro", "Pós-forma"], ["Jilberto", "Pedreiro", "Pós-forma"], ["Djone", "Pedreiro", "Pós-forma"], ["Luciano Luiz", "Pedreiro", "Pós-forma"], ["João Moura", "Pedreiro", "Reserviço Bl. 09"], ["Cleiton", "Pedreiro", "Pós-forma"], ["Walace", "Pedreiro", "Pós-forma"], ["Bruno Soares", "Pedreiro", "Pós-forma"], ["Cristian Eduardo", "Pedreiro", "Quebra do vão da escada"], ["Matheus", "Pedreiro", "Peitoril / porta e janela cobertura"], ["Jeferson Eduardo", "Pedreiro", "Portas metálicas / porta de hall"], ["Isaías", "Ajudante", "Pós-forma"], ["Felipe", "Ajudante", "Pós-forma"], ["Lucas", "Ajudante", "Pós-forma / peitoril cobertura"], ["Michel", "Ajudante", "Impermeabilização / pós-forma"], ["Sergio", "Ajudante", "Impermeabilização / pós-forma"], ["Edmilson", "Ajudante", "Impermeabilização / pós-forma"], ["Alison", "Ajudante", "Portas metálicas / porta de hall"], ["Francisco", "Ajudante", "Reserviço Bl. 09"]], "empreiteiros": [["MH Abreu", "Drywall • shaft • gesso • forro"], ["RR", "Cerâmica • piso/azulejo • rejunte"], ["RA Pisos", "Contrapiso — cobertura Bl. 03"], ["F. Oliveira", "Portas de madeira • laminado"], ["Termogera", "Churrasqueiras — Bl. 09 e 10"], ["Plataforma", "Escadas — Bl. 10, 03, 07 e 08"]], "metas": ["Casa de Máquinas — Bloco 04", "Cerâmica cobertura — Bloco 09", "Peitoril coberturas — Bloco 09", "Lavagem paredes cobertura — Bloco 03", "Drywall coberturas — Blocos 10 e 03", "Shaft apartamentos — Blocos 02 e 01", "Shaft halls — Blocos 11 e 02", "Janelas e portas de alumínio", "Contrapiso cobertura — Bloco 03", "Impermeabilizações — Blocos 02, 01 e 10", "Piso / Azulejo", "Rejunte", "Gesso — Blocos 03, 05 e 11", "Forro de gesso — Bloco 02", "Portas de madeira e laminado", "Louças e bancadas", "Churrasqueiras — Blocos 09 e 10", "Escadas cobertura — Blocos 10, 03, 07 e 08"], "blocos": {"Bloco 01": ["Impermeabilização 3º pav.", "Impermeabilização 2º pav.", "Estrutura/fechamento de shaft"], "Bloco 02": ["Impermeabilização 1º pav.", "Piso/Azulejo 3º e 2º pav.", "Rejunte 3º pav.", "Forro 1º, 2º e 3º pav.", "Shaft halls"], "Bloco 03": ["Lavagem cobertura", "Drywall cobertura", "Contrapiso cobertura", "Gesso cobertura", "Portas/laminado", "Escada cobertura"], "Bloco 04": ["Casa de Máquinas — acesso e reservatório"], "Bloco 05": ["Gesso cobertura"], "Bloco 09": ["Cerâmica cobertura", "Peitoril cobertura", "Bancadas pendentes", "Churrasqueira", "Reserviço"], "Bloco 10": ["Drywall cobertura", "Portas/halls", "Impermeabilização cobertura", "Louças e bancadas", "Churrasqueira", "Escada cobertura"], "Bloco 11": ["Shaft halls", "Portas/halls", "Gesso 1º e 2º pav.", "Piso/Rejunte 1º pav."], "Blocos 07/08": ["Escadas de cobertura"]}};const KEY='sensia_producao_v2';let state=JSON.parse(localStorage.getItem(KEY)||'null')||{days:{},meta:{},mop:{},empByDay:{}};let selectedDate='',deferredPrompt=null;function isoLocal(d=new Date()){let y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),dd=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${dd}`}function fmt(v){if(!v)return'';let [y,m,d]=v.split('-');return `${d}/${m}/${y}`}function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}function save(){localStorage.setItem(KEY,JSON.stringify(state));metrics()}function getDay(k=selectedDate){if(!state.days[k])state.days[k]={targets:[],carryover:'',blockers:'',delivered:'',pend:[]};return state.days[k]}function getEmp(){if(!state.empByDay[selectedDate])state.empByDay[selectedDate]={};return state.empByDay[selectedDate]}selectedDate=isoLocal();workDate.value=selectedDate;dateLabel.textContent=new Intl.DateTimeFormat('pt-BR',{weekday:'long',day:'2-digit',month:'long'}).format(new Date());const tabs=[['hoje','Hoje'],['mop','MOP'],['emp','Empreiteiros'],['pend','Pendências'],['blocos','Blocos'],['meta','Meta'],['historico','Histórico']];topNav.innerHTML=tabs.map(x=>`<button data-go="${x[0]}">${x[1]}</button>`).join('');bottomNav.innerHTML=[['hoje','Hoje'],['emp','Cobrar'],['pend','Pendências'],['historico','Histórico']].map(x=>`<button data-go="${x[0]}">${x[1]}</button>`).join('');function go(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));if(id==='historico')renderHistory()}document.addEventListener('click',e=>{let b=e.target.closest('[data-go]');if(b)go(b.dataset.go)});go('hoje');function renderToday(){let d=getDay();todayList.innerHTML=d.targets.length?d.targets.map((t,i)=>`<label class="item"><input type="checkbox" data-target="${i}" ${t.done?'checked':''} style="width:auto;margin-top:4px"><span>${esc(t.text)}</span></label>`).join(''):'<div class="small">Nenhuma entrega cadastrada.</div>';carryover.value=d.carryover||'';blockers.value=d.blockers||'';delivered.value=d.delivered||''}workDate.onchange=e=>{selectedDate=e.target.value;renderAll()};todayBtn.onclick=()=>{selectedDate=isoLocal();workDate.value=selectedDate;renderAll()};addToday.onclick=()=>{if(!todayInput.value.trim())return;getDay().targets.push({text:todayInput.value.trim(),done:false});todayInput.value='';save();renderToday()};todayInput.onkeydown=e=>{if(e.key==='Enter')addToday.click()};document.addEventListener('change',e=>{if(e.target.dataset.target!==undefined){getDay().targets[+e.target.dataset.target].done=e.target.checked;save();renderToday()}});['carryover','blockers','delivered'].forEach(id=>document.getElementById(id).oninput=e=>{getDay()[id]=e.target.value;save()});carryForward.onclick=()=>{let p=getDay().targets.filter(x=>!x.done);if(!p.length)return alert('Não há entregas pendentes.');let n=new Date(selectedDate+'T12:00:00');n.setDate(n.getDate()+1);let nk=isoLocal(n),nd=getDay(nk);p.forEach(x=>{if(!nd.targets.some(t=>t.text===x.text))nd.targets.push({text:x.text,done:false})});nd.carryover=(nd.carryover?nd.carryover+'
-':'')+p.map(x=>'• '+x.text).join('
-');save();alert('Pendências copiadas para '+fmt(nk))};function renderMop(){mopList.innerHTML=DATA.mop_people.map((p,i)=>{let cur=state.mop[i]||p[2];return `<div class="section card"><b>${esc(p[0])}</b> <span class="badge">${p[1]}</span><div class="small" style="margin:4px 0">Padrão: ${esc(p[2])}</div><input class="mopFront" data-i="${i}" value="${esc(cur)}"></div>`}).join('')}document.addEventListener('input',e=>{if(e.target.classList.contains('mopFront')){state.mop[e.target.dataset.i]=e.target.value;save()}});function renderEmp(){let d=getEmp();empList.innerHTML=DATA.empreiteiros.map((x,i)=>{let s=d[i]||{delivery:'',status:'Cobrar',block:''};return `<div class="section card"><h2>${x[0]}</h2><div class="small">${x[1]}</div><input class="empDelivery" data-i="${i}" value="${esc(s.delivery)}" placeholder="Entrega prometida hoje" style="margin-top:8px"><div class="row" style="margin-top:8px"><select class="empStatus" data-i="${i}"><option ${s.status==='Cobrar'?'selected':''}>Cobrar</option><option ${s.status==='Em andamento'?'selected':''}>Em andamento</option><option ${s.status==='Entregue'?'selected':''}>Entregue</option><option ${s.status==='Travado'?'selected':''}>Travado</option></select><input class="empBlock" data-i="${i}" value="${esc(s.block)}" placeholder="Impedimento"></div></div>`}).join('')}document.addEventListener('input',e=>{if(e.target.classList.contains('empDelivery')||e.target.classList.contains('empBlock')){let d=getEmp(),i=e.target.dataset.i;d[i]=d[i]||{};d[i][e.target.classList.contains('empDelivery')?'delivery':'block']=e.target.value;save()}});document.addEventListener('change',e=>{if(e.target.classList.contains('empStatus')){let d=getEmp(),i=e.target.dataset.i;d[i]=d[i]||{};d[i].status=e.target.value;save()}});function renderPend(){let p=getDay().pend;pendList.innerHTML=p.length?p.map((x,i)=>`<label class="item"><input type="checkbox" data-pend="${i}" ${x.done?'checked':''} style="width:auto;margin-top:4px"><span><b>${esc(x.item)}</b><br><span class="small">${esc(x.resp||'Sem responsável')} • ${esc(x.prazo||'Sem prazo')}</span><br><span class="small">${esc(x.acao||'')}</span></span></label>`).join(''):'<div class="small">Nenhuma pendência crítica.</div>'}addPend.onclick=()=>{if(!pendItem.value.trim())return;getDay().pend.push({item:pendItem.value.trim(),resp:pendResp.value.trim(),prazo:pendPrazo.value,acao:pendAcao.value.trim(),done:false});['pendItem','pendResp','pendPrazo','pendAcao'].forEach(id=>document.getElementById(id).value='');save();renderPend()};document.addEventListener('change',e=>{if(e.target.dataset.pend!==undefined){getDay().pend[+e.target.dataset.pend].done=e.target.checked;save();renderPend()}});function renderBlocks(){blockList.innerHTML=Object.entries(DATA.blocos).map(([b,it])=>`<details class="section card"><summary>${b}</summary><div style="margin-top:8px">${it.map(i=>`<div class="item"><span>${i}</span></div>`).join('')}</div></details>`).join('')}function renderMeta(){metaList.innerHTML=DATA.metas.map((x,i)=>`<label class="item"><input type="checkbox" data-meta="${i}" ${state.meta[i]?'checked':''} style="width:auto;margin-top:4px"><span>${x}</span></label>`).join('');metrics()}document.addEventListener('change',e=>{if(e.target.dataset.meta!==undefined){state.meta[e.target.dataset.meta]=e.target.checked;save();renderMeta()}});function metrics(){let done=DATA.metas.filter((_,i)=>state.meta[i]).length,p=Math.round(done/DATA.metas.length*100);metricPct.textContent=p+'%';progressBar.style.width=p+'%';metricCritical.textContent=getDay().pend.filter(x=>!x.done).length}function renderHistory(){let ks=Object.keys(state.days).sort().reverse();historyList.innerHTML=ks.length?ks.map(k=>{let d=state.days[k],done=d.targets.filter(x=>x.done).length;return `<details class="section card"><summary>${fmt(k)} — ${done}/${d.targets.length} entregas</summary><div class="small" style="margin-top:8px"><b>Fechamento:</b> ${esc(d.delivered||'—')}</div><div class="small" style="margin-top:6px"><b>Impedimentos:</b> ${esc(d.blockers||'—')}</div><div class="small" style="margin-top:6px"><b>Pendências abertas:</b> ${d.pend.filter(x=>!x.done).length}</div></details>`}).join(''):'<div class="small">Ainda não há histórico salvo.</div>'}exportBtn.onclick=()=>{let blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='sensia-backup-'+isoLocal()+'.json';a.click();URL.revokeObjectURL(url)};importFile.onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let o=JSON.parse(await f.text());if(!o.days||!o.meta)throw 0;state=o;save();renderAll();alert('Backup importado.')}catch{alert('Backup inválido.')}};function renderAll(){renderToday();renderMop();renderEmp();renderPend();renderBlocks();renderMeta();renderHistory();metrics()}window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.style.display='inline-block'});installBtn.onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.style.display='none'}};if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js'));renderAll();</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1f4b3f">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Sensia Produção</title>
+<style>
+:root{--bg:#f4f6f5;--card:#fff;--text:#17211e;--muted:#66736f;--border:#dce3e0;--accent:#1f4b3f;--soft:#e7f0ed;--danger:#a13d3d}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
+.app{max-width:760px;margin:auto;padding:14px 12px 94px}
+.top h1{font-size:22px;margin:0}.sub{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:13px}
+.metric strong{display:block;font-size:24px}.metric span{font-size:13px;color:var(--muted)}
+.callout{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:12px;margin:10px 0}
+.panel{display:none}.panel.active{display:block}
+.section{margin:10px 0}.section h2{font-size:17px;margin:0 0 9px}
+input,textarea,select{width:100%;border:1px solid var(--border);border-radius:12px;padding:10px;background:#fff;font:inherit;color:var(--text)}
+input[type="date"]{min-height:44px}
+textarea{resize:vertical}.row{display:flex;gap:8px}.row>*{flex:1}
+.btn{border:0;border-radius:12px;padding:10px 13px;background:var(--accent);color:#fff;font-weight:600}
+.btn.secondary{background:#fff;color:var(--text);border:1px solid var(--border)}
+.item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border)}.item:last-child{border-bottom:0}
+.small{font-size:13px;color:var(--muted)}.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;background:var(--soft)}
+.progress{height:10px;background:var(--border);border-radius:999px;overflow:hidden}.progress>div{height:100%;background:var(--accent)}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);border-top:1px solid var(--border);z-index:20;padding:7px}
+.bottom .wrap{display:grid;grid-template-columns:repeat(5,1fr);max-width:760px;margin:auto}
+.bottom button{border:0;background:transparent;padding:8px 2px;font-size:11px;color:var(--muted)}
+.bottom button.active{color:var(--accent);font-weight:700}
+.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.more-grid button{border:1px solid var(--border);background:#fff;border-radius:14px;padding:16px;text-align:left}
+details summary{cursor:pointer;font-weight:600}
+@media (max-width:420px){.app{padding-left:10px;padding-right:10px}.card{padding:12px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <h1>Sensia Produção</h1>
+    <div id="dateLabel" class="sub"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card metric"><span>Meta mensal</span><strong id="metricPct">0%</strong><span>concluída</span></div>
+    <div class="card metric"><span>Pendências abertas</span><strong id="metricCritical">0</strong><span>no dia</span></div>
+  </div>
+
+  <div class="callout"><b>Foco do dia:</b> fechar frentes antes de abrir novas e priorizar o que libera a próxima etapa.</div>
+
+  <section id="hoje" class="panel active">
+    <div class="section card">
+      <h2>📅 Dia de trabalho</h2>
+      <div class="row"><input id="workDate" type="date"><button id="todayBtn" class="btn secondary">Hoje</button></div>
+    </div>
+    <div class="section card">
+      <h2>🎯 Entregas do dia</h2>
+      <div id="todayList"></div>
+      <div class="row" style="margin-top:8px"><input id="todayInput" placeholder="Adicionar entrega"><button id="addToday" class="btn">+</button></div>
+    </div>
+    <div class="section card"><h2>↩️ Ficou de ontem</h2><textarea id="carryover" rows="3"></textarea></div>
+    <div class="section card"><h2>🚧 Impedimentos</h2><textarea id="blockers" rows="3"></textarea></div>
+    <div class="section card"><h2>✅ Fechamento do dia</h2><textarea id="delivered" rows="3"></textarea></div>
+    <div class="section card"><h2>➡️ Levar para amanhã</h2><button id="carryForward" class="btn secondary" style="width:100%">Copiar entregas não concluídas</button></div>
+  </section>
+
+  <section id="mop" class="panel">
+    <div class="callout"><b>MOP:</b> altere a frente atual de cada pessoa.</div>
+    <div id="mopList"></div>
+  </section>
+
+  <section id="emp" class="panel">
+    <div class="callout"><b>Cobrança:</b> registre o que cada empreiteiro prometeu entregar hoje.</div>
+    <div id="empList"></div>
+  </section>
+
+  <section id="pend" class="panel">
+    <div class="section card">
+      <h2>🚨 Pendências críticas</h2><div id="pendList"></div>
+      <input id="pendItem" placeholder="Pendência" style="margin-top:8px">
+      <div class="row" style="margin-top:8px"><input id="pendResp" placeholder="Responsável"><input id="pendPrazo" type="date"></div>
+      <textarea id="pendAcao" rows="2" placeholder="Ação necessária" style="margin-top:8px"></textarea>
+      <button id="addPend" class="btn" style="width:100%;margin-top:8px">Adicionar pendência</button>
+    </div>
+  </section>
+
+  <section id="mais" class="panel">
+    <div class="section card">
+      <h2>Mais opções</h2>
+      <div class="more-grid">
+        <button data-more="blocos"><b>🏢 Blocos</b><div class="small">Ver pendências por bloco</div></button>
+        <button data-more="meta"><b>🎯 Meta</b><div class="small">Acompanhar agosto</div></button>
+        <button data-more="historico"><b>🗂️ Histórico</b><div class="small">Ver dias anteriores</div></button>
+        <button data-more="backup"><b>💾 Backup</b><div class="small">Exportar/importar</div></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="blocos" class="panel"><div id="blockList"></div></section>
+  <section id="meta" class="panel"><div class="section card"><h2>Meta Agosto/26</h2><div class="progress"><div id="progressBar"></div></div><div id="metaList" style="margin-top:8px"></div></div></section>
+  <section id="historico" class="panel"><div class="section card"><h2>🗂️ Histórico diário</h2><div id="historyList"></div></div></section>
+  <section id="backup" class="panel">
+    <div class="section card">
+      <h2>💾 Backup</h2>
+      <button id="exportBtn" class="btn" style="width:100%">Exportar backup (.json)</button>
+      <label class="btn secondary" style="display:block;text-align:center;margin-top:8px">Importar backup<input id="importFile" type="file" accept=".json,application/json" style="display:none"></label>
+      <div class="small" style="margin-top:8px">Guarde esse arquivo em local seguro.</div>
+    </div>
+  </section>
+</div>
+
+<div class="bottom"><div class="wrap">
+  <button data-go="hoje">Hoje</button>
+  <button data-go="mop">Equipe</button>
+  <button data-go="emp">Cobrar</button>
+  <button data-go="pend">Pendências</button>
+  <button data-go="mais">Mais</button>
+</div></div>
+
+<script>
+const DATA={"mop_people": [{"name": "Carlos Henrique Leonardo", "role": "Pedreiro", "default": "Pós-forma"}, {"name": "Thiago Silva", "role": "Pedreiro", "default": "Pós-forma"}, {"name": "Benedito Faustino", "role": "Pedreiro", "default": "Pós-forma"}, {"name": "Jilberto", "role": "Pedreiro", "default": "Pós-forma"}, {"name": "Djone", "role": "Pedreiro", "default": "Pós-forma"}, {"name": "Luciano Luiz", "role": "Pedreiro", "default": "Pós-forma"}, {"name": "João Moura", "role": "Pedreiro", "default": "Reserviço Bl. 09"}, {"name": "Cleiton", "role": "Pedreiro", "default": "Pós-forma"}, {"name": "Walace", "role": "Pedreiro", "default": "Pós-forma"}, {"name": "Bruno Soares", "role": "Pedreiro", "default": "Pós-forma"}, {"name": "Cristian Eduardo", "role": "Pedreiro", "default": "Quebra do vão da escada"}, {"name": "Matheus", "role": "Pedreiro", "default": "Peitoril / porta e janela cobertura"}, {"name": "Jeferson Eduardo", "role": "Pedreiro", "default": "Portas metálicas / porta de hall"}, {"name": "Isaías", "role": "Ajudante", "default": "Pós-forma"}, {"name": "Felipe", "role": "Ajudante", "default": "Pós-forma"}, {"name": "Lucas", "role": "Ajudante", "default": "Pós-forma / peitoril cobertura"}, {"name": "Michel", "role": "Ajudante", "default": "Impermeabilização / pós-forma"}, {"name": "Sergio", "role": "Ajudante", "default": "Impermeabilização / pós-forma"}, {"name": "Edmilson", "role": "Ajudante", "default": "Impermeabilização / pós-forma"}, {"name": "Alison", "role": "Ajudante", "default": "Portas metálicas / porta de hall"}, {"name": "Francisco", "role": "Ajudante", "default": "Reserviço Bl. 09"}], "empreiteiros": [{"name": "MH Abreu", "scope": "Drywall • shaft • gesso • forro"}, {"name": "RR", "scope": "Cerâmica • piso/azulejo • rejunte"}, {"name": "RA Pisos", "scope": "Contrapiso — cobertura Bl. 03"}, {"name": "F. Oliveira", "scope": "Portas de madeira • laminado"}, {"name": "Termogera", "scope": "Churrasqueiras — Bl. 09 e 10"}, {"name": "Plataforma", "scope": "Escadas — Bl. 10, 03, 07 e 08"}], "metas": ["Casa de Máquinas — Bloco 04", "Cerâmica cobertura — Bloco 09", "Peitoril coberturas — Bloco 09", "Lavagem paredes cobertura — Bloco 03", "Drywall coberturas — Blocos 10 e 03", "Shaft apartamentos — Blocos 02 e 01", "Shaft halls — Blocos 11 e 02", "Janelas e portas de alumínio", "Contrapiso cobertura — Bloco 03", "Impermeabilizações — Blocos 02, 01 e 10", "Piso / Azulejo", "Rejunte", "Gesso — Blocos 03, 05 e 11", "Forro de gesso — Bloco 02", "Portas de madeira e laminado", "Louças e bancadas", "Churrasqueiras — Blocos 09 e 10", "Escadas cobertura — Blocos 10, 03, 07 e 08"], "blocos": {"Bloco 01": ["Impermeabilização 3º pav.", "Impermeabilização 2º pav.", "Estrutura/fechamento de shaft"], "Bloco 02": ["Impermeabilização 1º pav.", "Piso/Azulejo 3º e 2º pav.", "Rejunte 3º pav.", "Forro 1º, 2º e 3º pav.", "Shaft halls"], "Bloco 03": ["Lavagem cobertura", "Drywall cobertura", "Contrapiso cobertura", "Gesso cobertura", "Portas/laminado", "Escada cobertura"], "Bloco 04": ["Casa de Máquinas — acesso e reservatório"], "Bloco 05": ["Gesso cobertura"], "Bloco 09": ["Cerâmica cobertura", "Peitoril cobertura", "Bancadas pendentes", "Churrasqueira", "Reserviço"], "Bloco 10": ["Drywall cobertura", "Portas/halls", "Impermeabilização cobertura", "Louças e bancadas", "Churrasqueira", "Escada cobertura"], "Bloco 11": ["Shaft halls", "Portas/halls", "Gesso 1º e 2º pav.", "Piso/Rejunte 1º pav."], "Blocos 07/08": ["Escadas de cobertura"]}};
+const STORAGE_KEY='sensia_producao_v2';
+let state=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null')||{days:{},meta:{},mop:{},empByDay:{}};
+let selectedDate='';
+
+function isoLocal(d=new Date()){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`}
+function fmtDate(v){if(!v)return'';const [y,m,d]=v.split('-');return `${d}/${m}/${y}`}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));updateMetrics()}
+function getDay(k=selectedDate){if(!state.days[k])state.days[k]={targets:[],carryover:'',blockers:'',delivered:'',pend:[]};return state.days[k]}
+function getEmpDay(){if(!state.empByDay[selectedDate])state.empByDay[selectedDate]={};return state.empByDay[selectedDate]}
+
+selectedDate=isoLocal();
+document.getElementById('workDate').value=selectedDate;
+document.getElementById('dateLabel').textContent=new Intl.DateTimeFormat('pt-BR',{weekday:'long',day:'2-digit',month:'long'}).format(new Date());
+
+function go(id){
+ document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));
+ document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));
+ if(id==='historico')renderHistory();
+}
+document.addEventListener('click',e=>{
+ const g=e.target.closest('[data-go]'); if(g){go(g.dataset.go);return}
+ const m=e.target.closest('[data-more]'); if(m){go(m.dataset.more)}
+});
+go('hoje');
+
+function renderToday(){
+ const d=getDay();
+ document.getElementById('todayList').innerHTML=d.targets.length?d.targets.map((t,i)=>`<label class="item"><input type="checkbox" data-target="${i}" ${t.done?'checked':''} style="width:auto;margin-top:4px"><span>${esc(t.text)}</span></label>`).join(''):'<div class="small">Nenhuma entrega cadastrada.</div>';
+ document.getElementById('carryover').value=d.carryover||'';
+ document.getElementById('blockers').value=d.blockers||'';
+ document.getElementById('delivered').value=d.delivered||'';
+}
+document.getElementById('workDate').addEventListener('change',e=>{selectedDate=e.target.value;renderAll()});
+document.getElementById('todayBtn').onclick=()=>{selectedDate=isoLocal();document.getElementById('workDate').value=selectedDate;renderAll()};
+document.getElementById('addToday').onclick=()=>{const i=document.getElementById('todayInput');if(!i.value.trim())return;getDay().targets.push({text:i.value.trim(),done:false});i.value='';save();renderToday()};
+document.getElementById('todayInput').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('addToday').click()});
+document.addEventListener('change',e=>{if(e.target.dataset.target!==undefined){getDay().targets[+e.target.dataset.target].done=e.target.checked;save();renderToday()}});
+['carryover','blockers','delivered'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{getDay()[id]=e.target.value;save()}));
+document.getElementById('carryForward').onclick=()=>{
+ const pending=getDay().targets.filter(x=>!x.done); if(!pending.length){alert('Não há entregas pendentes.');return}
+ const next=new Date(selectedDate+'T12:00:00'); next.setDate(next.getDate()+1); const nk=isoLocal(next), nd=getDay(nk);
+ pending.forEach(x=>{if(!nd.targets.some(t=>t.text===x.text))nd.targets.push({text:x.text,done:false})});
+ nd.carryover=(nd.carryover?nd.carryover+'\n':'')+pending.map(x=>'• '+x.text).join('\n');
+ save(); alert('Pendências copiadas para '+fmtDate(nk));
+};
+
+function renderMop(){
+ document.getElementById('mopList').innerHTML=DATA.mop_people.map((p,i)=>{const cur=state.mop[i]||p.default;return `<div class="section card"><div><b>${esc(p.name)}</b> <span class="badge">${p.role}</span></div><div class="small" style="margin:4px 0">Padrão: ${esc(p.default)}</div><input class="mopFront" data-i="${i}" value="${esc(cur)}" placeholder="Frente atual"></div>`}).join('');
+}
+document.addEventListener('input',e=>{if(e.target.classList.contains('mopFront')){state.mop[e.target.dataset.i]=e.target.value;save()}});
+
+function renderEmp(){
+ const de=getEmpDay();
+ document.getElementById('empList').innerHTML=DATA.empreiteiros.map((x,i)=>{const s=de[i]||{delivery:'',status:'Cobrar',block:''};return `<div class="section card"><h2>${x.name}</h2><div class="small">${x.scope}</div><input class="empDelivery" data-i="${i}" value="${esc(s.delivery)}" placeholder="Entrega prometida hoje" style="margin-top:8px"><div class="row" style="margin-top:8px"><select class="empStatus" data-i="${i}"><option ${s.status==='Cobrar'?'selected':''}>Cobrar</option><option ${s.status==='Em andamento'?'selected':''}>Em andamento</option><option ${s.status==='Entregue'?'selected':''}>Entregue</option><option ${s.status==='Travado'?'selected':''}>Travado</option></select><input class="empBlock" data-i="${i}" value="${esc(s.block)}" placeholder="Impedimento"></div></div>`}).join('');
+}
+document.addEventListener('input',e=>{if(e.target.classList.contains('empDelivery')||e.target.classList.contains('empBlock')){const i=e.target.dataset.i,de=getEmpDay();de[i]=de[i]||{};de[i][e.target.classList.contains('empDelivery')?'delivery':'block']=e.target.value;save()}});
+document.addEventListener('change',e=>{if(e.target.classList.contains('empStatus')){const i=e.target.dataset.i,de=getEmpDay();de[i]=de[i]||{};de[i].status=e.target.value;save()}});
+
+function renderPend(){
+ const p=getDay().pend;
+ document.getElementById('pendList').innerHTML=p.length?p.map((x,i)=>`<label class="item"><input type="checkbox" data-pend="${i}" ${x.done?'checked':''} style="width:auto;margin-top:4px"><span><b>${esc(x.item)}</b><br><span class="small">${esc(x.resp||'Sem responsável')} • ${esc(x.prazo||'Sem prazo')}</span><br><span class="small">${esc(x.acao||'')}</span></span></label>`).join(''):'<div class="small">Nenhuma pendência crítica.</div>';
+}
+document.getElementById('addPend').onclick=()=>{const item=document.getElementById('pendItem').value.trim();if(!item)return;getDay().pend.push({item,resp:document.getElementById('pendResp').value.trim(),prazo:document.getElementById('pendPrazo').value,acao:document.getElementById('pendAcao').value.trim(),done:false});['pendItem','pendResp','pendPrazo','pendAcao'].forEach(id=>document.getElementById(id).value='');save();renderPend()};
+document.addEventListener('change',e=>{if(e.target.dataset.pend!==undefined){getDay().pend[+e.target.dataset.pend].done=e.target.checked;save();renderPend()}});
+
+function renderBlocks(){document.getElementById('blockList').innerHTML=Object.entries(DATA.blocos).map(([b,itens])=>`<details class="section card"><summary>${b}</summary><div style="margin-top:8px">${itens.map(i=>`<div class="item"><span>${i}</span></div>`).join('')}</div></details>`).join('')}
+function renderMeta(){document.getElementById('metaList').innerHTML=DATA.metas.map((x,i)=>`<label class="item"><input type="checkbox" data-meta="${i}" ${state.meta[i]?'checked':''} style="width:auto;margin-top:4px"><span>${x}</span></label>`).join('');updateMetrics()}
+document.addEventListener('change',e=>{if(e.target.dataset.meta!==undefined){state.meta[e.target.dataset.meta]=e.target.checked;save();renderMeta()}});
+
+function updateMetrics(){
+ const done=DATA.metas.filter((_,i)=>state.meta[i]).length,pct=Math.round(done/DATA.metas.length*100);
+ document.getElementById('metricPct').textContent=pct+'%';document.getElementById('progressBar').style.width=pct+'%';
+ document.getElementById('metricCritical').textContent=getDay().pend.filter(x=>!x.done).length;
+}
+function renderHistory(){
+ const keys=Object.keys(state.days).sort().reverse();
+ document.getElementById('historyList').innerHTML=keys.length?keys.map(k=>{const d=state.days[k],done=d.targets.filter(x=>x.done).length,total=d.targets.length;return `<details class="section card"><summary>${fmtDate(k)} — ${done}/${total} entregas</summary><div class="small" style="margin-top:8px"><b>Fechamento:</b> ${esc(d.delivered||'—')}</div><div class="small" style="margin-top:6px"><b>Impedimentos:</b> ${esc(d.blockers||'—')}</div><div class="small" style="margin-top:6px"><b>Pendências abertas:</b> ${d.pend.filter(x=>!x.done).length}</div></details>`}).join(''):'<div class="small">Ainda não há histórico salvo.</div>';
+}
+document.getElementById('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='sensia-producao-backup-'+isoLocal()+'.json';a.click();URL.revokeObjectURL(url)};
+document.getElementById('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());state=obj;save();renderAll();alert('Backup importado com sucesso.')}catch{alert('Arquivo inválido.')}});
+
+function renderAll(){renderToday();renderMop();renderEmp();renderPend();renderBlocks();renderMeta();renderHistory();updateMetrics()}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js?v=21'))}
+renderAll();
+</script>
+</body>
+</html>

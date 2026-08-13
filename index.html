@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1f4b3f"><link rel="manifest" href="manifest.webmanifest"><title>Sensia Produção V3.1</title><style>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1f4b3f"><link rel="manifest" href="manifest.webmanifest"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><title>Sensia Produção V3.2</title><style>
 :root{--bg:#f3f6f5;--card:#fff;--text:#17211e;--muted:#65736e;--border:#dbe4e0;--accent:#1f4b3f;--soft:#e7f0ed;--danger:#a63b3b;--warn:#a0711b;--ok:#2d6b57}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.app{max-width:1480px;margin:auto;padding:18px 20px 94px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.top h1{font-size:22px;margin:0}.sub,.small{font-size:13px;color:var(--muted)}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:13px}.metric strong{display:block;font-size:24px}.metric span{font-size:12px;color:var(--muted)}.callout{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:12px}.section{margin:10px 0}.section h2{font-size:17px;margin:0 0 9px}.panel{display:none}.panel.active{display:block}input,textarea,select{width:100%;border:1px solid var(--border);border-radius:12px;padding:10px;background:#fff;color:var(--text);font:inherit}input[type=checkbox]{width:auto}.row{display:flex;gap:8px}.row>*{flex:1}.stack{display:grid;gap:8px}.btn{border:0;border-radius:12px;background:var(--accent);color:#fff;padding:10px 13px;font-weight:600}.btn.secondary{background:#fff;color:var(--text);border:1px solid var(--border)}.btn.danger{background:#fff;color:var(--danger);border:1px solid var(--border)}.item{padding:10px 0;border-bottom:1px solid var(--border)}.item:last-child{border-bottom:0}.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;background:var(--soft)}.badge.red{background:#f7e5e5;color:var(--danger)}.badge.yellow{background:#f6edd7;color:var(--warn)}.badge.green{background:#e3efe9;color:var(--ok)}.progress{height:10px;background:var(--border);border-radius:999px;overflow:hidden}.progress>div{height:100%;background:var(--accent)}.bottom{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);border-top:1px solid var(--border);z-index:30;padding:7px}.bottom .wrap{max-width:1480px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr)}.bottom button{border:0;background:transparent;color:var(--muted);padding:7px 2px;font-size:11px}.bottom button.active{color:var(--accent);font-weight:700}.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.more-grid button{border:1px solid var(--border);background:#fff;border-radius:14px;padding:15px;text-align:left}.goal-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.goal-title{font-weight:700}.meta-line{font-size:13px;color:var(--muted)}.apt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}.apt{border:1px solid var(--border);border-radius:10px;padding:9px;text-align:center;font-size:12px;background:#fff}.apt.done{background:#e3efe9}.apt.delay{background:#f7e5e5}.apt.progressing{background:#f6edd7}.bar-row{margin:9px 0}.bar-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.42);display:none;align-items:flex-end;z-index:50}.modal.show{display:flex}.sheet{background:var(--bg);width:100%;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:14px;max-width:820px;margin:0 auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.sheet h3{margin:0}.close{border:0;background:transparent;font-size:22px}@media(max-width:500px){.app{padding-left:10px;padding-right:10px}.grid3{grid-template-columns:1fr 1fr}.card{padding:12px}}
 .statusDone{background:#e3efe9!important}.statusProgress{background:#f6edd7!important}.statusLate{background:#f7e5e5!important}.kebab{position:relative;margin-left:auto}.kebabBtn{border:0;background:transparent;font-size:22px;padding:0 6px}.miniMenu{display:none;position:absolute;right:0;top:22px;background:#fff;border:1px solid var(--border);border-radius:10px;min-width:115px;z-index:20;overflow:hidden}.miniMenu.show{display:block}.miniMenu button{width:100%;border:0;background:#fff;text-align:left;padding:9px}.miniMenu .dangerText{color:var(--danger)}.apt{cursor:pointer}.apt.selected{outline:2px solid var(--accent)}
 
@@ -18,7 +18,41 @@
 @media(max-width:899px){
   .app{max-width:820px;padding:14px 12px 94px}
 }
-</style></head><body><div class="app"><div class="top"><div><h1>Sensia Produção</h1><div class="sub">V3.1.2 • Metas em massa + desktop responsivo</div></div><button class="btn secondary" id="openAlerts">Alertas <span id="alertCount" class="badge red">0</span></button></div>
+
+.authGate{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:18px}
+.authGate.hidden{display:none}.authCard{width:min(430px,100%);background:#fff;border:1px solid var(--border);border-radius:20px;padding:22px}
+.authCard h1{margin:0 0 4px;font-size:25px}.authCard .stack{margin-top:16px}
+.cloudPill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);border-radius:999px;padding:7px 10px;background:#fff;font-size:12px}
+.cloudDot{width:8px;height:8px;border-radius:50%;background:#999}.cloudDot.ok{background:#2d6b57}.cloudDot.warn{background:#a0711b}.cloudDot.off{background:#a63b3b}
+.topActions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.linkBtn{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12px;padding:4px 6px}
+.migrationBox{display:none;margin:10px 0;background:#fff8df;border:1px solid #ead99b;border-radius:14px;padding:12px}.migrationBox.show{display:block}
+</style></head><body>
+<div id="authGate" class="authGate">
+  <div class="authCard">
+    <h1>Sensia Produção</h1>
+    <div class="sub">V3.2 • Sincronização na nuvem</div>
+    <div class="stack">
+      <label>E-mail<input id="loginEmail" type="email" autocomplete="username" placeholder="seu@email.com"></label>
+      <label>Senha<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Sua senha"></label>
+      <button id="loginBtn" class="btn">Entrar</button>
+      <div id="loginError" class="small"></div>
+    </div>
+  </div>
+</div>
+<div class="app">
+  <div class="top">
+    <div><h1>Sensia Produção</h1><div class="sub">V3.2 • Nuvem + modo local</div></div>
+    <div class="topActions">
+      <span class="cloudPill"><span id="cloudDot" class="cloudDot warn"></span><span id="cloudText">Conectando...</span></span>
+      <button class="btn secondary" id="openAlerts">Alertas <span id="alertCount" class="badge red">0</span></button>
+      <button id="logoutBtn" class="linkBtn">Sair</button>
+    </div>
+  </div>
+  <div id="migrationBox" class="migrationBox">
+    <b>Dados locais encontrados.</b>
+    <div class="small" style="margin:4px 0 8px">O banco na nuvem está vazio. Migre os dados deste aparelho para começar a sincronizar com celular e computador.</div>
+    <button id="migrateCloudBtn" class="btn">Migrar dados para a nuvem</button>
+  </div>
 <section id="inicio" class="panel active"><div class="grid3 section"><div class="card metric"><span>Meta geral</span><strong id="mPct">0%</strong><span>concluída</span></div><div class="card metric"><span>Atrasadas</span><strong id="mLate">0</strong><span>metas</span></div><div class="card metric"><span>Materiais críticos</span><strong id="mMat">0</strong><span>abertos</span></div><div class="card metric"><span>Faltas hoje</span><strong id="mAbs">0</strong><span>pessoas</span></div><div class="card metric"><span>Vencem em 3 dias</span><strong id="mSoon">0</strong><span>metas</span></div><div class="card metric"><span>Em andamento</span><strong id="mProg">0</strong><span>metas</span></div></div><div class="callout"><b>Prioridade:</b> itens atrasados, materiais que bloqueiam frente e metas que vencem nos próximos 3 dias.</div><div class="section card"><h2>🚨 O que resolver hoje</h2><div id="todayPriorities"></div></div><div class="section card"><h2>📊 Avanço por bloco</h2><div id="homeBlockBars"></div></div></section>
 <section id="producao" class="panel"><div class="section card"><div class="row"><input id="goalSearch" placeholder="Buscar meta"><select id="goalFilter"><option value="">Todos status</option><option>Não iniciado</option><option>Em andamento</option><option>Concluído</option><option>Atrasado</option></select></div><div class="row" style="margin-top:8px"><select id="blockFilter"><option value="">Todos blocos</option></select><button id="newGoal" class="btn">+ Nova meta</button><button id="newBulkGoals" class="btn secondary">+ Metas em massa</button></div></div><div id="goalList"></div></section>
 <section id="equipes" class="panel"><div class="section card"><h2>👷 Funcionários</h2><div class="row"><select id="employeeCompanyFilter"><option value="">Todas empresas</option></select><button id="newEmployee" class="btn">+ Funcionário</button></div></div><div id="employeeList"></div></section>
@@ -39,7 +73,13 @@ const BLOCKS=Array.from({length:12},(_,i)=>String(i+1).padStart(2,'0'));
 const FLOORS=['1º','2º','3º','Cobertura','Área comum / Não se aplica'];
 const APTS={'1º':['101','102','103','104','105','106','107','108'],'2º':['201','202','203','204','205','206','207','208'],'3º':['301','302','303','304','305','306','307','308'],'Cobertura':['301C','302C','303C','304C','305C','306C','307C','308C'],'Área comum / Não se aplica':['Não se aplica']};
 const KEY='sensia_producao';
-const SCHEMA_VERSION=4;
+const SCHEMA_VERSION=5;
+const SUPABASE_URL='https://nauoxnaiasquuacloukv.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_q1tZ6plT3Vx5M0-6tb9gPw_oyiMw-Jh';
+const cloud=supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
+  auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+});
+let cloudUser=null,cloudReady=false,localDirty=false,syncTimer=null,syncBusy=false;
 function loadPersistentState(){
   const keys=[KEY,'sensia_producao_v3_1','sensia_producao_v3','sensia_producao_v2'];
   for(const k of keys){
@@ -64,10 +104,208 @@ function loadPersistentState(){
   return fresh;
 }
 let state=loadPersistentState();
+
+function isUuid(v){return typeof v==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v)}
+function newUuid(){return crypto.randomUUID()}
+function normalizeLocalIds(){
+  const conMap=new Map();
+  state.contractors=state.contractors.map(c=>{
+    const old=c.id;
+    const id=isUuid(old)?old:newUuid();
+    if(old!==id)conMap.set(old,id);
+    return {...c,id,active:c.active!==false};
+  });
+  const empMap=new Map();
+  state.employees=state.employees.map(e=>{
+    const old=e.id;
+    const id=isUuid(old)?old:newUuid();
+    if(old!==id)empMap.set(old,id);
+    return {...e,id,active:e.active!==false};
+  });
+  state.goals=state.goals.map(g=>({...g,id:isUuid(g.id)?g.id:newUuid()}));
+  state.materials=state.materials.map(m=>({...m,id:isUuid(m.id)?m.id:newUuid()}));
+  const nextAttendance={};
+  Object.entries(state.attendance||{}).forEach(([date,rows])=>{
+    nextAttendance[date]={};
+    Object.entries(rows||{}).forEach(([empId,r])=>{
+      const newEmp=empMap.get(empId)||empId;
+      nextAttendance[date][newEmp]={...r,id:isUuid(r.id)?r.id:newUuid()};
+    });
+  });
+  state.attendance=nextAttendance;
+  state.schemaVersion=SCHEMA_VERSION;
+  localStorage.setItem(KEY,JSON.stringify(state));
+}
+normalizeLocalIds();
+
 function TODAY(){const d=new Date(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${d.getFullYear()}-${m}-${day}`}
 function uid(p){return p+Date.now().toString(36)+Math.random().toString(36).slice(2,6)} function esc(x){return String(x??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
-function save(render=true){state.schemaVersion=SCHEMA_VERSION;localStorage.setItem(KEY,JSON.stringify(state));if(render)renderAll()} function daysUntil(x){if(!x)return null;return Math.round((new Date(x+'T12:00:00')-new Date(TODAY()+'T12:00:00'))/86400000)}
+function save(render=true){
+  state.schemaVersion=SCHEMA_VERSION;
+  localStorage.setItem(KEY,JSON.stringify(state));
+  localDirty=true;
+  if(cloudReady)scheduleCloudSync();
+  if(render)renderAll();
+} function daysUntil(x){if(!x)return null;return Math.round((new Date(x+'T12:00:00')-new Date(TODAY()+'T12:00:00'))/86400000)}
 function gc(g){if(g.status==='Concluído')return 'Concluído';const d=daysUntil(g.due);return d!==null&&d<0?'Atrasado':g.status} function pct(a){return a.length?Math.round(a.filter(g=>gc(g)==='Concluído').length/a.length*100):0} function companies(){return ['MOP',...state.contractors.map(c=>c.name)]} function opts(a,v=''){return a.map(x=>`<option ${x===v?'selected':''}>${esc(x)}</option>`).join('')}
+
+function setCloudStatus(kind,text){
+  cloudDot.className='cloudDot '+kind;
+  cloudText.textContent=text;
+}
+function contractorIdByName(name){
+  if(!name||name==='MOP')return null;
+  return state.contractors.find(c=>c.name===name)?.id||null;
+}
+function cloudRows(){
+  const uid=cloudUser.id;
+  return {
+    contractors:state.contractors.map(c=>({id:c.id,user_id:uid,name:c.name,service:c.service||null,active:c.active!==false})),
+    employees:state.employees.map(e=>({id:e.id,user_id:uid,name:e.name,role:e.role||null,employer_type:e.company==='MOP'?'MOP':'EMPREITEIRO',contractor_id:contractorIdByName(e.company),active:e.active!==false})),
+    goals:state.goals.map(g=>({id:g.id,user_id:uid,block:g.block,floor:g.floor,apartment:g.apt==='Não se aplica'?null:(g.apt||null),activity:g.activity,status:g.status,priority:g.priority||'Média',responsible:g.owner||null,due_date:g.due||null,planned_date:g.planned||null,actual_date:g.actual||null,delay_reason:g.delay_reason||null,notes:g.notes||null})),
+    materials:state.materials.map(m=>({id:m.id,user_id:uid,name:m.name,quantity:m.qty||null,urgency:m.urgency||'Média',status:m.status||'Em falta',block:m.block||null,floor:m.floor||null,apartment:m.apt==='Não se aplica'?null:(m.apt||null),affected_activity:m.activity||null,notes:m.notes||null})),
+    attendance:Object.entries(state.attendance||{}).flatMap(([date,rows])=>Object.entries(rows||{}).map(([employee_id,r])=>({id:r.id||newUuid(),user_id:uid,employee_id,attendance_date:date,status:r.status||'Presente',block:r.block||null,floor:r.floor||null,apartment:r.apt==='Não se aplica'?null:(r.apt||null),activity:r.activity||null,notes:r.notes||null})))
+  };
+}
+async function reconcileTable(table,rows){
+  const {data:remote,error:readErr}=await cloud.from(table).select('id');
+  if(readErr)throw readErr;
+  if(rows.length){
+    const {error}=await cloud.from(table).upsert(rows,{onConflict:'id'});
+    if(error)throw error;
+  }
+  const keep=new Set(rows.map(r=>r.id));
+  const remove=(remote||[]).filter(r=>!keep.has(r.id)).map(r=>r.id);
+  for(const id of remove){
+    const {error}=await cloud.from(table).delete().eq('id',id);
+    if(error)throw error;
+  }
+}
+async function syncCloudSnapshot(){
+  if(!cloudReady||!cloudUser||syncBusy||!navigator.onLine)return;
+  syncBusy=true;
+  setCloudStatus('warn','Sincronizando...');
+  try{
+    normalizeLocalIds();
+    const r=cloudRows();
+    await reconcileTable('contractors',r.contractors);
+    await reconcileTable('employees',r.employees);
+    await reconcileTable('goals',r.goals);
+    await reconcileTable('materials',r.materials);
+    await reconcileTable('attendance',r.attendance);
+    localDirty=false;
+    setCloudStatus('ok','Sincronizado');
+  }catch(e){
+    console.error('Sync cloud error',e);
+    setCloudStatus('off','Erro de sincronização');
+  }finally{
+    syncBusy=false;
+  }
+}
+function scheduleCloudSync(){
+  clearTimeout(syncTimer);
+  syncTimer=setTimeout(syncCloudSnapshot,700);
+}
+async function fetchCloudState(){
+  if(!cloudUser)return null;
+  const [cg,ce,cc,ca,cm]=await Promise.all([
+    cloud.from('goals').select('*'),
+    cloud.from('employees').select('*'),
+    cloud.from('contractors').select('*'),
+    cloud.from('attendance').select('*'),
+    cloud.from('materials').select('*')
+  ]);
+  for(const x of [cg,ce,cc,ca,cm])if(x.error)throw x.error;
+  const contractorById=new Map((cc.data||[]).map(c=>[c.id,c.name]));
+  const cloudState={
+    goals:(cg.data||[]).map(g=>({id:g.id,block:g.block,floor:g.floor,apt:g.apartment||'Não se aplica',activity:g.activity,due:g.due_date||'',status:g.status,priority:g.priority||'Média',owner:g.responsible||'MOP',planned:g.planned_date||'',actual:g.actual_date||'',delay_reason:g.delay_reason||'',notes:g.notes||''})),
+    contractors:(cc.data||[]).map(c=>({id:c.id,name:c.name,service:c.service||'',active:c.active!==false})),
+    employees:(ce.data||[]).map(e=>({id:e.id,name:e.name,role:e.role||'',company:e.employer_type==='MOP'?'MOP':(contractorById.get(e.contractor_id)||'Empreiteiro'),active:e.active!==false})),
+    attendance:{},
+    materials:(cm.data||[]).map(m=>({id:m.id,name:m.name,qty:m.quantity||'',urgency:m.urgency||'Média',block:m.block||'01',floor:m.floor||'Área comum / Não se aplica',apt:m.apartment||'Não se aplica',activity:m.affected_activity||'',status:m.status||'Em falta',notes:m.notes||''})),
+    history:state.history||[],
+    schemaVersion:SCHEMA_VERSION
+  };
+  (ca.data||[]).forEach(r=>{
+    if(!cloudState.attendance[r.attendance_date])cloudState.attendance[r.attendance_date]={};
+    cloudState.attendance[r.attendance_date][r.employee_id]={id:r.id,status:r.status,block:r.block||'',floor:r.floor||'',apt:r.apartment||'',activity:r.activity||'',notes:r.notes||''};
+  });
+  return cloudState;
+}
+async function cloudHasData(){
+  const {count,error}=await cloud.from('goals').select('*',{count:'exact',head:true});
+  if(error)throw error;
+  const {count:empCount,error:empErr}=await cloud.from('employees').select('*',{count:'exact',head:true});
+  if(empErr)throw empErr;
+  return (count||0)>0||(empCount||0)>0;
+}
+function localHasUsefulData(){
+  return state.goals.length>0||state.employees.length>0||state.contractors.length>0||state.materials.length>0||Object.keys(state.attendance||{}).length>0;
+}
+async function initializeCloud(){
+  const {data:{session}}=await cloud.auth.getSession();
+  if(!session){
+    authGate.classList.remove('hidden');
+    setCloudStatus('warn','Login necessário');
+    return;
+  }
+  cloudUser=session.user;
+  authGate.classList.add('hidden');
+  setCloudStatus('warn','Conectando...');
+  try{
+    const has=await cloudHasData();
+    if(has){
+      const remote=await fetchCloudState();
+      state=remote;
+      normalizeLocalIds();
+      localDirty=false;
+      cloudReady=true;
+      migrationBox.classList.remove('show');
+      setCloudStatus('ok','Sincronizado');
+      renderAll();
+    }else{
+      cloudReady=false;
+      setCloudStatus('warn','Migração pendente');
+      if(localHasUsefulData())migrationBox.classList.add('show');
+      else{
+        await syncCloudSnapshot();
+      }
+    }
+  }catch(e){
+    console.error(e);
+    cloudReady=false;
+    setCloudStatus('off','Offline/local');
+    renderAll();
+  }
+}
+async function login(){
+  loginBtn.disabled=true;loginError.textContent='Entrando...';
+  const {error}=await cloud.auth.signInWithPassword({email:loginEmail.value.trim(),password:loginPassword.value});
+  loginBtn.disabled=false;
+  if(error){loginError.textContent='Não foi possível entrar. Confira e-mail e senha.';return}
+  loginError.textContent='';
+  await initializeCloud();
+}
+loginBtn.onclick=login;
+loginPassword.addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+logoutBtn.onclick=async()=>{await cloud.auth.signOut();cloudReady=false;cloudUser=null;authGate.classList.remove('hidden');setCloudStatus('warn','Login necessário')};
+migrateCloudBtn.onclick=async()=>{
+  if(!confirm('Migrar os dados deste aparelho para a nuvem?'))return;
+  migrateCloudBtn.disabled=true;
+  setCloudStatus('warn','Migrando...');
+  try{
+    normalizeLocalIds();
+    cloudReady=true;
+    await syncCloudSnapshot();
+    migrationBox.classList.remove('show');
+    alert('Migração concluída. Seus dados agora estão sincronizados na nuvem.');
+  }finally{migrateCloudBtn.disabled=false}
+};
+window.addEventListener('online',()=>{setCloudStatus('warn','Reconectando...');if(cloudReady)scheduleCloudSync()});
+window.addEventListener('offline',()=>setCloudStatus('off','Modo offline'));
+window.addEventListener('focus',async()=>{if(cloudReady&&!localDirty&&!syncBusy&&navigator.onLine){try{const remote=await fetchCloudState();state=remote;normalizeLocalIds();renderAll();setCloudStatus('ok','Sincronizado')}catch(e){console.error(e)}}});
+cloud.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'){authGate.classList.remove('hidden')}});
+
 function go(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));if(id==='blocos')blockView();if(id==='graficos')charts();if(id==='historico')history()} document.addEventListener('click',e=>{const x=e.target.closest('[data-go]');if(x){go(x.dataset.go);return}const y=e.target.closest('[data-more]');if(y)go(y.dataset.more)});openAlerts.onclick=()=>go('alertas');
 function modal(t,b){modalTitle.textContent=t;modalBody.innerHTML=b;document.getElementById('modal').classList.add('show')} modalClose.onclick=()=>document.getElementById('modal').classList.remove('show');
 function loc(prefix,o={}){const f=o.floor&&FLOORS.includes(o.floor)?o.floor:'1º',ap=APTS[f];return `<div class="grid2"><label>Bloco<select id="${prefix}Block">${opts(BLOCKS,o.block||'01')}</select></label><label>Pavimento<select id="${prefix}Floor">${opts(FLOORS,f)}</select></label></div><label>Apartamento<select id="${prefix}Apt">${opts(ap,ap.includes(o.apt)?o.apt:ap[0])}</select></label>`} function bindLoc(p){const f=document.getElementById(p+'Floor'),a=document.getElementById(p+'Apt');f.onchange=()=>a.innerHTML=opts(APTS[f.value])}
@@ -125,7 +363,7 @@ document.addEventListener('click',e=>{if(e.target.classList.contains('editGoal')
 function alloc(e){const r=(state.attendance[TODAY()]||{})[e.id];if(!r)return 'Sem apontamento hoje';if(r.status==='Falta')return 'Falta hoje';return [r.block&&'Bl. '+r.block,r.floor,r.apt,r.activity].filter(Boolean).join(' • ')||'Presente'} function employees(){const c=employeeCompanyFilter.value;employeeList.innerHTML=state.employees.filter(e=>!c||e.company===c).map(e=>`<div class="section card"><div class="goal-head"><div><b>${esc(e.name)}</b> <span class="badge">${esc(e.role)}</span><div class="small">${esc(e.company)} • ${esc(alloc(e))}</div></div>${menu(e.id,'Emp')}</div></div>`).join('')} employeeCompanyFilter.onchange=employees;
 function empForm(e={}){return `<div class="stack"><label>Nome<input id="eName" value="${esc(e.name||'')}"></label><label>Função<input id="eRole" value="${esc(e.role||'')}"></label><label>Empresa<select id="eCompany">${opts(companies(),e.company||'MOP')}</select></label><button id="saveEmp" class="btn">Salvar</button></div>`} newEmployee.onclick=()=>{modal('Novo funcionário',empForm());saveEmp.onclick=()=>saveEmpFn()};document.addEventListener('click',e=>{if(e.target.classList.contains('editEmp')){const x=state.employees.find(a=>a.id===e.target.dataset.id);modal('Editar funcionário',empForm(x));saveEmp.onclick=()=>saveEmpFn(x.id)}if(e.target.classList.contains('delEmp')&&confirm('Remover funcionário?')){state.employees=state.employees.filter(x=>x.id!==e.target.dataset.id);save()}});function saveEmpFn(id=null){const x={id:id||uid('e'),name:eName.value.trim(),role:eRole.value.trim(),company:eCompany.value};if(!x.name)return;state.employees=id?state.employees.map(a=>a.id===id?x:a):[...state.employees,x];document.getElementById('modal').classList.remove('show');save()}
 function contractors(){contractorList.innerHTML=state.contractors.map(c=>`<div class="section card"><div class="goal-head"><div><b>${esc(c.name)}</b><div class="small">${esc(c.service)}</div></div>${menu(c.id,'Con')}</div></div>`).join('')} function conForm(c={}){return `<div class="stack"><label>Empresa<input id="cName" value="${esc(c.name||'')}"></label><label>Serviço<input id="cService" value="${esc(c.service||'')}"></label><button id="saveCon" class="btn">Salvar</button></div>`} newContractor.onclick=()=>{modal('Novo empreiteiro',conForm());saveCon.onclick=()=>saveConFn()};document.addEventListener('click',e=>{if(e.target.classList.contains('editCon')){const c=state.contractors.find(x=>x.id===e.target.dataset.id);modal('Editar empreiteiro',conForm(c));saveCon.onclick=()=>saveConFn(c.id)}if(e.target.classList.contains('delCon')&&confirm('Remover empreiteiro?')){state.contractors=state.contractors.filter(x=>x.id!==e.target.dataset.id);save()}});function saveConFn(id=null){const c={id:id||uid('c'),name:cName.value.trim(),service:cService.value.trim()};if(!c.name)return;state.contractors=id?state.contractors.map(x=>x.id===id?c:x):[...state.contractors,c];document.getElementById('modal').classList.remove('show');save()}
-attendanceDate.value=TODAY();attendanceDate.onchange=attendance;attendanceCompany.onchange=attendance;function attendance(){const d=attendanceDate.value||TODAY(),c=attendanceCompany.value;if(!state.attendance[d])state.attendance[d]={};attendanceList.innerHTML=state.employees.filter(e=>!c||e.company===c).map(e=>{const r=state.attendance[d][e.id]||{status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};return `<div class="section card"><b>${esc(e.name)}</b><div class="small">${esc(e.company)} • ${esc(e.role)}</div><div class="grid2" style="margin-top:8px"><select class="attStatus" data-id="${e.id}">${opts(['Presente','Falta','Folga'],r.status)}</select><select class="attBlock" data-id="${e.id}">${opts(BLOCKS,r.block||'01')}</select></div><div class="grid2" style="margin-top:8px"><select class="attFloor" data-id="${e.id}">${opts(FLOORS,r.floor||'1º')}</select><select class="attApt" data-id="${e.id}">${opts(APTS[r.floor||'1º'],r.apt||APTS[r.floor||'1º'][0])}</select></div><input class="attActivity" data-id="${e.id}" value="${esc(r.activity||'')}" placeholder="Atividade" style="margin-top:8px"></div>`}).join('')} document.addEventListener('change',e=>{if(['attStatus','attBlock','attFloor','attApt'].some(c=>e.target.classList.contains(c))){const d=attendanceDate.value||TODAY(),id=e.target.dataset.id;if(!state.attendance[d])state.attendance[d]={};const r=state.attendance[d][id]||{status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};if(e.target.classList.contains('attStatus'))r.status=e.target.value;if(e.target.classList.contains('attBlock'))r.block=e.target.value;if(e.target.classList.contains('attFloor')){r.floor=e.target.value;r.apt=APTS[r.floor][0];state.attendance[d][id]=r;save(false);attendance();return}if(e.target.classList.contains('attApt'))r.apt=e.target.value;state.attendance[d][id]=r;save(false);dashboard();employees()}});document.addEventListener('input',e=>{if(e.target.classList.contains('attActivity')){const d=attendanceDate.value||TODAY(),id=e.target.dataset.id;if(!state.attendance[d])state.attendance[d]={};const r=state.attendance[d][id]||{status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};r.activity=e.target.value;state.attendance[d][id]=r;save(false)}});
+attendanceDate.value=TODAY();attendanceDate.onchange=attendance;attendanceCompany.onchange=attendance;function attendance(){const d=attendanceDate.value||TODAY(),c=attendanceCompany.value;if(!state.attendance[d])state.attendance[d]={};attendanceList.innerHTML=state.employees.filter(e=>!c||e.company===c).map(e=>{const r=state.attendance[d][e.id]||{id:newUuid(),status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};return `<div class="section card"><b>${esc(e.name)}</b><div class="small">${esc(e.company)} • ${esc(e.role)}</div><div class="grid2" style="margin-top:8px"><select class="attStatus" data-id="${e.id}">${opts(['Presente','Falta','Folga'],r.status)}</select><select class="attBlock" data-id="${e.id}">${opts(BLOCKS,r.block||'01')}</select></div><div class="grid2" style="margin-top:8px"><select class="attFloor" data-id="${e.id}">${opts(FLOORS,r.floor||'1º')}</select><select class="attApt" data-id="${e.id}">${opts(APTS[r.floor||'1º'],r.apt||APTS[r.floor||'1º'][0])}</select></div><input class="attActivity" data-id="${e.id}" value="${esc(r.activity||'')}" placeholder="Atividade" style="margin-top:8px"></div>`}).join('')} document.addEventListener('change',e=>{if(['attStatus','attBlock','attFloor','attApt'].some(c=>e.target.classList.contains(c))){const d=attendanceDate.value||TODAY(),id=e.target.dataset.id;if(!state.attendance[d])state.attendance[d]={};const r=state.attendance[d][id]||{id:newUuid(),status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};if(e.target.classList.contains('attStatus'))r.status=e.target.value;if(e.target.classList.contains('attBlock'))r.block=e.target.value;if(e.target.classList.contains('attFloor')){r.floor=e.target.value;r.apt=APTS[r.floor][0];state.attendance[d][id]=r;save(false);attendance();return}if(e.target.classList.contains('attApt'))r.apt=e.target.value;state.attendance[d][id]=r;save(false);dashboard();employees()}});document.addEventListener('input',e=>{if(e.target.classList.contains('attActivity')){const d=attendanceDate.value||TODAY(),id=e.target.dataset.id;if(!state.attendance[d])state.attendance[d]={};const r=state.attendance[d][id]||{id:newUuid(),status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};r.activity=e.target.value;state.attendance[d][id]=r;save(false)}});
 function matForm(m={}){return `<div class="stack"><label>Material<input id="matName" value="${esc(m.name||'')}"></label><div class="grid2"><label>Quantidade<input id="matQty" value="${esc(m.qty||'')}"></label><label>Urgência<select id="matUrg">${opts(['Alta','Média','Baixa'],m.urgency||'Média')}</select></label></div>${loc('mat',m)}<label>Atividade afetada<input id="matActivity" value="${esc(m.activity||'')}"></label><label>Status<select id="matStatus">${opts(['Em falta','Solicitado','Resolvido'],m.status||'Em falta')}</select></label><button id="saveMat" class="btn">Salvar</button></div>`} newMaterial.onclick=()=>{modal('Novo material',matForm());bindLoc('mat');saveMat.onclick=()=>saveMatFn()};function materials(){materialList.innerHTML=state.materials.map(m=>`<div class="section card"><div class="goal-head"><div><b>${esc(m.name)}</b><div class="small">${esc(m.qty)} • Bl. ${m.block} • ${m.floor} • ${m.apt} • afeta ${esc(m.activity)}</div></div>${menu(m.id,'Mat')}</div><span class="badge ${m.status==='Resolvido'?'green':m.urgency==='Alta'?'red':'yellow'}">${m.status}</span></div>`).join('')||'<div class="section card small">Nenhum material em falta.</div>'} document.addEventListener('click',e=>{if(e.target.classList.contains('editMat')){const m=state.materials.find(x=>x.id===e.target.dataset.id);modal('Editar material',matForm(m));bindLoc('mat');saveMat.onclick=()=>saveMatFn(m.id)}if(e.target.classList.contains('delMat')){state.materials=state.materials.filter(x=>x.id!==e.target.dataset.id);save()}});function saveMatFn(id=null){const m={id:id||uid('m'),name:matName.value.trim(),qty:matQty.value.trim(),urgency:matUrg.value,block:matBlock.value,floor:matFloor.value,apt:matApt.value,activity:matActivity.value.trim(),status:matStatus.value};if(!m.name)return;state.materials=id?state.materials.map(x=>x.id===id?m:x):[...state.materials,m];document.getElementById('modal').classList.remove('show');save()}
 function alertData(){const a=[];state.goals.forEach(g=>{if(g.status==='Concluído'||!g.due)return;const d=daysUntil(g.due);if(d<0)a.push('ATRASADA • Bl. '+g.block+' • '+g.activity);else if(d===0)a.push('VENCE HOJE • Bl. '+g.block+' • '+g.activity);else if(d===1)a.push('VENCE AMANHÃ • Bl. '+g.block+' • '+g.activity)});state.materials.filter(m=>m.status!=='Resolvido').forEach(m=>a.push('MATERIAL • '+m.name+' • Bl. '+m.block+' • '+m.activity));return a} function alerts(){const a=alertData();alertCount.textContent=a.length;alertsList.innerHTML=a.map(x=>`<div class="item">${esc(x)}</div>`).join('')||'<div class="small">Sem alertas.</div>'}
 function group(k){const m={};state.goals.forEach(g=>(m[g[k]||'—']||(m[g[k]||'—']=[])).push(g));return Object.entries(m).map(([x,v])=>[x,pct(v),v.length]).sort((a,b)=>b[1]-a[1])} function bars(id,r){document.getElementById(id).innerHTML=r.map(([k,p,n])=>`<div class="bar-row"><div class="bar-label"><span>${esc(k)}</span><span>${p}% • ${n}</span></div><div class="progress"><div style="width:${p}%"></div></div></div>`).join('')} function charts(){bars('chartBlock',group('block'));bars('chartActivity',group('activity'))}
@@ -163,4 +401,4 @@ function openBulk(b,f,act){
 }
 function history(){const a=state.goals.filter(g=>g.status==='Concluído'||g.actual);historyList.innerHTML=a.map(g=>`<div class="item"><b>Bl. ${g.block} • ${esc(g.activity)} • ${esc(g.apt)}</b><div class="small">Planejado ${g.planned||'—'} • Real ${g.actual||'—'}</div></div>`).join('')||'<div class="small">Nenhuma conclusão registrada.</div>'}
 exportBtn.onclick=()=>{const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='sensia-v3-1-'+TODAY()+'.json';a.click();URL.revokeObjectURL(u)};exportCsv.onclick=()=>{const cols=['Bloco','Pavimento','Apartamento','Atividade','Status','Prazo','Prioridade','Responsável','Planejado','Real','Motivo atraso','Observações'],rows=state.goals.map(g=>[g.block,g.floor,g.apt,g.activity,gc(g),g.due,g.priority,g.owner,g.planned,g.actual,g.delay_reason,g.notes]),q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',csv='﻿'+[cols,...rows].map(r=>r.map(q).join(';')).join('\r\n'),b=new Blob([csv],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='sensia-metas-'+TODAY()+'.csv';a.click();URL.revokeObjectURL(u)};importFile.onchange=async e=>{try{state=JSON.parse(await e.target.files[0].text());save()}catch{alert('Backup inválido.')}};notifyPermission.onclick=async()=>{if('Notification'in window){const p=await Notification.requestPermission();if(p==='granted')new Notification('Sensia Produção',{body:'Notificações ativadas.'})}};
-function renderAll(){fill();dashboard();goals();employees();contractors();attendance();materials();alerts();charts();blockView();history()} if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js?v=312'));renderAll();</script></body></html>
+function renderAll(){fill();dashboard();goals();employees();contractors();attendance();materials();alerts();charts();blockView();history()} if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js?v=32'));renderAll();initializeCloud();</script></body></html>

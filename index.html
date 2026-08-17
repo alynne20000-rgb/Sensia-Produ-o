@@ -40,7 +40,7 @@
 <div id="authGate" class="authGate">
   <div class="authCard">
     <h1>Sensia Produção</h1>
-    <div class="sub">V3.3 • Produção Inteligente</div>
+    <div class="sub">V3.3.1 • Correção atualização em massa</div>
     <div class="stack">
       <label>E-mail<input id="loginEmail" type="email" autocomplete="username" placeholder="seu@email.com"></label>
       <label>Senha<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Sua senha"></label>
@@ -51,7 +51,7 @@
 </div>
 <div class="app">
   <div class="top">
-    <div><h1>Sensia Produção</h1><div class="sub">V3.3 • Produção Inteligente</div></div>
+    <div><h1>Sensia Produção</h1><div class="sub">V3.3.1 • Correção atualização em massa</div></div>
     <div class="topActions">
       <span class="cloudPill"><span id="cloudDot" class="cloudDot warn"></span><span id="cloudText">Conectando...</span></span>
       <button class="btn secondary" id="openAlerts">Alertas <span id="alertCount" class="badge red">0</span></button>
@@ -394,7 +394,153 @@ function openBulkGoalCreator(){
 }
 
 document.addEventListener('click',e=>{if(e.target.classList.contains('editGoal')){const g=state.goals.find(x=>x.id===e.target.dataset.id);modal('Editar meta',goalForm(g));bindLoc('f');fProgress.oninput=()=>fProgressLabel.textContent=fProgress.value+'%';saveGoal.onclick=()=>saveGoalFn(g.id)}if(e.target.classList.contains('dupGoal')){const g=state.goals.find(x=>x.id===e.target.dataset.id);modal('Duplicar meta',goalForm({...g,id:null,status:'Não iniciado',actual:''}));bindLoc('f');fProgress.oninput=()=>fProgressLabel.textContent=fProgress.value+'%';saveGoal.onclick=()=>saveGoalFn()}if(e.target.classList.contains('delGoal')&&confirm('Remover meta?')){state.goals=state.goals.filter(x=>x.id!==e.target.dataset.id);save()}}); function saveGoalFn(id=null){const g={id:id||newUuid(),block:fBlock.value,floor:fFloor.value,apt:fApt.value,activity:fActivity.value.trim(),due:fDue.value,status:fStatus.value,priority:fPriority.value,owner:fOwner.value,planned:fPlanned.value,actual:fActual.value,delay_reason:fDelay.value,notes:fNotes.value.trim(),progress:+fProgress.value};if(g.progress>=100){g.progress=100;g.status='Concluído';g.actual=g.actual||TODAY()}else if(g.progress>0&&g.status==='Não iniciado')g.status='Em andamento';if(!g.activity)return alert('Informe a atividade.');if(id){const before=state.goals.find(x=>x.id===id);recordHistory('goal_update',id,before,g);state.goals=state.goals.map(x=>x.id===id?g:x)}else{state.goals=[...state.goals,g];recordHistory('goal_add',g.id,null,g)}document.getElementById('modal').classList.remove('show');save()}
-function alloc(e){const r=(state.attendance[TODAY()]||{})[e.id];if(!r)return 'Sem apontamento hoje';if(r.status==='Falta')return 'Falta hoje';return [r.block&&'Bl. '+r.block,r.floor,r.apt,r.activity].filter(Boolean).join(' • ')||'Presente'} function employees(){const c=employeeCompanyFilter.value;employeeList.innerHTML=state.employees.filter(e=>!c||e.company===c).map(e=>`<div class="section card"><div class="goal-head"><div><b>${esc(e.name)}</b> <span class="badge">${esc(e.role)}</span><div class="small">${esc(e.company)} • ${esc(alloc(e))}</div></div>${menu(e.id,'Emp')}</div></div>`).join('')} employeeCompanyFilter.onchange=employees;
+function alloc(e){const r=(state.attendance[TODAY()]||{})[e.id];if(!r)return 'Sem apontamento hoje';if(r.status==='Falta')return 'Falta hoje';return [r.block&&'Bl. '+r.block,r.floor,r.apt,r.activity].filter(Boolean).join(' • ')||'Presente'} 
+massUpdateGoals.onclick=()=>openMassUpdateGoals();
+
+function openMassUpdateGoals(){
+  const filtered=state.goals.filter(g=>
+    (!blockFilter.value||g.block===blockFilter.value) &&
+    (!floorFilter.value||g.floor===floorFilter.value) &&
+    (!activityFilter.value||g.activity===activityFilter.value) &&
+    (!ownerFilter.value||g.owner===ownerFilter.value) &&
+    (!goalFilter.value||gc(g)===goalFilter.value) &&
+    (!goalSearch.value.trim()||JSON.stringify(g).toLowerCase().includes(goalSearch.value.trim().toLowerCase()))
+  );
+
+  const body=`<div class="stack">
+    <div class="small"><span id="muCount">0</span> meta(s) selecionada(s).</div>
+
+    <div class="multi-actions">
+      <button id="muAll" class="btn secondary" type="button">Selecionar todas filtradas (${filtered.length})</button>
+      <button id="muClear" class="btn secondary" type="button">Limpar seleção</button>
+    </div>
+
+    <div id="muList" style="max-height:300px;overflow:auto;border:1px solid var(--border);border-radius:12px;padding:6px"></div>
+
+    <div class="grid2">
+      <label>Status
+        <select id="muStatus">
+          <option value="">Não alterar</option>
+          ${opts(['Não iniciado','Em andamento','Concluído'])}
+        </select>
+      </label>
+
+      <label>Responsável
+        <select id="muOwner">
+          <option value="">Não alterar</option>
+          ${opts(companies())}
+        </select>
+      </label>
+    </div>
+
+    <div class="grid2">
+      <label>Avanço (%)
+        <input id="muProgress" type="number" min="0" max="100" step="5" placeholder="Não alterar">
+      </label>
+
+      <label>Prazo
+        <input id="muDue" type="date">
+      </label>
+    </div>
+
+    <div class="small">
+      Os campos deixados em branco não serão alterados.
+    </div>
+
+    <button id="muApply" type="button" class="btn">Aplicar alterações</button>
+  </div>`;
+
+  modal('Atualização em massa',body);
+
+  let selected=new Set();
+
+  const refresh=()=>{
+    muCount.textContent=selected.size;
+
+    muList.innerHTML=filtered.length
+      ? filtered.map(g=>`
+        <label class="item" style="display:flex;align-items:center;gap:8px;cursor:pointer">
+          <input type="checkbox" class="muChk" data-id="${g.id}" ${selected.has(g.id)?'checked':''} style="width:auto">
+          <span>
+            <b>Bl. ${g.block} • ${g.apt}</b><br>
+            <span class="small">${esc(g.floor)} • ${esc(g.activity)} • ${gc(g)} • ${g.progress??0}%</span>
+          </span>
+        </label>`).join('')
+      : '<div class="small">Nenhuma meta corresponde aos filtros atuais.</div>';
+
+    document.querySelectorAll('.muChk').forEach(c=>{
+      c.onchange=()=>{
+        c.checked ? selected.add(c.dataset.id) : selected.delete(c.dataset.id);
+        muCount.textContent=selected.size;
+      };
+    });
+  };
+
+  muAll.onclick=()=>{
+    selected=new Set(filtered.map(g=>g.id));
+    refresh();
+  };
+
+  muClear.onclick=()=>{
+    selected.clear();
+    refresh();
+  };
+
+  muApply.onclick=()=>{
+    if(!selected.size) return alert('Selecione pelo menos uma meta.');
+
+    const progressRaw=muProgress.value;
+    const progressValue=progressRaw==='' ? null : Math.max(0,Math.min(100,Number(progressRaw)));
+
+    state.goals=state.goals.map(g=>{
+      if(!selected.has(g.id)) return g;
+
+      const before={...g};
+
+      if(muStatus.value) g.status=muStatus.value;
+      if(muOwner.value) g.owner=muOwner.value;
+      if(muDue.value) g.due=muDue.value;
+
+      if(progressValue!==null){
+        g.progress=progressValue;
+
+        if(progressValue>=100){
+          g.progress=100;
+          g.status='Concluído';
+          g.actual=g.actual||TODAY();
+        }else if(progressValue>0 && g.status==='Não iniciado'){
+          g.status='Em andamento';
+        }else if(progressValue===0 && !muStatus.value){
+          g.status='Não iniciado';
+        }
+      }
+
+      if(muStatus.value==='Concluído'){
+        g.progress=100;
+        g.actual=g.actual||TODAY();
+      }else if(muStatus.value==='Em andamento' && (g.progress??0)===0){
+        g.progress=50;
+      }else if(muStatus.value==='Não iniciado' && progressValue===null){
+        g.progress=0;
+        g.actual='';
+      }
+
+      if(typeof recordHistory==='function'){
+        recordHistory('goal_bulk_update',g.id,before,{...g});
+      }
+
+      return g;
+    });
+
+    document.getElementById('modal').classList.remove('show');
+    save();
+    alert(`${selected.size} meta(s) atualizada(s) com sucesso.`);
+  };
+
+  refresh();
+}
+
+function employees(){const c=employeeCompanyFilter.value;employeeList.innerHTML=state.employees.filter(e=>!c||e.company===c).map(e=>`<div class="section card"><div class="goal-head"><div><b>${esc(e.name)}</b> <span class="badge">${esc(e.role)}</span><div class="small">${esc(e.company)} • ${esc(alloc(e))}</div></div>${menu(e.id,'Emp')}</div></div>`).join('')} employeeCompanyFilter.onchange=employees;
 function empForm(e={}){return `<div class="stack"><label>Nome<input id="eName" value="${esc(e.name||'')}"></label><label>Função<input id="eRole" value="${esc(e.role||'')}"></label><label>Empresa<select id="eCompany">${opts(companies(),e.company||'MOP')}</select></label><button id="saveEmp" class="btn">Salvar</button></div>`} newEmployee.onclick=()=>{modal('Novo funcionário',empForm());saveEmp.onclick=()=>saveEmpFn()};document.addEventListener('click',e=>{if(e.target.classList.contains('editEmp')){const x=state.employees.find(a=>a.id===e.target.dataset.id);modal('Editar funcionário',empForm(x));saveEmp.onclick=()=>saveEmpFn(x.id)}if(e.target.classList.contains('delEmp')&&confirm('Remover funcionário?')){state.employees=state.employees.filter(x=>x.id!==e.target.dataset.id);save()}});function saveEmpFn(id=null){const x={id:id||uid('e'),name:eName.value.trim(),role:eRole.value.trim(),company:eCompany.value};if(!x.name)return;state.employees=id?state.employees.map(a=>a.id===id?x:a):[...state.employees,x];document.getElementById('modal').classList.remove('show');save()}
 function contractors(){contractorList.innerHTML=state.contractors.map(c=>`<div class="section card"><div class="goal-head"><div><b>${esc(c.name)}</b><div class="small">${esc(c.service)}</div></div>${menu(c.id,'Con')}</div></div>`).join('')} function conForm(c={}){return `<div class="stack"><label>Empresa<input id="cName" value="${esc(c.name||'')}"></label><label>Serviço<input id="cService" value="${esc(c.service||'')}"></label><button id="saveCon" class="btn">Salvar</button></div>`} newContractor.onclick=()=>{modal('Novo empreiteiro',conForm());saveCon.onclick=()=>saveConFn()};document.addEventListener('click',e=>{if(e.target.classList.contains('editCon')){const c=state.contractors.find(x=>x.id===e.target.dataset.id);modal('Editar empreiteiro',conForm(c));saveCon.onclick=()=>saveConFn(c.id)}if(e.target.classList.contains('delCon')&&confirm('Remover empreiteiro?')){state.contractors=state.contractors.filter(x=>x.id!==e.target.dataset.id);save()}});function saveConFn(id=null){const c={id:id||uid('c'),name:cName.value.trim(),service:cService.value.trim()};if(!c.name)return;state.contractors=id?state.contractors.map(x=>x.id===id?c:x):[...state.contractors,c];document.getElementById('modal').classList.remove('show');save()}
 attendanceDate.value=TODAY();attendanceDate.onchange=attendance;attendanceCompany.onchange=attendance;function attendance(){const d=attendanceDate.value||TODAY(),c=attendanceCompany.value;if(!state.attendance[d])state.attendance[d]={};attendanceList.innerHTML=state.employees.filter(e=>!c||e.company===c).map(e=>{const r=state.attendance[d][e.id]||{id:newUuid(),status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};return `<div class="section card"><b>${esc(e.name)}</b><div class="small">${esc(e.company)} • ${esc(e.role)}</div><div class="grid2" style="margin-top:8px"><select class="attStatus" data-id="${e.id}">${opts(['Presente','Falta','Folga'],r.status)}</select><select class="attBlock" data-id="${e.id}">${opts(BLOCKS,r.block||'01')}</select></div><div class="grid2" style="margin-top:8px"><select class="attFloor" data-id="${e.id}">${opts(FLOORS,r.floor||'1º')}</select><select class="attApt" data-id="${e.id}">${opts(APTS[r.floor||'1º'],r.apt||APTS[r.floor||'1º'][0])}</select></div><input class="attActivity" data-id="${e.id}" value="${esc(r.activity||'')}" placeholder="Atividade" style="margin-top:8px"></div>`}).join('')} document.addEventListener('change',e=>{if(['attStatus','attBlock','attFloor','attApt'].some(c=>e.target.classList.contains(c))){const d=attendanceDate.value||TODAY(),id=e.target.dataset.id;if(!state.attendance[d])state.attendance[d]={};const r=state.attendance[d][id]||{id:newUuid(),status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};if(e.target.classList.contains('attStatus'))r.status=e.target.value;if(e.target.classList.contains('attBlock'))r.block=e.target.value;if(e.target.classList.contains('attFloor')){r.floor=e.target.value;r.apt=APTS[r.floor][0];state.attendance[d][id]=r;save(false);attendance();return}if(e.target.classList.contains('attApt'))r.apt=e.target.value;state.attendance[d][id]=r;save(false);dashboard();employees()}});document.addEventListener('input',e=>{if(e.target.classList.contains('attActivity')){const d=attendanceDate.value||TODAY(),id=e.target.dataset.id;if(!state.attendance[d])state.attendance[d]={};const r=state.attendance[d][id]||{id:newUuid(),status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};r.activity=e.target.value;state.attendance[d][id]=r;save(false)}});
@@ -449,4 +595,4 @@ aptHistBlock.onchange=renderAptHistory;aptHistFloor.onchange=()=>{aptHistApt.inn
 
 function history(){const a=state.goals.filter(g=>g.status==='Concluído'||g.actual);historyList.innerHTML=a.map(g=>`<div class="item"><b>Bl. ${g.block} • ${esc(g.activity)} • ${esc(g.apt)}</b><div class="small">Planejado ${g.planned||'—'} • Real ${g.actual||'—'}</div></div>`).join('')||'<div class="small">Nenhuma conclusão registrada.</div>'}
 exportBtn.onclick=()=>{const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='sensia-v3-1-'+TODAY()+'.json';a.click();URL.revokeObjectURL(u)};exportCsv.onclick=()=>{const cols=['Bloco','Pavimento','Apartamento','Atividade','Status','Prazo','Prioridade','Responsável','Planejado','Real','Motivo atraso','Observações'],rows=state.goals.map(g=>[g.block,g.floor,g.apt,g.activity,gc(g),g.due,g.priority,g.owner,g.planned,g.actual,g.delay_reason,g.notes]),q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',csv='﻿'+[cols,...rows].map(r=>r.map(q).join(';')).join('\r\n'),b=new Blob([csv],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='sensia-metas-'+TODAY()+'.csv';a.click();URL.revokeObjectURL(u)};importFile.onchange=async e=>{try{state=JSON.parse(await e.target.files[0].text());save()}catch{alert('Backup inválido.')}};notifyPermission.onclick=async()=>{if('Notification'in window){const p=await Notification.requestPermission();if(p==='granted')new Notification('Sensia Produção',{body:'Notificações ativadas.'})}};
-function renderAll(){fill();dashboard();goals();employees();contractors();attendance();materials();alerts();charts();blockView();renderDependencies();fillAptHistory();renderAptHistory();history()} if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js?v=33'));renderAll();initializeCloud();</script></body></html>
+function renderAll(){fill();dashboard();goals();employees();contractors();attendance();materials();alerts();charts();blockView();renderDependencies();fillAptHistory();renderAptHistory();history()} if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js?v=331'));renderAll();initializeCloud();</script></body></html>

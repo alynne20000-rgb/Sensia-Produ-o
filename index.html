@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1f4b3f"><link rel="manifest" href="manifest.webmanifest"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><title>Sensia Produção V4.0.1</title><style>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1f4b3f"><link rel="manifest" href="manifest.webmanifest"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><title>Sensia Produção V4.0.2</title><style>
 :root{--bg:#f3f6f5;--card:#fff;--text:#17211e;--muted:#65736e;--border:#dbe4e0;--accent:#1f4b3f;--soft:#e7f0ed;--danger:#a63b3b;--warn:#a0711b;--ok:#2d6b57}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.app{max-width:1480px;margin:auto;padding:18px 20px 94px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.top h1{font-size:22px;margin:0}.sub,.small{font-size:13px;color:var(--muted)}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:13px}.metric strong{display:block;font-size:24px}.metric span{font-size:12px;color:var(--muted)}.callout{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:12px}.section{margin:10px 0}.section h2{font-size:17px;margin:0 0 9px}.panel{display:none}.panel.active{display:block}input,textarea,select{width:100%;border:1px solid var(--border);border-radius:12px;padding:10px;background:#fff;color:var(--text);font:inherit}input[type=checkbox]{width:auto}.row{display:flex;gap:8px}.row>*{flex:1}.stack{display:grid;gap:8px}.btn{border:0;border-radius:12px;background:var(--accent);color:#fff;padding:10px 13px;font-weight:600}.btn.secondary{background:#fff;color:var(--text);border:1px solid var(--border)}.btn.danger{background:#fff;color:var(--danger);border:1px solid var(--border)}.item{padding:10px 0;border-bottom:1px solid var(--border)}.item:last-child{border-bottom:0}.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;background:var(--soft)}.badge.red{background:#f7e5e5;color:var(--danger)}.badge.yellow{background:#f6edd7;color:var(--warn)}.badge.green{background:#e3efe9;color:var(--ok)}.progress{height:10px;background:var(--border);border-radius:999px;overflow:hidden}.progress>div{height:100%;background:var(--accent)}.bottom{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);border-top:1px solid var(--border);z-index:30;padding:7px}.bottom .wrap{max-width:1480px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr)}.bottom button{border:0;background:transparent;color:var(--muted);padding:7px 2px;font-size:11px}.bottom button.active{color:var(--accent);font-weight:700}.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.more-grid button{border:1px solid var(--border);background:#fff;border-radius:14px;padding:15px;text-align:left}.goal-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.goal-title{font-weight:700}.meta-line{font-size:13px;color:var(--muted)}.apt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}.apt{border:1px solid var(--border);border-radius:10px;padding:9px;text-align:center;font-size:12px;background:#fff}.apt.done{background:#e3efe9}.apt.delay{background:#f7e5e5}.apt.progressing{background:#f6edd7}.bar-row{margin:9px 0}.bar-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.42);display:none;align-items:flex-end;z-index:50}.modal.show{display:flex}.sheet{background:var(--bg);width:100%;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:14px;max-width:820px;margin:0 auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.sheet h3{margin:0}.close{border:0;background:transparent;font-size:22px}@media(max-width:500px){.app{padding-left:10px;padding-right:10px}.grid3{grid-template-columns:1fr 1fr}.card{padding:12px}}
 .statusDone{background:#e3efe9!important}.statusProgress{background:#f6edd7!important}.statusLate{background:#f7e5e5!important}.kebab{position:relative;margin-left:auto}.kebabBtn{border:0;background:transparent;font-size:22px;padding:0 6px}.miniMenu{display:none;position:absolute;right:0;top:22px;background:#fff;border:1px solid var(--border);border-radius:10px;min-width:115px;z-index:20;overflow:hidden}.miniMenu.show{display:block}.miniMenu button{width:100%;border:0;background:#fff;text-align:left;padding:9px}.miniMenu .dangerText{color:var(--danger)}.apt{cursor:pointer}.apt.selected{outline:2px solid var(--accent)}
 
@@ -53,7 +53,7 @@
 <div id="authGate" class="authGate">
   <div class="authCard">
     <h1>Sensia Produção</h1>
-    <div class="sub">V4.0.1 • Gestão + sincronização robusta</div>
+    <div class="sub">V4.0.2 • Gestão + correção Supabase</div>
     <div class="stack">
       <label>E-mail<input id="loginEmail" type="email" autocomplete="username" placeholder="seu@email.com"></label>
       <label>Senha<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Sua senha"></label>
@@ -64,7 +64,7 @@
 </div>
 <div class="app">
   <div class="top">
-    <div><h1>Sensia Produção</h1><div class="sub">V4.0.1 • Gestão + sincronização robusta</div></div>
+    <div><h1>Sensia Produção</h1><div class="sub">V4.0.2 • Gestão + correção Supabase</div></div>
     <div class="topActions">
       <span class="cloudPill"><span id="cloudDot" class="cloudDot warn"></span><span id="cloudText">Conectando...</span></span>
       <button class="linkBtn" id="syncNowBtn" type="button">↻ Sincronizar</button>
@@ -274,7 +274,7 @@ async function syncCloudSnapshot(){
     setCloudStatus('ok','Sincronizado');
   }catch(e){
     console.error('Sync cloud error',e);
-    setCloudStatus('off','Erro de sincronização');
+    setCloudStatus('off','Falha: '+shortCloudError(e));
   }finally{
     syncBusy=false;
   }
@@ -285,38 +285,86 @@ function scheduleCloudSync(){
 }
 async function fetchCloudState(){
   if(!cloudUser)return null;
-  const [cg,ce,cc,ca,cm,cd]=await Promise.all([
-    cloud.from('goals').select('*'),
-    cloud.from('employees').select('*'),
-    cloud.from('contractors').select('*'),
-    cloud.from('attendance').select('*'),
-    cloud.from('materials').select('*'),
-    cloud.from('service_dependencies').select('*')
-  ]);
-  for(const x of [cg,ce,cc,ca,cm,cd])if(x.error)throw x.error;
-  const contractorById=new Map((cc.data||[]).map(c=>[c.id,c.name]));
+
+  async function readTable(name,optional=false){
+    const res=await cloud.from(name).select('*');
+    if(res.error){
+      if(optional){
+        console.warn(`Tabela opcional ${name}:`,res.error);
+        return [];
+      }
+      throw new Error(`${name}: ${res.error.message||res.error.details||'falha ao ler'}`);
+    }
+    return res.data||[];
+  }
+
+  // Consultas sequenciais: além de facilitar o diagnóstico,
+  // evita que uma falha temporária em uma chamada esconda qual tabela causou o erro.
+  const goalsData=await readTable('goals');
+  const employeesData=await readTable('employees');
+  const contractorsData=await readTable('contractors');
+  const attendanceData=await readTable('attendance');
+  const materialsData=await readTable('materials');
+  const dependenciesData=await readTable('service_dependencies',true);
+
+  const contractorById=new Map(contractorsData.map(c=>[c.id,c.name]));
+
   const cloudState={
-    goals:(cg.data||[]).map(g=>({id:g.id,block:g.block,floor:g.floor,apt:g.apartment||'Não se aplica',activity:g.activity,due:g.due_date||'',status:g.status,priority:g.priority||'Média',owner:g.responsible||'MOP',planned:g.planned_date||'',actual:g.actual_date||'',delay_reason:g.delay_reason||'',notes:g.notes||'',progress:Number.isFinite(+g.progress_percent)?+g.progress_percent:(g.status==='Concluído'?100:g.status==='Em andamento'?50:0)})),
-    contractors:(cc.data||[]).map(c=>({id:c.id,name:c.name,service:c.service||'',active:c.active!==false})),
-    employees:(ce.data||[]).map(e=>({id:e.id,name:e.name,role:e.role||'',company:e.employer_type==='MOP'?'MOP':(contractorById.get(e.contractor_id)||'Empreiteiro'),active:e.active!==false})),
+    goals:goalsData.map(g=>({
+      id:g.id,block:g.block,floor:g.floor,apt:g.apartment||'Não se aplica',
+      activity:g.activity,due:g.due_date||'',status:g.status,
+      priority:g.priority||'Média',owner:g.responsible||'MOP',
+      planned:g.planned_date||'',actual:g.actual_date||'',
+      delay_reason:g.delay_reason||'',notes:g.notes||'',
+      progress:Number.isFinite(+g.progress_percent)?+g.progress_percent:
+        (g.status==='Concluído'?100:g.status==='Em andamento'?50:0)
+    })),
+    contractors:contractorsData.map(c=>({
+      id:c.id,name:c.name,service:c.service||'',active:c.active!==false
+    })),
+    employees:employeesData.map(e=>({
+      id:e.id,name:e.name,role:e.role||'',
+      company:e.employer_type==='MOP'?'MOP':(contractorById.get(e.contractor_id)||'Empreiteiro'),
+      active:e.active!==false
+    })),
     attendance:{},
-    materials:(cm.data||[]).map(m=>({id:m.id,name:m.name,qty:m.quantity||'',urgency:m.urgency||'Média',block:m.block||'01',floor:m.floor||'Área comum / Não se aplica',apt:m.apartment||'Não se aplica',activity:m.affected_activity||'',status:m.status||'Em falta',notes:m.notes||'',availableQty:m.available_quantity??'',requiredQty:m.required_quantity??'',criticality:m.criticality||'Atenção',affectedBlocks:Array.isArray(m.affected_blocks)?m.affected_blocks:[]})),
+    materials:materialsData.map(m=>({
+      id:m.id,name:m.name,qty:m.quantity||'',urgency:m.urgency||'Média',
+      block:m.block||'01',floor:m.floor||'Área comum / Não se aplica',
+      apt:m.apartment||'Não se aplica',activity:m.affected_activity||'',
+      status:m.status||'Em falta',notes:m.notes||'',
+      availableQty:m.available_quantity??'',requiredQty:m.required_quantity??'',
+      criticality:m.criticality||'Atenção',
+      affectedBlocks:Array.isArray(m.affected_blocks)?m.affected_blocks:[]
+    })),
     history:state.history||[],
-    dependencies:(cd.data||[]).map(d=>({id:d.id,activity:d.activity,dependsOn:d.depends_on_activity})),
+    dependencies:dependenciesData.map(d=>({
+      id:d.id,activity:d.activity,dependsOn:d.depends_on_activity
+    })),
     schemaVersion:SCHEMA_VERSION
   };
-  (ca.data||[]).forEach(r=>{
+
+  attendanceData.forEach(r=>{
     if(!cloudState.attendance[r.attendance_date])cloudState.attendance[r.attendance_date]={};
-    cloudState.attendance[r.attendance_date][r.employee_id]={id:r.id,status:r.status,block:r.block||'',floor:r.floor||'',apt:r.apartment||'',activity:r.activity||'',notes:r.notes||''};
+    cloudState.attendance[r.attendance_date][r.employee_id]={
+      id:r.id,status:r.status,block:r.block||'',floor:r.floor||'',
+      apt:r.apartment||'',activity:r.activity||'',notes:r.notes||''
+    };
   });
+
   return cloudState;
 }
 async function cloudHasData(){
-  const {count,error}=await cloud.from('goals').select('*',{count:'exact',head:true});
-  if(error)throw error;
-  const {count:empCount,error:empErr}=await cloud.from('employees').select('*',{count:'exact',head:true});
-  if(empErr)throw empErr;
-  return (count||0)>0||(empCount||0)>0;
+  const session=await ensureValidSession();
+  if(!session)return false;
+
+  const r1=await cloud.from('goals').select('id',{count:'exact',head:true});
+  if(r1.error)throw new Error('goals: '+(r1.error.message||'falha ao consultar'));
+
+  const r2=await cloud.from('employees').select('id',{count:'exact',head:true});
+  if(r2.error)throw new Error('employees: '+(r2.error.message||'falha ao consultar'));
+
+  return (r1.count||0)>0||(r2.count||0)>0;
 }
 function localHasUsefulData(){
   return state.goals.length>0||state.employees.length>0||state.contractors.length>0||state.materials.length>0||Object.keys(state.attendance||{}).length>0;
@@ -333,15 +381,47 @@ async function withRetry(fn,tries=3){
   }
   throw last;
 }
+
+async function ensureValidSession(){
+  let {data:{session},error}=await cloud.auth.getSession();
+  if(error)throw new Error('Sessão: '+error.message);
+  if(!session)return null;
+
+  const exp=(session.expires_at||0)*1000;
+  if(exp && exp-Date.now()<120000){
+    const refreshed=await cloud.auth.refreshSession();
+    if(refreshed.error)throw new Error('Renovação da sessão: '+refreshed.error.message);
+    session=refreshed.data.session;
+  }
+  cloudUser=session?.user||null;
+  return session;
+}
+function shortCloudError(e){
+  const msg=(e?.message||e?.details||String(e||'Erro desconhecido')).replace(/\s+/g,' ').trim();
+  return msg.length>75?msg.slice(0,72)+'...':msg;
+}
+
 async function refreshFromCloud(){
   if(!navigator.onLine){
     setCloudStatus('off','Sem internet');
     return false;
   }
+
   setCloudStatus('warn','Sincronizando...');
+
   try{
-    const remote=await withRetry(()=>fetchCloudState(),3);
+    const session=await ensureValidSession();
+    if(!session){
+      cloudReady=false;
+      cloudUser=null;
+      authGate.classList.remove('hidden');
+      setCloudStatus('warn','Login necessário');
+      return false;
+    }
+
+    const remote=await withRetry(()=>fetchCloudState(),2);
     if(!remote)throw new Error('Sessão não encontrada');
+
     state=remote;
     normalizeLocalIds();
     localDirty=false;
@@ -353,39 +433,33 @@ async function refreshFromCloud(){
   }catch(e){
     console.error('Falha ao buscar nuvem:',e);
     cloudReady=false;
-    setCloudStatus('off','Falha ao sincronizar');
+    setCloudStatus('off','Falha: '+shortCloudError(e));
     return false;
   }
 }
-
 async function initializeCloud(){
-  const {data:{session},error:sessionError}=await cloud.auth.getSession();
-  if(sessionError){
-    console.error('Erro de sessão:',sessionError);
-    authGate.classList.remove('hidden');
-    setCloudStatus('off','Erro de login');
-    return;
-  }
-  if(!session){
-    authGate.classList.remove('hidden');
-    setCloudStatus('warn','Login necessário');
-    return;
-  }
-
-  cloudUser=session.user;
-  authGate.classList.add('hidden');
-
-  if(!navigator.onLine){
-    cloudReady=false;
-    setCloudStatus('off','Modo offline');
-    renderAll();
-    return;
-  }
-
-  setCloudStatus('warn','Conectando...');
-
   try{
-    const has=await withRetry(()=>cloudHasData(),3);
+    const session=await ensureValidSession();
+
+    if(!session){
+      authGate.classList.remove('hidden');
+      cloudReady=false;
+      setCloudStatus('warn','Login necessário');
+      return;
+    }
+
+    cloudUser=session.user;
+    authGate.classList.add('hidden');
+
+    if(!navigator.onLine){
+      cloudReady=false;
+      setCloudStatus('off','Modo offline');
+      renderAll();
+      return;
+    }
+
+    setCloudStatus('warn','Conectando...');
+    const has=await withRetry(()=>cloudHasData(),2);
 
     if(has){
       await refreshFromCloud();
@@ -402,15 +476,8 @@ async function initializeCloud(){
   }catch(e){
     console.error('Inicialização da nuvem falhou:',e);
     cloudReady=false;
-    setCloudStatus('off','Falha ao sincronizar');
+    setCloudStatus('off','Falha: '+shortCloudError(e));
     renderAll();
-
-    // tentativa automática posterior sem apagar ou sobrescrever o estado local
-    setTimeout(async()=>{
-      if(navigator.onLine && cloudUser && !cloudReady){
-        await initializeCloud();
-      }
-    },5000);
   }
 }
 async function login(){
@@ -437,14 +504,25 @@ migrateCloudBtn.onclick=async()=>{
   }finally{migrateCloudBtn.disabled=false}
 };
 syncNowBtn.onclick=async()=>{
-  if(!cloudUser){
-    await initializeCloud();
-    return;
-  }
-  if(localDirty && cloudReady){
-    await syncCloudSnapshot();
-  }else{
-    await refreshFromCloud();
+  try{
+    const session=await ensureValidSession();
+    if(!session){
+      authGate.classList.remove('hidden');
+      setCloudStatus('warn','Login necessário');
+      return;
+    }
+    cloudUser=session.user;
+
+    if(localDirty && cloudReady){
+      await syncCloudSnapshot();
+      if(!localDirty)setCloudStatus('ok','Sincronizado');
+    }else{
+      await refreshFromCloud();
+    }
+  }catch(e){
+    console.error(e);
+    cloudReady=false;
+    setCloudStatus('off','Falha: '+shortCloudError(e));
   }
 };
 window.addEventListener('online',async()=>{setCloudStatus('warn','Reconectando...');await initializeCloud()});
@@ -694,7 +772,7 @@ function renderManagement(){const days=+(mgmtPeriod?.value||7);renderPlanVsReal(
 if(window.mgmtPeriod)mgmtPeriod.onchange=renderManagement;
 function mondayOfWeek(d=new Date()){const x=new Date(d);x.setHours(12,0,0,0);const day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);return x}
 function reportStats(start,end){const planned=state.goals.filter(g=>inRange(g.due,start,end)),done=state.goals.filter(g=>inRange(g.actual,start,end)),late=state.goals.filter(g=>gc(g)==='Atrasado'&&(!g.due||dateOnly(g.due)<=end)),attDates=Object.keys(state.attendance||{}).filter(d=>inRange(d,start,end));let abs=0,pres=0;attDates.forEach(d=>Object.values(state.attendance[d]||{}).forEach(r=>{if(r.status==='Falta')abs++;if(r.status==='Presente')pres++}));const critical=state.materials.filter(m=>m.status!=='Resolvido'&&(m.criticality==='Crítico'||m.urgency==='Alta')),adh=planned.length?Math.round(planned.filter(g=>g.actual&&dateOnly(g.actual)<=end).length/planned.length*100):(done.length?100:0);return{planned,done,late,abs,pres,critical,adh}}
-function renderWeeklyReport(){if(!window.reportStart)return;const s=dateOnly(reportStart.value),e=dateOnly(reportEnd.value);if(!s||!e)return;const r=reportStats(s,e),prod=productivityRows(Math.max(1,Math.round((e-s)/86400000)+1)).slice(0,6),att=attentionRanking().slice(0,5);reportArea.innerHTML=`<div class="reportHeader"><div><h2 style="margin:0">Relatório de Produção</h2><div class="small">${s.toLocaleDateString('pt-BR')} a ${e.toLocaleDateString('pt-BR')}</div></div><div><b>Sensia Produção V4.0.1</b></div></div><div class="reportKpis"><div class="reportKpi"><span>Planejado</span><strong>${r.planned.length}</strong></div><div class="reportKpi"><span>Concluído</span><strong>${r.done.length}</strong></div><div class="reportKpi"><span>Aderência</span><strong>${r.adh}%</strong></div><div class="reportKpi"><span>Atrasadas</span><strong>${r.late.length}</strong></div><div class="reportKpi"><span>Faltas</span><strong>${r.abs}</strong></div><div class="reportKpi"><span>Mat. críticos</span><strong>${r.critical.length}</strong></div></div><div class="reportSection"><h3>🚨 Principais pontos de atenção</h3>${att.length?`<ol class="reportList">${att.map(x=>`<li><b>Bl. ${x.g.block} — ${esc(x.g.activity)}</b>: ${x.reasons.join(', ')}</li>`).join('')}</ol>`:'<div class="small">Sem itens críticos calculados.</div>'}</div><div class="reportSection"><h3>👷 Produtividade por equipe</h3>${prod.length?`<table class="prodTable"><thead><tr><th>Equipe</th><th>Planejado</th><th>Concluído</th><th>Aderência</th><th>Efetivo médio</th></tr></thead><tbody>${prod.map(x=>`<tr><td>${esc(x.company)}</td><td>${x.planned}</td><td>${x.done}</td><td>${x.adherence}%</td><td>${x.avgHead}</td></tr>`).join('')}</tbody></table>`:'<div class="small">Sem dados suficientes.</div>'}</div><div class="reportSection"><h3>📦 Materiais críticos</h3>${r.critical.length?`<ul class="reportList">${r.critical.map(m=>`<li>${esc(m.name)} — Bl. ${esc(m.block||'—')} — afeta ${esc(m.activity||'—')}</li>`).join('')}</ul>`:'<div class="small">Nenhum material crítico aberto.</div>'}</div>`}
+function renderWeeklyReport(){if(!window.reportStart)return;const s=dateOnly(reportStart.value),e=dateOnly(reportEnd.value);if(!s||!e)return;const r=reportStats(s,e),prod=productivityRows(Math.max(1,Math.round((e-s)/86400000)+1)).slice(0,6),att=attentionRanking().slice(0,5);reportArea.innerHTML=`<div class="reportHeader"><div><h2 style="margin:0">Relatório de Produção</h2><div class="small">${s.toLocaleDateString('pt-BR')} a ${e.toLocaleDateString('pt-BR')}</div></div><div><b>Sensia Produção V4.0.2</b></div></div><div class="reportKpis"><div class="reportKpi"><span>Planejado</span><strong>${r.planned.length}</strong></div><div class="reportKpi"><span>Concluído</span><strong>${r.done.length}</strong></div><div class="reportKpi"><span>Aderência</span><strong>${r.adh}%</strong></div><div class="reportKpi"><span>Atrasadas</span><strong>${r.late.length}</strong></div><div class="reportKpi"><span>Faltas</span><strong>${r.abs}</strong></div><div class="reportKpi"><span>Mat. críticos</span><strong>${r.critical.length}</strong></div></div><div class="reportSection"><h3>🚨 Principais pontos de atenção</h3>${att.length?`<ol class="reportList">${att.map(x=>`<li><b>Bl. ${x.g.block} — ${esc(x.g.activity)}</b>: ${x.reasons.join(', ')}</li>`).join('')}</ol>`:'<div class="small">Sem itens críticos calculados.</div>'}</div><div class="reportSection"><h3>👷 Produtividade por equipe</h3>${prod.length?`<table class="prodTable"><thead><tr><th>Equipe</th><th>Planejado</th><th>Concluído</th><th>Aderência</th><th>Efetivo médio</th></tr></thead><tbody>${prod.map(x=>`<tr><td>${esc(x.company)}</td><td>${x.planned}</td><td>${x.done}</td><td>${x.adherence}%</td><td>${x.avgHead}</td></tr>`).join('')}</tbody></table>`:'<div class="small">Sem dados suficientes.</div>'}</div><div class="reportSection"><h3>📦 Materiais críticos</h3>${r.critical.length?`<ul class="reportList">${r.critical.map(m=>`<li>${esc(m.name)} — Bl. ${esc(m.block||'—')} — afeta ${esc(m.activity||'—')}</li>`).join('')}</ul>`:'<div class="small">Nenhum material crítico aberto.</div>'}</div>`}
 function reportCsvExport(){const s=dateOnly(reportStart.value),e=dateOnly(reportEnd.value),r=reportStats(s,e),rows=[['Relatório Sensia Produção'],['Período',reportStart.value,reportEnd.value],[],['Indicador','Valor'],['Planejado',r.planned.length],['Concluído',r.done.length],['Aderência',r.adh+'%'],['Atrasadas',r.late.length],['Faltas',r.abs],['Materiais críticos',r.critical.length],[],['Metas concluídas','Bloco','Pavimento','Apartamento','Atividade','Responsável','Data real'],...r.done.map(g=>['',g.block,g.floor,g.apt,g.activity,g.owner,g.actual])],q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',csv='\ufeff'+rows.map(r=>r.map(q).join(';')).join('\r\n'),b=new Blob([csv],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='relatorio-sensia-'+reportStart.value+'-a-'+reportEnd.value+'.csv';a.click();URL.revokeObjectURL(u)}
 function group(k){const m={};state.goals.forEach(g=>(m[g[k]||'—']||(m[g[k]||'—']=[])).push(g));return Object.entries(m).map(([x,v])=>[x,Math.round(v.reduce((s,g)=>s+(g.progress??(gc(g)==='Concluído'?100:gc(g)==='Em andamento'?50:0)),0)/v.length),v.length]).sort((a,b)=>b[1]-a[1])} function bars(id,r){document.getElementById(id).innerHTML=r.map(([k,p,n])=>`<div class="bar-row"><div class="bar-label"><span>${esc(k)}</span><span>${p}% • ${n}</span></div><div class="progress"><div style="width:${p}%"></div></div></div>`).join('')} function charts(){bars('chartBlock',group('block'));bars('chartActivity',group('activity'))}
 function aptStatus(b,a,act){const r=state.goals.filter(g=>g.block===b&&g.apt===a&&(!act||g.activity===act));if(!r.length)return 'Não iniciado';const s=r.map(gc);if(s.every(x=>x==='Concluído'))return 'Concluído';if(s.some(x=>x==='Atrasado'))return 'Atrasado';if(s.some(x=>x==='Em andamento'))return 'Em andamento';return 'Não iniciado'} function blockView(){const b=blockViewSelect.value||'01',act=activityViewSelect.value;let c={'Concluído':0,'Em andamento':0,'Atrasado':0,'Não iniciado':0},h='';['3º','2º','1º','Cobertura'].forEach(f=>{h+=`<div class="section card"><h2>${f}</h2><div class="apt-grid">`;APTS[f].forEach(a=>{const s=aptStatus(b,a,act);c[s]++;const cl=s==='Concluído'?'done':s==='Atrasado'?'delay':s==='Em andamento'?'progressing':'';h+=`<button class="apt ${cl}" data-apt="${a}" data-floor="${f}">${a}</button>`});h+='</div></div>'});blockPhysical.innerHTML=h;sDone.textContent=c['Concluído'];sProg.textContent=c['Em andamento'];sLate.textContent=c['Atrasado'];sNew.textContent=c['Não iniciado'];const t=Object.values(c).reduce((x,y)=>x+y,0);activitySummary.textContent=`${act||'Todas atividades'} • ${c['Concluído']}/${t} concluídos • ${Math.round(c['Concluído']/t*100)}%`} blockViewSelect.onchange=blockView;activityViewSelect.onchange=blockView;document.addEventListener('click',e=>{if(e.target.classList.contains('apt')&&!e.target.classList.contains('bulkApt'))openApt(blockViewSelect.value,e.target.dataset.floor,e.target.dataset.apt,activityViewSelect.value)});
@@ -748,4 +826,4 @@ exportBtn.onclick=()=>{const b=new Blob([JSON.stringify(state,null,2)],{type:'ap
 
 const reportMonday=mondayOfWeek();const reportSunday=new Date(reportMonday);reportSunday.setDate(reportSunday.getDate()+6);if(window.reportStart){reportStart.value=isoDate(reportMonday);reportEnd.value=isoDate(reportSunday);generateReport.onclick=renderWeeklyReport;reportCsv.onclick=reportCsvExport;reportPrint.onclick=()=>{renderWeeklyReport();window.print()}}
 
-function renderAll(){fill();dashboard();goals();employees();contractors();attendance();materials();alerts();charts();blockView();renderDependencies();fillAptHistory();renderAptHistory();history();renderManagement();renderWeeklyReport()} if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js?v=401'));renderAll();initializeCloud();</script></body></html>
+function renderAll(){fill();dashboard();goals();employees();contractors();attendance();materials();alerts();charts();blockView();renderDependencies();fillAptHistory();renderAptHistory();history();renderManagement();renderWeeklyReport()} if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js?v=402'));renderAll();initializeCloud();</script></body></html>

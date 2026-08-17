@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1f4b3f"><link rel="manifest" href="manifest.webmanifest"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><title>Sensia Produção V4.0.5</title><style>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1f4b3f"><link rel="manifest" href="manifest.webmanifest"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script><title>Sensia Produção V4.5</title><style>
 :root{--bg:#f3f6f5;--card:#fff;--text:#17211e;--muted:#65736e;--border:#dbe4e0;--accent:#1f4b3f;--soft:#e7f0ed;--danger:#a63b3b;--warn:#a0711b;--ok:#2d6b57}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.app{max-width:1480px;margin:auto;padding:18px 20px 94px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.top h1{font-size:22px;margin:0}.sub,.small{font-size:13px;color:var(--muted)}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:13px}.metric strong{display:block;font-size:24px}.metric span{font-size:12px;color:var(--muted)}.callout{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:12px}.section{margin:10px 0}.section h2{font-size:17px;margin:0 0 9px}.panel{display:none}.panel.active{display:block}input,textarea,select{width:100%;border:1px solid var(--border);border-radius:12px;padding:10px;background:#fff;color:var(--text);font:inherit}input[type=checkbox]{width:auto}.row{display:flex;gap:8px}.row>*{flex:1}.stack{display:grid;gap:8px}.btn{border:0;border-radius:12px;background:var(--accent);color:#fff;padding:10px 13px;font-weight:600}.btn.secondary{background:#fff;color:var(--text);border:1px solid var(--border)}.btn.danger{background:#fff;color:var(--danger);border:1px solid var(--border)}.item{padding:10px 0;border-bottom:1px solid var(--border)}.item:last-child{border-bottom:0}.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;background:var(--soft)}.badge.red{background:#f7e5e5;color:var(--danger)}.badge.yellow{background:#f6edd7;color:var(--warn)}.badge.green{background:#e3efe9;color:var(--ok)}.progress{height:10px;background:var(--border);border-radius:999px;overflow:hidden}.progress>div{height:100%;background:var(--accent)}.bottom{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);border-top:1px solid var(--border);z-index:30;padding:7px}.bottom .wrap{max-width:1480px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr)}.bottom button{border:0;background:transparent;color:var(--muted);padding:7px 2px;font-size:11px}.bottom button.active{color:var(--accent);font-weight:700}.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.more-grid button{border:1px solid var(--border);background:#fff;border-radius:14px;padding:15px;text-align:left}.goal-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.goal-title{font-weight:700}.meta-line{font-size:13px;color:var(--muted)}.apt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}.apt{border:1px solid var(--border);border-radius:10px;padding:9px;text-align:center;font-size:12px;background:#fff}.apt.done{background:#e3efe9}.apt.delay{background:#f7e5e5}.apt.progressing{background:#f6edd7}.bar-row{margin:9px 0}.bar-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.42);display:none;align-items:flex-end;z-index:50}.modal.show{display:flex}.sheet{background:var(--bg);width:100%;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:14px;max-width:820px;margin:0 auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.sheet h3{margin:0}.close{border:0;background:transparent;font-size:22px}@media(max-width:500px){.app{padding-left:10px;padding-right:10px}.grid3{grid-template-columns:1fr 1fr}.card{padding:12px}}
 .statusDone{background:#e3efe9!important}.statusProgress{background:#f6edd7!important}.statusLate{background:#f7e5e5!important}.kebab{position:relative;margin-left:auto}.kebabBtn{border:0;background:transparent;font-size:22px;padding:0 6px}.miniMenu{display:none;position:absolute;right:0;top:22px;background:#fff;border:1px solid var(--border);border-radius:10px;min-width:115px;z-index:20;overflow:hidden}.miniMenu.show{display:block}.miniMenu button{width:100%;border:0;background:#fff;text-align:left;padding:9px}.miniMenu .dangerText{color:var(--danger)}.apt{cursor:pointer}.apt.selected{outline:2px solid var(--accent)}
 
@@ -49,24 +49,50 @@
 @media(min-width:900px){#gestao.active{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;align-items:start}#gestao .wide{grid-column:1/-1}#gestao .section{margin:0}.reportKpis{grid-template-columns:repeat(6,1fr)}}
 @media(max-width:899px){.mgmtHero{grid-template-columns:repeat(2,1fr)}.mgmtGrid,.mgmtGrid3{grid-template-columns:1fr}.reportKpis{grid-template-columns:repeat(2,1fr)}.reportHeader{display:block}.prodTable{font-size:12px}}
 @media print{.bottom,.top,.reportActions,#reportControls{display:none!important}.app{max-width:none;padding:0}.panel{display:none!important}#relatorio{display:block!important}.card{border:0;box-shadow:none}.section{margin:0 0 12px}}
+
+/* V4.5 multiusuário */
+.rolePill{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;padding:5px 9px;font-size:12px;background:#fff}
+.userBadge{display:inline-block;border-radius:999px;padding:3px 7px;font-size:11px;background:var(--soft);margin:2px 3px 0 0}
+.userBadge.admin{background:#e9e7f7}.userBadge.pending{background:#fbf3d9;color:var(--warn)}
+.adminOnly.hiddenByRole{display:none!important}.commonHidden{display:none!important}
+.pendingGate{position:fixed;inset:0;z-index:101;background:var(--bg);display:none;align-items:center;justify-content:center;padding:18px}.pendingGate.show{display:flex}
+.userGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.userCard{background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px}
+.assigneeBox{border:1px solid var(--border);border-radius:12px;padding:9px;max-height:190px;overflow:auto;background:#fff}.assigneeRow{display:flex;align-items:center;gap:8px;padding:6px 2px}.assigneeRow input{width:auto}
+.importStats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.importStat{border:1px solid var(--border);border-radius:12px;padding:10px;background:#fff;text-align:center}.importStat strong{display:block;font-size:20px}
+.previewTable{width:100%;border-collapse:collapse;font-size:12px}.previewTable th,.previewTable td{padding:7px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}.previewTable th{position:sticky;top:0;background:#fff}
+.previewWrap{max-height:330px;overflow:auto;border:1px solid var(--border);border-radius:12px}
+.rowError{background:#f9e7e7}.rowDuplicate{background:#fbf3d9}.rowOk{background:#f8faf9}
+.authTabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:14px}.authTabs button{border:1px solid var(--border);background:#fff;border-radius:10px;padding:9px}.authTabs button.active{background:var(--soft);font-weight:700}
+#signupPane{display:none}.authCard.signup #loginPane{display:none}.authCard.signup #signupPane{display:grid}.authCard.signup #tabLogin{background:#fff;font-weight:400}.authCard.signup #tabSignup{background:var(--soft);font-weight:700}
+@media(max-width:700px){.userGrid{grid-template-columns:1fr}.importStats{grid-template-columns:1fr 1fr}}
 </style></head><body>
 <div id="authGate" class="authGate">
-  <div class="authCard">
+  <div id="authCard" class="authCard">
     <h1>Sensia Produção</h1>
-    <div class="sub">V4.0.5 • Correção dos menus</div>
-    <div class="stack">
+    <div class="sub">V4.5 • Multiusuário + Importação</div>
+    <div class="authTabs"><button id="tabLogin" class="active" type="button">Entrar</button><button id="tabSignup" type="button">Solicitar acesso</button></div>
+    <div id="loginPane" class="stack" style="margin-top:12px">
       <label>E-mail<input id="loginEmail" type="email" autocomplete="username" placeholder="seu@email.com"></label>
       <label>Senha<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Sua senha"></label>
       <button id="loginBtn" class="btn">Entrar</button>
       <div id="loginError" class="small"></div>
     </div>
+    <div id="signupPane" class="stack" style="margin-top:12px">
+      <label>Nome<input id="signupName" type="text" autocomplete="name" placeholder="Seu nome"></label>
+      <label>E-mail<input id="signupEmail" type="email" autocomplete="email" placeholder="seu@email.com"></label>
+      <label>Senha<input id="signupPassword" type="password" autocomplete="new-password" placeholder="Mínimo 6 caracteres"></label>
+      <button id="signupBtn" class="btn">Solicitar acesso</button>
+      <div class="small">Depois do cadastro, o administrador precisa aprovar seu acesso e vincular suas metas.</div>
+      <div id="signupError" class="small"></div>
+    </div>
   </div>
 </div>
+<div id="pendingGate" class="pendingGate"><div class="authCard"><h1>Acesso aguardando aprovação</h1><div class="sub" id="pendingText">Seu cadastro foi recebido. O administrador ainda precisa liberar seu acesso.</div><button id="pendingLogout" class="btn secondary" style="width:100%;margin-top:14px">Sair</button></div></div>
 <div class="app">
   <div class="top">
-    <div><h1>Sensia Produção</h1><div class="sub">V4.0.5 • Correção dos menus</div></div>
+    <div><h1>Sensia Produção</h1><div class="sub">V4.5 • Multiusuário + Importação</div></div>
     <div class="topActions">
-      <span class="cloudPill"><span id="cloudDot" class="cloudDot warn"></span><span id="cloudText">Conectando...</span></span>
+      <span class="cloudPill"><span id="cloudDot" class="cloudDot warn"></span><span id="cloudText">Conectando...</span></span><span id="rolePill" class="rolePill">—</span>
       <button class="linkBtn" id="syncNowBtn" type="button">↻ Sincronizar</button>
       <button class="btn secondary" id="openAlerts">Alertas <span id="alertCount" class="badge red">0</span></button>
       <button id="logoutBtn" class="linkBtn">Sair</button>
@@ -96,10 +122,23 @@
     <div class="card"><h2>📦 Materiais críticos</h2><div id="homeCriticalMaterials"></div></div>
   </div>
 </section>
-<section id="producao" class="panel"><div class="section card"><div class="filterGrid"><input id="goalSearch" placeholder="Buscar meta"><select id="goalFilter"><option value="">Todos status</option><option>Não iniciado</option><option>Em andamento</option><option>Concluído</option><option>Atrasado</option></select><select id="blockFilter"><option value="">Todos blocos</option></select><select id="floorFilter"><option value="">Todos pavimentos</option></select><select id="activityFilter"><option value="">Todas atividades</option></select><select id="ownerFilter"><option value="">Todos responsáveis</option></select></div><div class="row" style="margin-top:8px"><button id="newGoal" class="btn">+ Nova meta</button><button id="newBulkGoals" class="btn secondary">+ Metas em massa</button><button id="massUpdateGoals" class="btn secondary">Atualizar em massa</button></div></div><div id="goalList"></div></section>
+<section id="producao" class="panel"><div class="section card"><div class="filterGrid"><input id="goalSearch" placeholder="Buscar meta"><select id="goalFilter"><option value="">Todos status</option><option>Não iniciado</option><option>Em andamento</option><option>Concluído</option><option>Atrasado</option></select><select id="blockFilter"><option value="">Todos blocos</option></select><select id="floorFilter"><option value="">Todos pavimentos</option></select><select id="activityFilter"><option value="">Todas atividades</option></select><select id="ownerFilter"><option value="">Todos responsáveis</option></select><select id="userFilter"><option value="">Todos usuários</option></select></div><div class="row adminOnly" style="margin-top:8px"><button id="newGoal" class="btn">+ Nova meta</button><button id="newBulkGoals" class="btn secondary">+ Metas em massa</button><button id="massUpdateGoals" class="btn secondary">Atualizar em massa</button></div></div><div id="goalList"></div></section>
 <section id="equipes" class="panel"><div class="section card"><h2>👷 Funcionários</h2><div class="row"><select id="employeeCompanyFilter"><option value="">Todas empresas</option></select><button id="newEmployee" class="btn">+ Funcionário</button></div></div><div id="employeeList"></div></section>
 <section id="alertas" class="panel"><div class="section card"><h2>🔔 Centro de alertas</h2><div id="alertsList"></div></div></section>
-<section id="mais" class="panel"><div class="section card"><h2>Mais opções</h2><div class="more-grid"><button data-more="presenca"><b>🧑‍🏭 Presença/Faltas</b><div class="small">MOP e empreiteiros</div></button><button data-more="materiais"><b>📦 Materiais</b><div class="small">Faltas e impactos</div></button><button data-more="empreiteiros"><b>🏗️ Empreiteiros</b><div class="small">Cadastro das empresas</div></button><button data-more="graficos"><b>📈 Gráficos</b><div class="small">Bloco e atividade</div></button><button data-more="gestao"><b>📊 Gestão</b><div class="small">Indicadores e produtividade</div></button><button data-more="relatorio"><b>📄 Relatório semanal</b><div class="small">Resumo, Excel e PDF</div></button><button data-more="blocos"><b>🏢 Blocos/Aptos</b><div class="small">Interativo por atividade</div></button><button data-more="dependencias"><b>🔗 Sequência</b><div class="small">Dependências de serviços</div></button><button data-more="aptHistorico"><b>🏠 Histórico Aptos</b><div class="small">Prontuário por apartamento</div></button><button data-more="historico"><b>🗂️ Histórico</b><div class="small">Planejado × realizado</div></button><button data-more="backup"><b>💾 Backup</b><div class="small">Excel/CSV + completo</div></button><button data-more="config"><b>⚙️ Configurações</b><div class="small">Notificações</div></button></div></div></section>
+<section id="mais" class="panel"><div class="section card"><h2>Mais opções</h2><div class="more-grid"><button data-more="presenca"><b>🧑‍🏭 Presença/Faltas</b><div class="small">MOP e empreiteiros</div></button><button data-more="materiais"><b>📦 Materiais</b><div class="small">Faltas e impactos</div></button><button data-more="empreiteiros"><b>🏗️ Empreiteiros</b><div class="small">Cadastro das empresas</div></button><button data-more="graficos"><b>📈 Gráficos</b><div class="small">Bloco e atividade</div></button><button data-more="gestao"><b>📊 Gestão</b><div class="small">Indicadores e produtividade</div></button><button data-more="relatorio"><b>📄 Relatório semanal</b><div class="small">Resumo, Excel e PDF</div></button><button data-more="blocos"><b>🏢 Blocos/Aptos</b><div class="small">Interativo por atividade</div></button><button data-more="dependencias"><b>🔗 Sequência</b><div class="small">Dependências de serviços</div></button><button data-more="aptHistorico"><b>🏠 Histórico Aptos</b><div class="small">Prontuário por apartamento</div></button><button data-more="historico"><b>🗂️ Histórico</b><div class="small">Planejado × realizado</div></button><button data-more="backup"><b>💾 Backup</b><div class="small">Excel/CSV + completo</div></button><button class="adminOnly" data-more="usuarios"><b>👥 Usuários</b><div class="small">Aprovação e perfis</div></button><button class="adminOnly" data-more="importarMetas"><b>📥 Importar metas</b><div class="small">Excel/CSV em massa</div></button><button data-more="config"><b>⚙️ Configurações</b><div class="small">Notificações</div></button></div></div></section>
+
+<section id="usuarios" class="panel">
+  <div class="section card"><div class="row"><div style="flex:1"><h2>👥 Usuários do Sensia</h2><div class="small">Novos usuários usam “Solicitar acesso” na tela de login. Aqui o administrador aprova e define o perfil.</div></div><button id="refreshUsers" class="btn secondary">Atualizar</button></div></div>
+  <div id="usersList" class="userGrid"></div>
+</section>
+<section id="importarMetas" class="panel">
+  <div class="section card">
+    <div class="row"><div style="flex:1"><h2>📥 Importar metas</h2><div class="small">Aceita .xlsx, .xls e .csv. A importação é conferida antes de gravar.</div></div><button id="downloadGoalTemplate" class="btn secondary">Baixar modelo</button></div>
+    <input id="goalImportFile" type="file" accept=".xlsx,.xls,.csv" style="margin-top:10px">
+    <div class="grid2" style="margin-top:8px"><label>Duplicidades<select id="duplicateMode"><option value="ignore">Ignorar duplicadas</option><option value="update">Atualizar existentes</option></select></label><div></div></div>
+  </div>
+  <div id="importPreview"></div>
+</section>
 <section id="presenca" class="panel"><div class="section card"><h2>🧑‍🏭 Presença e faltas</h2><div class="row"><input id="attendanceDate" type="date"><select id="attendanceCompany"><option value="">Todas empresas</option></select></div></div><div id="attendanceList"></div></section>
 <section id="materiais" class="panel"><div class="section card"><div class="row"><h2 style="flex:1">📦 Materiais em falta</h2><button id="newMaterial" class="btn">+ Material</button></div></div><div id="materialList"></div></section>
 <section id="empreiteiros" class="panel"><div class="section card"><div class="row"><h2 style="flex:1">🏗️ Empreiteiros</h2><button id="newContractor" class="btn">+ Empresa</button></div></div><div id="contractorList"></div></section>
@@ -137,13 +176,14 @@ const BLOCKS=Array.from({length:12},(_,i)=>String(i+1).padStart(2,'0'));
 const FLOORS=['1º','2º','3º','Cobertura','Área comum / Não se aplica'];
 const APTS={'1º':['101','102','103','104','105','106','107','108'],'2º':['201','202','203','204','205','206','207','208'],'3º':['301','302','303','304','305','306','307','308'],'Cobertura':['301C','302C','303C','304C','305C','306C','307C','308C'],'Área comum / Não se aplica':['Não se aplica']};
 const KEY='sensia_producao';
-const SCHEMA_VERSION=7;
+const SCHEMA_VERSION=8;
 const SUPABASE_URL='https://nauoxnaiasquuacloukv.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_q1tZ6plT3Vx5M0-6tb9gPw_oyiMw-Jh';
 const cloud=supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
   auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
 });
 let cloudUser=null,cloudReady=false,localDirty=false,syncTimer=null,syncBusy=false;
+let currentProfile=null,userProfiles=[],goalAssignments=[];
 function loadPersistentState(){
   const keys=[KEY,'sensia_producao_v3_1','sensia_producao_v3','sensia_producao_v2'];
   for(const k of keys){
@@ -187,7 +227,7 @@ function normalizeLocalIds(){
     if(old!==id)empMap.set(old,id);
     return {...e,id,active:e.active!==false};
   });
-  state.goals=state.goals.map(g=>({...g,id:isUuid(g.id)?g.id:newUuid()}));
+  state.goals=state.goals.map(g=>({...g,id:isUuid(g.id)?g.id:newUuid(),assigneeIds:Array.isArray(g.assigneeIds)?g.assigneeIds:[],creatorId:g.creatorId||null}));
   state.materials=state.materials.map(m=>({...m,id:isUuid(m.id)?m.id:newUuid()}));
   const nextAttendance={};
   Object.entries(state.attendance||{}).forEach(([date,rows])=>{
@@ -215,6 +255,24 @@ function save(render=true){
 function rank(s){return s==='Atrasado'?0:s==='Em andamento'?1:s==='Não iniciado'?2:3} function gc(g){if(g.status==='Concluído')return 'Concluído';const d=daysUntil(g.due);return d!==null&&d<0?'Atrasado':g.status} function pct(a){return a.length?Math.round(a.filter(g=>gc(g)==='Concluído').length/a.length*100):0} function companies(){return ['MOP',...state.contractors.map(c=>c.name)]} function opts(a,v=''){return a.map(x=>`<option ${x===v?'selected':''}>${esc(x)}</option>`).join('')}
 
 
+
+function isAdmin(){return currentProfile?.role==='admin'&&currentProfile?.approved===true}
+function approvedProfiles(){return userProfiles.filter(p=>p.approved)}
+function profileName(id){const p=userProfiles.find(x=>x.user_id===id);return p?.display_name||p?.email||'Usuário'}
+function assigneeNames(g){return (g.assigneeIds||[]).map(profileName)}
+function userOptionsHtml(selected=[]){const sel=new Set(selected||[]);return approvedProfiles().map(p=>`<label class="assigneeRow"><input type="checkbox" class="assigneeCheck" value="${p.user_id}" ${sel.has(p.user_id)?'checked':''}><span>${esc(p.display_name||p.email)} <span class="small">${esc(p.email||'')}</span></span></label>`).join('')||'<div class="small">Nenhum usuário aprovado.</div>'}
+function selectedAssignees(){return [...document.querySelectorAll('.assigneeCheck:checked')].map(x=>x.value)}
+function applyRoleUI(){
+ const admin=isAdmin();
+ document.querySelectorAll('.adminOnly').forEach(el=>el.classList.toggle('hiddenByRole',!admin));
+ rolePill.textContent=admin?'Administrador':'Minhas metas';
+ const eqBtn=document.querySelector('[data-go="equipes"]'),moreBtn=document.querySelector('[data-go="mais"]');
+ if(eqBtn)eqBtn.style.display=admin?'':'none';
+ if(moreBtn)moreBtn.style.display=admin?'':'none';
+ const wrap=document.querySelector('.bottom .wrap');if(wrap)wrap.style.gridTemplateColumns=admin?'repeat(5,1fr)':'repeat(3,1fr)';
+ if(!admin && ['equipes','mais','usuarios','importarMetas','presenca','materiais','empreiteiros','gestao','relatorio','blocos','dependencias','aptHistorico','historico','backup','config'].some(id=>document.getElementById(id)?.classList.contains('active')))go('producao');
+}
+
 function recordHistory(action,entityId,before,after){
  state.history=state.history||[];
  state.history.unshift({date:new Date().toISOString(),action,entityId,before:before||null,after:after||null});
@@ -237,7 +295,8 @@ function cloudRows(){
   return {
     contractors:state.contractors.map(c=>({id:c.id,user_id:uid,name:c.name,service:c.service||null,active:c.active!==false})),
     employees:state.employees.map(e=>({id:e.id,user_id:uid,name:e.name,role:e.role||null,employer_type:e.company==='MOP'?'MOP':'EMPREITEIRO',contractor_id:contractorIdByName(e.company),active:e.active!==false})),
-    goals:state.goals.map(g=>({id:g.id,user_id:uid,block:g.block,floor:g.floor,apartment:g.apt==='Não se aplica'?null:(g.apt||null),activity:g.activity,status:g.status,priority:g.priority||'Média',responsible:g.owner||null,due_date:g.due||null,planned_date:g.planned||null,actual_date:g.actual||null,delay_reason:g.delay_reason||null,notes:g.notes||null,progress_percent:Number.isFinite(+g.progress)?Math.max(0,Math.min(100,+g.progress)):(g.status==='Concluído'?100:g.status==='Em andamento'?50:0)})),
+    goals:state.goals.map(g=>({id:g.id,user_id:g.creatorId||uid,block:g.block,floor:g.floor,apartment:g.apt==='Não se aplica'?null:(g.apt||null),activity:g.activity,status:g.status,priority:g.priority||'Média',responsible:g.owner||null,due_date:g.due||null,planned_date:g.planned||null,actual_date:g.actual||null,delay_reason:g.delay_reason||null,notes:g.notes||null,progress_percent:Number.isFinite(+g.progress)?Math.max(0,Math.min(100,+g.progress)):(g.status==='Concluído'?100:g.status==='Em andamento'?50:0)})),
+    assignments:state.goals.flatMap(g=>(g.assigneeIds||[]).map(assignee_user_id=>({goal_id:g.id,assignee_user_id}))),
     materials:state.materials.map(m=>({id:m.id,user_id:uid,name:m.name,quantity:m.qty||null,urgency:m.urgency||'Média',status:m.status||'Em falta',block:m.block||null,floor:m.floor||null,apartment:m.apt==='Não se aplica'?null:(m.apt||null),affected_activity:m.activity||null,notes:m.notes||null,available_quantity:m.availableQty===''||m.availableQty==null?null:+m.availableQty,required_quantity:m.requiredQty===''||m.requiredQty==null?null:+m.requiredQty,criticality:m.criticality||'Atenção',affected_blocks:Array.isArray(m.affectedBlocks)?m.affectedBlocks:[]})),
     dependencies:state.dependencies.map(d=>({id:d.id,user_id:uid,activity:d.activity,depends_on_activity:d.dependsOn})),
     attendance:Object.entries(state.attendance||{}).flatMap(([date,rows])=>Object.entries(rows||{}).map(([employee_id,r])=>({id:r.id||newUuid(),user_id:uid,employee_id,attendance_date:date,status:r.status||'Presente',block:r.block||null,floor:r.floor||null,apartment:r.apt==='Não se aplica'?null:(r.apt||null),activity:r.activity||null,notes:r.notes||null})))
@@ -257,27 +316,39 @@ async function reconcileTable(table,rows){
     if(error)throw error;
   }
 }
+
+async function reconcileAssignments(rows){
+  const {data:remote,error}=await cloud.from('goal_assignments').select('goal_id,assignee_user_id');
+  if(error)throw error;
+  if(rows.length){const up=await cloud.from('goal_assignments').upsert(rows,{onConflict:'goal_id,assignee_user_id'});if(up.error)throw up.error}
+  const keep=new Set(rows.map(r=>r.goal_id+'|'+r.assignee_user_id));
+  for(const r of (remote||[])){const k=r.goal_id+'|'+r.assignee_user_id;if(!keep.has(k)){const d=await cloud.from('goal_assignments').delete().eq('goal_id',r.goal_id).eq('assignee_user_id',r.assignee_user_id);if(d.error)throw d.error}}
+}
+async function syncAssignedGoalsOnly(rows){
+  if(!rows.length)return;
+  const {error}=await cloud.from('goals').upsert(rows,{onConflict:'id'});
+  if(error)throw error;
+}
+
 async function syncCloudSnapshot(){
   if(!cloudReady||!cloudUser||syncBusy||!navigator.onLine)return;
-  syncBusy=true;
-  setCloudStatus('warn','Sincronizando...');
+  syncBusy=true;setCloudStatus('warn','Sincronizando...');
   try{
-    normalizeLocalIds();
-    const r=cloudRows();
-    await reconcileTable('contractors',r.contractors);
-    await reconcileTable('employees',r.employees);
-    await reconcileTable('goals',r.goals);
-    await reconcileTable('materials',r.materials);
-    await reconcileTable('service_dependencies',r.dependencies);
-    await reconcileTable('attendance',r.attendance);
-    localDirty=false;
-    setCloudStatus('ok','Sincronizado');
-  }catch(e){
-    console.error('Sync cloud error',e);
-    setCloudStatus('off','Falha: '+shortCloudError(e));
-  }finally{
-    syncBusy=false;
-  }
+    normalizeLocalIds();const r=cloudRows();
+    if(isAdmin()){
+      await reconcileTable('contractors',r.contractors);
+      await reconcileTable('employees',r.employees);
+      await reconcileTable('goals',r.goals);
+      await reconcileTable('materials',r.materials);
+      await reconcileTable('service_dependencies',r.dependencies);
+      await reconcileTable('attendance',r.attendance);
+      await reconcileAssignments(r.assignments);
+    }else{
+      await syncAssignedGoalsOnly(r.goals);
+    }
+    localDirty=false;setCloudStatus('ok','Sincronizado');
+  }catch(e){console.error('Sync cloud error',e);setCloudStatus('off','Falha: '+shortCloudError(e));}
+  finally{syncBusy=false}
 }
 function scheduleCloudSync(){
   clearTimeout(syncTimer);
@@ -306,18 +377,21 @@ async function fetchCloudState(){
   const attendanceData=await readTable('attendance');
   const materialsData=await readTable('materials');
   const dependenciesData=await readTable('service_dependencies',true);
+  const profilesData=await readTable('profiles');
+  const assignmentsData=await readTable('goal_assignments');
 
   const contractorById=new Map(contractorsData.map(c=>[c.id,c.name]));
 
   const cloudState={
     goals:goalsData.map(g=>({
-      id:g.id,block:g.block,floor:g.floor,apt:g.apartment||'Não se aplica',
+      id:g.id,creatorId:g.user_id,block:g.block,floor:g.floor,apt:g.apartment||'Não se aplica',
       activity:g.activity,due:g.due_date||'',status:g.status,
       priority:g.priority||'Média',owner:g.responsible||'MOP',
       planned:g.planned_date||'',actual:g.actual_date||'',
       delay_reason:g.delay_reason||'',notes:g.notes||'',
       progress:Number.isFinite(+g.progress_percent)?+g.progress_percent:
-        (g.status==='Concluído'?100:g.status==='Em andamento'?50:0)
+        (g.status==='Concluído'?100:g.status==='Em andamento'?50:0),
+      assigneeIds:assignmentsData.filter(a=>a.goal_id===g.id).map(a=>a.assignee_user_id)
     })),
     contractors:contractorsData.map(c=>({
       id:c.id,name:c.name,service:c.service||'',active:c.active!==false
@@ -344,6 +418,8 @@ async function fetchCloudState(){
     schemaVersion:SCHEMA_VERSION
   };
 
+  userProfiles=profilesData||[];
+  goalAssignments=assignmentsData||[];
   attendanceData.forEach(r=>{
     if(!cloudState.attendance[r.attendance_date])cloudState.attendance[r.attendance_date]={};
     cloudState.attendance[r.attendance_date][r.employee_id]={
@@ -401,6 +477,19 @@ function shortCloudError(e){
   return msg.length>75?msg.slice(0,72)+'...':msg;
 }
 
+
+async function loadCurrentProfile(){
+  if(!cloudUser)return null;
+  const {data,error}=await cloud.from('profiles').select('*').eq('user_id',cloudUser.id).maybeSingle();
+  if(error)throw new Error('profiles: '+(error.message||'falha ao carregar perfil'));
+  currentProfile=data||null;
+  return currentProfile;
+}
+async function loadProfilesForUI(){
+  const {data,error}=await cloud.from('profiles').select('*').order('display_name',{ascending:true});
+  if(error)throw error;userProfiles=data||[];return userProfiles;
+}
+
 async function refreshFromCloud(){
   if(!navigator.onLine){
     setCloudStatus('off','Sem internet');
@@ -418,6 +507,10 @@ async function refreshFromCloud(){
       setCloudStatus('warn','Login necessário');
       return false;
     }
+    cloudUser=session.user;
+    await loadCurrentProfile();
+    if(!currentProfile?.approved){authGate.classList.add('hidden');pendingGate.classList.add('show');setCloudStatus('warn','Aguardando aprovação');return false}
+    pendingGate.classList.remove('show');
 
     const remote=await withRetry(()=>fetchCloudState(),2);
     if(!remote)throw new Error('Sessão não encontrada');
@@ -428,7 +521,7 @@ async function refreshFromCloud(){
     cloudReady=true;
     migrationBox.classList.remove('show');
     try{
-      renderAll();
+      renderAll();applyRoleUI();
     }catch(renderError){
       console.error('Erro de interface após sincronização:',renderError);
       setCloudStatus('off','Interface: '+shortCloudError(renderError));
@@ -455,7 +548,11 @@ async function initializeCloud(){
     }
 
     cloudUser=session.user;
+    await loadCurrentProfile();
     authGate.classList.add('hidden');
+    if(!currentProfile?.approved){pendingText.textContent='Seu cadastro foi recebido. O administrador ainda precisa liberar seu acesso.';pendingGate.classList.add('show');cloudReady=false;setCloudStatus('warn','Aguardando aprovação');return}
+    pendingGate.classList.remove('show');
+    rolePill.textContent=isAdmin()?'Administrador':'Minhas metas';
 
     if(!navigator.onLine){
       cloudReady=false;
@@ -465,20 +562,9 @@ async function initializeCloud(){
     }
 
     setCloudStatus('warn','Conectando...');
+    if(!isAdmin()){await refreshFromCloud();return}
     const has=await withRetry(()=>cloudHasData(),2);
-
-    if(has){
-      await refreshFromCloud();
-    }else{
-      cloudReady=false;
-      setCloudStatus('warn','Migração pendente');
-      if(localHasUsefulData()){
-        migrationBox.classList.add('show');
-      }else{
-        cloudReady=true;
-        await syncCloudSnapshot();
-      }
-    }
+    if(has){await refreshFromCloud()}else{cloudReady=false;setCloudStatus('warn','Migração pendente');if(localHasUsefulData())migrationBox.classList.add('show');else{cloudReady=true;await syncCloudSnapshot()}}
   }catch(e){
     console.error('Inicialização da nuvem falhou:',e);
     cloudReady=false;
@@ -486,6 +572,21 @@ async function initializeCloud(){
     renderAll();
   }
 }
+
+tabLogin.onclick=()=>authCard.classList.remove('signup');tabSignup.onclick=()=>authCard.classList.add('signup');
+async function signup(){
+ signupBtn.disabled=true;signupError.textContent='Enviando cadastro...';
+ const name=signupName.value.trim(),email=signupEmail.value.trim(),password=signupPassword.value;
+ if(!name||!email||password.length<6){signupBtn.disabled=false;signupError.textContent='Preencha nome, e-mail e uma senha com pelo menos 6 caracteres.';return}
+ const {data,error}=await cloud.auth.signUp({email,password,options:{data:{full_name:name},emailRedirectTo:location.origin+location.pathname}});
+ signupBtn.disabled=false;
+ if(error){signupError.textContent='Não foi possível solicitar acesso: '+error.message;return}
+ signupError.textContent=data.session?'Cadastro criado. Aguarde a aprovação do administrador.':'Cadastro criado. Confira seu e-mail e depois aguarde a aprovação do administrador.';
+ if(data.session)await initializeCloud();
+}
+signupBtn.onclick=signup;
+pendingLogout.onclick=async()=>{await cloud.auth.signOut();pendingGate.classList.remove('show');authGate.classList.remove('hidden')};
+
 async function login(){
   loginBtn.disabled=true;loginError.textContent='Entrando...';
   const {error}=await cloud.auth.signInWithPassword({email:loginEmail.value.trim(),password:loginPassword.value});
@@ -496,7 +597,7 @@ async function login(){
 }
 loginBtn.onclick=login;
 loginPassword.addEventListener('keydown',e=>{if(e.key==='Enter')login()});
-logoutBtn.onclick=async()=>{await cloud.auth.signOut();cloudReady=false;cloudUser=null;authGate.classList.remove('hidden');setCloudStatus('warn','Login necessário')};
+logoutBtn.onclick=async()=>{await cloud.auth.signOut();cloudReady=false;cloudUser=null;currentProfile=null;userProfiles=[];pendingGate.classList.remove('show');authGate.classList.remove('hidden');setCloudStatus('warn','Login necessário')};
 migrateCloudBtn.onclick=async()=>{
   if(!confirm('Migrar os dados deste aparelho para a nuvem?'))return;
   migrateCloudBtn.disabled=true;
@@ -536,17 +637,17 @@ window.addEventListener('offline',()=>{cloudReady=false;setCloudStatus('off','Mo
 window.addEventListener('focus',async()=>{if(cloudUser&&navigator.onLine&&!syncBusy){if(localDirty&&cloudReady)await syncCloudSnapshot();else await refreshFromCloud()}});
 cloud.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'){authGate.classList.remove('hidden')}});
 
-function go(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));if(id==='blocos')blockView();if(id==='graficos')charts();if(id==='historico')history();if(id==='gestao')renderManagement();if(id==='relatorio')renderWeeklyReport()} document.addEventListener('click',e=>{const x=e.target.closest('[data-go]');if(x){go(x.dataset.go);return}const y=e.target.closest('[data-more]');if(y)go(y.dataset.more)});openAlerts.onclick=()=>go('alertas');
+function go(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));if(id==='blocos')blockView();if(id==='graficos')charts();if(id==='historico')history();if(id==='gestao')renderManagement();if(id==='relatorio')renderWeeklyReport();if(id==='usuarios')renderUsers()} document.addEventListener('click',e=>{const x=e.target.closest('[data-go]');if(x){go(x.dataset.go);return}const y=e.target.closest('[data-more]');if(y)go(y.dataset.more)});openAlerts.onclick=()=>go('alertas');
 function modal(t,b){modalTitle.textContent=t;modalBody.innerHTML=b;document.getElementById('modal').classList.add('show')} modalClose.onclick=()=>document.getElementById('modal').classList.remove('show');
 function loc(prefix,o={}){const f=o.floor&&FLOORS.includes(o.floor)?o.floor:'1º',ap=APTS[f];return `<div class="grid2"><label>Bloco<select id="${prefix}Block">${opts(BLOCKS,o.block||'01')}</select></label><label>Pavimento<select id="${prefix}Floor">${opts(FLOORS,f)}</select></label></div><label>Apartamento<select id="${prefix}Apt">${opts(ap,ap.includes(o.apt)?o.apt:ap[0])}</select></label>`} function bindLoc(p){const f=document.getElementById(p+'Floor'),a=document.getElementById(p+'Apt');f.onchange=()=>a.innerHTML=opts(APTS[f.value])}
-function fill(){blockFilter.innerHTML='<option value="">Todos blocos</option>'+opts(BLOCKS);floorFilter.innerHTML='<option value="">Todos pavimentos</option>'+opts(FLOORS);activityFilter.innerHTML='<option value="">Todas atividades</option>'+opts([...new Set(state.goals.map(g=>g.activity))].sort());ownerFilter.innerHTML='<option value="">Todos responsáveis</option>'+opts(companies());blockViewSelect.innerHTML=opts(BLOCKS,blockViewSelect.value||'01');const acts=[...new Set(state.goals.map(g=>g.activity))].sort();activityViewSelect.innerHTML='<option value="">Todas atividades</option>'+opts(acts,activityViewSelect.value);employeeCompanyFilter.innerHTML='<option value="">Todas empresas</option>'+opts(companies());attendanceCompany.innerHTML='<option value="">Todas empresas</option>'+opts(companies())}
+function fill(){blockFilter.innerHTML='<option value="">Todos blocos</option>'+opts(BLOCKS);floorFilter.innerHTML='<option value="">Todos pavimentos</option>'+opts(FLOORS);activityFilter.innerHTML='<option value="">Todas atividades</option>'+opts([...new Set(state.goals.map(g=>g.activity))].sort());ownerFilter.innerHTML='<option value="">Todos responsáveis</option>'+opts(companies());blockViewSelect.innerHTML=opts(BLOCKS,blockViewSelect.value||'01');const acts=[...new Set(state.goals.map(g=>g.activity))].sort();activityViewSelect.innerHTML='<option value="">Todas atividades</option>'+opts(acts,activityViewSelect.value);employeeCompanyFilter.innerHTML='<option value="">Todas empresas</option>'+opts(companies());attendanceCompany.innerHTML='<option value="">Todas empresas</option>'+opts(companies());if(window.userFilter){const prev=userFilter.value;userFilter.innerHTML='<option value="">Todos usuários</option><option value="__unassigned__">Sem usuário</option>'+approvedProfiles().map(p=>`<option value="${p.user_id}">${esc(p.display_name||p.email)}</option>`).join('');if([...userFilter.options].some(o=>o.value===prev))userFilter.value=prev}}
 function dashboard(){
  const stats=managementStats(new Date());
  mPct.textContent=stats.realAll+'%';mPlan.textContent=stats.plan+'%';mDeviation.textContent=(stats.deviation>0?'+':'')+stats.deviation+' p.p.';mDeviation.className=stats.deviation>=0?'deltaGood':'deltaBad';mAdherence.textContent=stats.adherence+'%';mLate.textContent=stats.late;mBlocked.textContent=stats.blocked;
  renderAttention('homeAttention',attentionRanking().slice(0,6));renderPlanVsReal('homePlanVsReal');renderProductivity('homeProductivity',7,true);renderCriticalMaterials('homeCriticalMaterials',5);
 } 
-function goals(){const q=goalSearch.value.toLowerCase(),st=goalFilter.value,b=blockFilter.value,f=floorFilter.value,act=activityFilter.value,own=ownerFilter.value;const a=state.goals.filter(g=>(!q||JSON.stringify(g).toLowerCase().includes(q))&&(!st||gc(g)===st)&&(!b||g.block===b)&&(!f||g.floor===f)&&(!act||g.activity===act)&&(!own||g.owner===own)).sort((x,y)=>rank(gc(x))-rank(gc(y)));goalList.innerHTML=a.map(g=>{const s=gc(g),cl=s==='Concluído'?'statusDone':s==='Em andamento'?'statusProgress':s==='Atrasado'?'statusLate':'';return `<div class="section card ${cl}"><div class="goal-head"><div><div class="goal-title">Bl. ${g.block} • ${esc(g.activity)}</div><div class="meta-line">${esc(g.floor)} • ${esc(g.apt||'Não se aplica')} • ${esc(g.owner||'')}</div><div class="meta-line">Prazo: ${g.due||'—'} • Prioridade: ${g.priority||'—'} • Avanço: ${g.progress??(s==='Concluído'?100:s==='Em andamento'?50:0)}%</div><div class="progress" style="margin-top:6px"><div style="width:${g.progress??(s==='Concluído'?100:s==='Em andamento'?50:0)}%"></div></div></div>${menu(g.id,'Goal')}</div><span class="badge ${s==='Concluído'?'green':s==='Em andamento'?'yellow':s==='Atrasado'?'red':''}">${s}</span></div>`}).join('')} ['goalSearch','goalFilter','blockFilter','floorFilter','activityFilter','ownerFilter'].forEach(id=>document.getElementById(id).addEventListener(id==='goalSearch'?'input':'change',goals));
-function goalForm(g={}){return `<div class="stack">${loc('f',g)}<label>Atividade<input id="fActivity" value="${esc(g.activity||'')}"></label><div class="grid2"><label>Prazo<input id="fDue" type="date" value="${g.due||''}"></label><label>Prioridade<select id="fPriority">${opts(['Alta','Média','Baixa'],g.priority||'Média')}</select></label></div><div class="grid2"><label>Status<select id="fStatus">${opts(['Não iniciado','Em andamento','Concluído'],g.status||'Não iniciado')}</select></label><label>Responsável<select id="fOwner">${opts(companies(),g.owner||'MOP')}</select></label></div><label>Avanço (%)<div class="progressInputWrap"><input id="fProgress" type="range" min="0" max="100" step="5" value="${g.progress??(g.status==='Concluído'?100:g.status==='Em andamento'?50:0)}"><span id="fProgressLabel" class="progressPct">${g.progress??(g.status==='Concluído'?100:g.status==='Em andamento'?50:0)}%</span></div></label><div class="grid2"><label>Planejado<input id="fPlanned" type="date" value="${g.planned||''}"></label><label>Real<input id="fActual" type="date" value="${g.actual||''}"></label></div><label>Motivo atraso<select id="fDelay"><option value="">—</option>${opts(['Material','Mão de obra','Projeto','Qualidade','Serviço anterior','Acesso','Outro'],g.delay_reason||'')}</select></label><label>Observações<textarea id="fNotes">${esc(g.notes||'')}</textarea></label><button id="saveGoal" class="btn">Salvar</button></div>`} newGoal.onclick=()=>{modal('Nova meta',goalForm());bindLoc('f');fProgress.oninput=()=>fProgressLabel.textContent=fProgress.value+'%';saveGoal.onclick=()=>saveGoalFn()};
+function goals(){const q=goalSearch.value.toLowerCase(),st=goalFilter.value,b=blockFilter.value,f=floorFilter.value,act=activityFilter.value,own=ownerFilter.value,uf=window.userFilter?userFilter.value:'';const a=state.goals.filter(g=>(!q||JSON.stringify(g).toLowerCase().includes(q))&&(!st||gc(g)===st)&&(!b||g.block===b)&&(!f||g.floor===f)&&(!act||g.activity===act)&&(!own||g.owner===own)&&(!uf||(uf==='__unassigned__'?!(g.assigneeIds||[]).length:(g.assigneeIds||[]).includes(uf)))).sort((x,y)=>rank(gc(x))-rank(gc(y)));goalList.innerHTML=a.map(g=>{const s=gc(g),cl=s==='Concluído'?'statusDone':s==='Em andamento'?'statusProgress':s==='Atrasado'?'statusLate':'';return `<div class="section card ${cl}"><div class="goal-head"><div><div class="goal-title">Bl. ${g.block} • ${esc(g.activity)}</div><div class="meta-line">${esc(g.floor)} • ${esc(g.apt||'Não se aplica')} • ${esc(g.owner||'')}</div><div class="meta-line">Usuário: ${(assigneeNames(g).length?assigneeNames(g):['Não atribuído']).map(n=>`<span class="userBadge">${esc(n)}</span>`).join('')}</div><div class="meta-line">Prazo: ${g.due||'—'} • Prioridade: ${g.priority||'—'} • Avanço: ${g.progress??(s==='Concluído'?100:s==='Em andamento'?50:0)}%</div><div class="progress" style="margin-top:6px"><div style="width:${g.progress??(s==='Concluído'?100:s==='Em andamento'?50:0)}%"></div></div></div>${menu(g.id,'Goal')}</div><span class="badge ${s==='Concluído'?'green':s==='Em andamento'?'yellow':s==='Atrasado'?'red':''}">${s}</span></div>`}).join('')} ['goalSearch','goalFilter','blockFilter','floorFilter','activityFilter','ownerFilter','userFilter'].forEach(id=>document.getElementById(id).addEventListener(id==='goalSearch'?'input':'change',goals));
+function goalForm(g={}){return `<div class="stack">${loc('f',g)}<label>Atividade<input id="fActivity" value="${esc(g.activity||'')}"></label><div class="grid2"><label>Prazo<input id="fDue" type="date" value="${g.due||''}"></label><label>Prioridade<select id="fPriority">${opts(['Alta','Média','Baixa'],g.priority||'Média')}</select></label></div><div class="grid2"><label>Status<select id="fStatus">${opts(['Não iniciado','Em andamento','Concluído'],g.status||'Não iniciado')}</select></label><label>Responsável<select id="fOwner">${opts(companies(),g.owner||'MOP')}</select></label></div><label>Avanço (%)<div class="progressInputWrap"><input id="fProgress" type="range" min="0" max="100" step="5" value="${g.progress??(g.status==='Concluído'?100:g.status==='Em andamento'?50:0)}"><span id="fProgressLabel" class="progressPct">${g.progress??(g.status==='Concluído'?100:g.status==='Em andamento'?50:0)}%</span></div></label><div class="grid2"><label>Planejado<input id="fPlanned" type="date" value="${g.planned||''}"></label><label>Real<input id="fActual" type="date" value="${g.actual||''}"></label></div><label>Motivo atraso<select id="fDelay"><option value="">—</option>${opts(['Material','Mão de obra','Projeto','Qualidade','Serviço anterior','Acesso','Outro'],g.delay_reason||'')}</select></label><label>Observações<textarea id="fNotes">${esc(g.notes||'')}</textarea></label><label>Usuários responsáveis<div class="assigneeBox">${userOptionsHtml(g.assigneeIds||[])}</div></label><button id="saveGoal" class="btn">Salvar</button></div>`} newGoal.onclick=()=>{modal('Nova meta',goalForm());bindLoc('f');fProgress.oninput=()=>fProgressLabel.textContent=fProgress.value+'%';saveGoal.onclick=()=>saveGoalFn()};
 
 newBulkGoals.onclick=()=>openBulkGoalCreator();
 function openBulkGoalCreator(){
@@ -558,7 +659,7 @@ function openBulkGoalCreator(){
    <label>Atividade<input id="bgActivity" placeholder="Ex.: Cerâmica"></label>
    <div class="grid2"><label>Status inicial<select id="bgStatus">${opts(['Não iniciado','Em andamento','Concluído'],'Não iniciado')}</select></label><label>Prioridade<select id="bgPriority">${opts(['Alta','Média','Baixa'],'Média')}</select></label></div>
    <div class="grid2"><label>Responsável<select id="bgOwner">${opts(companies(),'MOP')}</select></label><label>Prazo<input id="bgDue" type="date"></label></div>
-   <label>Data planejada<input id="bgPlanned" type="date"></label>
+   <label>Data planejada<input id="bgPlanned" type="date"></label><label>Usuários responsáveis<div class="assigneeBox">${userOptionsHtml([])}</div></label>
    <div class="card"><b id="bgPreview">Serão criadas 0 metas.</b><div class="small">Cada apartamento terá uma meta independente.</div></div>
    <button id="bgCreate" type="button" class="btn">Criar metas em massa</button>
  </div>`;
@@ -583,7 +684,7 @@ function openBulkGoalCreator(){
    selected.forEach(apt=>{
      const exists=state.goals.some(g=>g.block===bgBlock.value&&g.floor===bgFloor.value&&g.apt===apt&&String(g.activity).toLowerCase()===activity.toLowerCase());
      if(exists){skipped++;return}
-     state.goals.push({id:uid('g'),block:bgBlock.value,floor:bgFloor.value,apt,activity,due:bgDue.value,status:bgStatus.value,priority:bgPriority.value,owner:bgOwner.value,planned:bgPlanned.value,actual:bgStatus.value==='Concluído'?TODAY():'',delay_reason:'',notes:''});
+     state.goals.push({id:newUuid(),creatorId:cloudUser?.id||null,assigneeIds:selectedAssignees(),block:bgBlock.value,floor:bgFloor.value,apt,activity,due:bgDue.value,status:bgStatus.value,priority:bgPriority.value,owner:bgOwner.value,planned:bgPlanned.value,actual:bgStatus.value==='Concluído'?TODAY():'',delay_reason:'',notes:'',progress:bgStatus.value==='Concluído'?100:bgStatus.value==='Em andamento'?50:0});
      created++;
    });
    document.getElementById('modal').classList.remove('show');
@@ -592,7 +693,11 @@ function openBulkGoalCreator(){
  };
 }
 
-document.addEventListener('click',e=>{if(e.target.classList.contains('editGoal')){const g=state.goals.find(x=>x.id===e.target.dataset.id);modal('Editar meta',goalForm(g));bindLoc('f');fProgress.oninput=()=>fProgressLabel.textContent=fProgress.value+'%';saveGoal.onclick=()=>saveGoalFn(g.id)}if(e.target.classList.contains('dupGoal')){const g=state.goals.find(x=>x.id===e.target.dataset.id);modal('Duplicar meta',goalForm({...g,id:null,status:'Não iniciado',actual:''}));bindLoc('f');fProgress.oninput=()=>fProgressLabel.textContent=fProgress.value+'%';saveGoal.onclick=()=>saveGoalFn()}if(e.target.classList.contains('delGoal')&&confirm('Remover meta?')){state.goals=state.goals.filter(x=>x.id!==e.target.dataset.id);save()}}); function saveGoalFn(id=null){const g={id:id||newUuid(),block:fBlock.value,floor:fFloor.value,apt:fApt.value,activity:fActivity.value.trim(),due:fDue.value,status:fStatus.value,priority:fPriority.value,owner:fOwner.value,planned:fPlanned.value,actual:fActual.value,delay_reason:fDelay.value,notes:fNotes.value.trim(),progress:+fProgress.value};if(g.progress>=100){g.progress=100;g.status='Concluído';g.actual=g.actual||TODAY()}else if(g.progress>0&&g.status==='Não iniciado')g.status='Em andamento';if(!g.activity)return alert('Informe a atividade.');if(id){const before=state.goals.find(x=>x.id===id);recordHistory('goal_update',id,before,g);state.goals=state.goals.map(x=>x.id===id?g:x)}else{state.goals=[...state.goals,g];recordHistory('goal_add',g.id,null,g)}document.getElementById('modal').classList.remove('show');save()}
+document.addEventListener('click',e=>{if(e.target.classList.contains('editGoal')){const g=state.goals.find(x=>x.id===e.target.dataset.id);if(isAdmin()){modal('Editar meta',goalForm(g));bindLoc('f');fProgress.oninput=()=>fProgressLabel.textContent=fProgress.value+'%';saveGoal.onclick=()=>saveGoalFn(g.id)}else{modal('Atualizar minha meta',myGoalForm(g));myProgress.oninput=()=>myProgressLabel.textContent=myProgress.value+'%';saveMyGoal.onclick=()=>saveMyGoalFn(g.id)}}if(isAdmin()&&e.target.classList.contains('dupGoal')){const g=state.goals.find(x=>x.id===e.target.dataset.id);modal('Duplicar meta',goalForm({...g,id:null,status:'Não iniciado',actual:''}));bindLoc('f');fProgress.oninput=()=>fProgressLabel.textContent=fProgress.value+'%';saveGoal.onclick=()=>saveGoalFn()}if(isAdmin()&&e.target.classList.contains('delGoal')&&confirm('Remover meta?')){state.goals=state.goals.filter(x=>x.id!==e.target.dataset.id);save()}}); function saveGoalFn(id=null){const existing=id?state.goals.find(x=>x.id===id):null;const g={id:id||newUuid(),creatorId:existing?.creatorId||cloudUser?.id||null,assigneeIds:selectedAssignees(),block:fBlock.value,floor:fFloor.value,apt:fApt.value,activity:fActivity.value.trim(),due:fDue.value,status:fStatus.value,priority:fPriority.value,owner:fOwner.value,planned:fPlanned.value,actual:fActual.value,delay_reason:fDelay.value,notes:fNotes.value.trim(),progress:+fProgress.value};if(g.progress>=100){g.progress=100;g.status='Concluído';g.actual=g.actual||TODAY()}else if(g.progress>0&&g.status==='Não iniciado')g.status='Em andamento';if(!g.activity)return alert('Informe a atividade.');if(id){const before=state.goals.find(x=>x.id===id);recordHistory('goal_update',id,before,g);state.goals=state.goals.map(x=>x.id===id?g:x)}else{state.goals=[...state.goals,g];recordHistory('goal_add',g.id,null,g)}document.getElementById('modal').classList.remove('show');save()}
+
+function myGoalForm(g){const p=g.progress??(g.status==='Concluído'?100:g.status==='Em andamento'?50:0);return `<div class="stack"><div class="card"><b>Bl. ${g.block} • ${esc(g.activity)}</b><div class="small">${esc(g.floor)} • ${esc(g.apt)} • Prazo ${g.due||'—'}</div></div><label>Status<select id="myStatus">${opts(['Não iniciado','Em andamento','Concluído'],g.status)}</select></label><label>Avanço (%)<div class="progressInputWrap"><input id="myProgress" type="range" min="0" max="100" step="5" value="${p}"><span id="myProgressLabel" class="progressPct">${p}%</span></div></label><label>Motivo de impedimento<select id="myDelay"><option value="">—</option>${opts(['Material','Mão de obra','Projeto','Qualidade','Serviço anterior','Acesso','Outro'],g.delay_reason||'')}</select></label><label>Observações<textarea id="myNotes">${esc(g.notes||'')}</textarea></label><button id="saveMyGoal" class="btn">Salvar atualização</button></div>`}
+function saveMyGoalFn(id){state.goals=state.goals.map(g=>{if(g.id!==id)return g;const n={...g,status:myStatus.value,progress:+myProgress.value,delay_reason:myDelay.value,notes:myNotes.value.trim()};if(n.progress>=100||n.status==='Concluído'){n.progress=100;n.status='Concluído';n.actual=n.actual||TODAY()}else if(n.progress>0&&n.status==='Não iniciado')n.status='Em andamento';return n});document.getElementById('modal').classList.remove('show');save()}
+
 function alloc(e){const r=(state.attendance[TODAY()]||{})[e.id];if(!r)return 'Sem apontamento hoje';if(r.status==='Falta')return 'Falta hoje';return [r.block&&'Bl. '+r.block,r.floor,r.apt,r.activity].filter(Boolean).join(' • ')||'Presente'} 
 massUpdateGoals.onclick=()=>openMassUpdateGoals();
 
@@ -603,7 +708,8 @@ function openMassUpdateGoals(){
     (!activityFilter.value||g.activity===activityFilter.value) &&
     (!ownerFilter.value||g.owner===ownerFilter.value) &&
     (!goalFilter.value||gc(g)===goalFilter.value) &&
-    (!goalSearch.value.trim()||JSON.stringify(g).toLowerCase().includes(goalSearch.value.trim().toLowerCase()))
+    (!goalSearch.value.trim()||JSON.stringify(g).toLowerCase().includes(goalSearch.value.trim().toLowerCase())) &&
+    (!userFilter.value||(userFilter.value==='__unassigned__'?!(g.assigneeIds||[]).length:(g.assigneeIds||[]).includes(userFilter.value)))
   );
 
   const body=`<div class="stack">
@@ -642,7 +748,7 @@ function openMassUpdateGoals(){
       </label>
     </div>
 
-    <div class="small">
+    <label>Atribuir usuários (opcional)<div class="assigneeBox" id="muAssignees">${userOptionsHtml([])}</div><div class="small">Se nenhum usuário for marcado, a atribuição atual será mantida.</div></label><div class="small">
       Os campos deixados em branco não serão alterados.
     </div>
 
@@ -699,6 +805,7 @@ function openMassUpdateGoals(){
       if(muStatus.value) g.status=muStatus.value;
       if(muOwner.value) g.owner=muOwner.value;
       if(muDue.value) g.due=muDue.value;
+      const ass=selectedAssignees();if(ass.length)g.assigneeIds=ass;
 
       if(progressValue!==null){
         g.progress=progressValue;
@@ -741,6 +848,11 @@ function openMassUpdateGoals(){
 
 function employees(){const c=employeeCompanyFilter.value;employeeList.innerHTML=state.employees.filter(e=>!c||e.company===c).map(e=>`<div class="section card"><div class="goal-head"><div><b>${esc(e.name)}</b> <span class="badge">${esc(e.role)}</span><div class="small">${esc(e.company)} • ${esc(alloc(e))}</div></div>${menu(e.id,'Emp')}</div></div>`).join('')} employeeCompanyFilter.onchange=employees;
 function empForm(e={}){return `<div class="stack"><label>Nome<input id="eName" value="${esc(e.name||'')}"></label><label>Função<input id="eRole" value="${esc(e.role||'')}"></label><label>Empresa<select id="eCompany">${opts(companies(),e.company||'MOP')}</select></label><button id="saveEmp" class="btn">Salvar</button></div>`} newEmployee.onclick=()=>{modal('Novo funcionário',empForm());saveEmp.onclick=()=>saveEmpFn()};document.addEventListener('click',e=>{if(e.target.classList.contains('editEmp')){const x=state.employees.find(a=>a.id===e.target.dataset.id);modal('Editar funcionário',empForm(x));saveEmp.onclick=()=>saveEmpFn(x.id)}if(e.target.classList.contains('delEmp')&&confirm('Remover funcionário?')){state.employees=state.employees.filter(x=>x.id!==e.target.dataset.id);save()}});function saveEmpFn(id=null){const x={id:id||uid('e'),name:eName.value.trim(),role:eRole.value.trim(),company:eCompany.value};if(!x.name)return;state.employees=id?state.employees.map(a=>a.id===id?x:a):[...state.employees,x];document.getElementById('modal').classList.remove('show');save()}
+
+async function renderUsers(){if(!isAdmin()||!window.usersList)return;try{await loadProfilesForUI();usersList.innerHTML=userProfiles.map(p=>`<div class="userCard"><div class="goal-head"><div><b>${esc(p.display_name||p.email)}</b><div class="small">${esc(p.email||'')}</div></div><span class="userBadge ${p.role==='admin'?'admin':!p.approved?'pending':''}">${p.role==='admin'?'Administrador':p.approved?'Usuário':'Pendente'}</span></div><div class="grid2" style="margin-top:9px"><label>Perfil<select class="profileRole" data-id="${p.user_id}" ${p.user_id===cloudUser.id?'disabled':''}>${opts(['user','admin'],p.role)}</select></label><label>Status<select class="profileApproved" data-id="${p.user_id}" ${p.user_id===cloudUser.id?'disabled':''}>${opts(['Aprovado','Pendente'],p.approved?'Aprovado':'Pendente')}</select></label></div></div>`).join('')||'<div class="card small">Nenhum usuário.</div>';fill()}catch(e){usersList.innerHTML=`<div class="card">Erro ao carregar usuários: ${esc(e.message)}</div>`}}
+if(window.refreshUsers)refreshUsers.onclick=renderUsers;
+document.addEventListener('change',async e=>{if(e.target.classList.contains('profileRole')||e.target.classList.contains('profileApproved')){if(!isAdmin())return;const id=e.target.dataset.id,p=userProfiles.find(x=>x.user_id===id);if(!p)return;const card=e.target.closest('.userCard'),role=card.querySelector('.profileRole').value,approved=card.querySelector('.profileApproved').value==='Aprovado';const {error}=await cloud.from('profiles').update({role,approved}).eq('user_id',id);if(error){alert('Não foi possível atualizar: '+error.message);return}await renderUsers();setCloudStatus('ok','Sincronizado')}});
+
 function contractors(){contractorList.innerHTML=state.contractors.map(c=>`<div class="section card"><div class="goal-head"><div><b>${esc(c.name)}</b><div class="small">${esc(c.service)}</div></div>${menu(c.id,'Con')}</div></div>`).join('')} function conForm(c={}){return `<div class="stack"><label>Empresa<input id="cName" value="${esc(c.name||'')}"></label><label>Serviço<input id="cService" value="${esc(c.service||'')}"></label><button id="saveCon" class="btn">Salvar</button></div>`} newContractor.onclick=()=>{modal('Novo empreiteiro',conForm());saveCon.onclick=()=>saveConFn()};document.addEventListener('click',e=>{if(e.target.classList.contains('editCon')){const c=state.contractors.find(x=>x.id===e.target.dataset.id);modal('Editar empreiteiro',conForm(c));saveCon.onclick=()=>saveConFn(c.id)}if(e.target.classList.contains('delCon')&&confirm('Remover empreiteiro?')){state.contractors=state.contractors.filter(x=>x.id!==e.target.dataset.id);save()}});function saveConFn(id=null){const c={id:id||uid('c'),name:cName.value.trim(),service:cService.value.trim()};if(!c.name)return;state.contractors=id?state.contractors.map(x=>x.id===id?c:x):[...state.contractors,c];document.getElementById('modal').classList.remove('show');save()}
 attendanceDate.value=TODAY();attendanceDate.onchange=attendance;attendanceCompany.onchange=attendance;function attendance(){const d=attendanceDate.value||TODAY(),c=attendanceCompany.value;if(!state.attendance[d])state.attendance[d]={};attendanceList.innerHTML=state.employees.filter(e=>!c||e.company===c).map(e=>{const r=state.attendance[d][e.id]||{id:newUuid(),status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};return `<div class="section card"><b>${esc(e.name)}</b><div class="small">${esc(e.company)} • ${esc(e.role)}</div><div class="grid2" style="margin-top:8px"><select class="attStatus" data-id="${e.id}">${opts(['Presente','Falta','Folga'],r.status)}</select><select class="attBlock" data-id="${e.id}">${opts(BLOCKS,r.block||'01')}</select></div><div class="grid2" style="margin-top:8px"><select class="attFloor" data-id="${e.id}">${opts(FLOORS,r.floor||'1º')}</select><select class="attApt" data-id="${e.id}">${opts(APTS[r.floor||'1º'],r.apt||APTS[r.floor||'1º'][0])}</select></div><input class="attActivity" data-id="${e.id}" value="${esc(r.activity||'')}" placeholder="Atividade" style="margin-top:8px"></div>`}).join('')} document.addEventListener('change',e=>{if(['attStatus','attBlock','attFloor','attApt'].some(c=>e.target.classList.contains(c))){const d=attendanceDate.value||TODAY(),id=e.target.dataset.id;if(!state.attendance[d])state.attendance[d]={};const r=state.attendance[d][id]||{id:newUuid(),status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};if(e.target.classList.contains('attStatus'))r.status=e.target.value;if(e.target.classList.contains('attBlock'))r.block=e.target.value;if(e.target.classList.contains('attFloor')){r.floor=e.target.value;r.apt=APTS[r.floor][0];state.attendance[d][id]=r;save(false);attendance();return}if(e.target.classList.contains('attApt'))r.apt=e.target.value;state.attendance[d][id]=r;save(false);dashboard();employees()}});document.addEventListener('input',e=>{if(e.target.classList.contains('attActivity')){const d=attendanceDate.value||TODAY(),id=e.target.dataset.id;if(!state.attendance[d])state.attendance[d]={};const r=state.attendance[d][id]||{id:newUuid(),status:'Presente',block:'01',floor:'1º',apt:'101',activity:''};r.activity=e.target.value;state.attendance[d][id]=r;save(false)}});
 function matForm(m={}){return `<div class="stack"><label>Material<input id="matName" value="${esc(m.name||'')}"></label><div class="grid2"><label>Quantidade / unidade<input id="matQty" value="${esc(m.qty||'')}"></label><label>Criticidade<select id="matCrit">${opts(['Normal','Atenção','Crítico'],m.criticality||'Atenção')}</select></label></div><div class="grid2"><label>Disponível<input id="matAvail" type="number" step="0.01" value="${m.availableQty??''}"></label><label>Necessário<input id="matReq" type="number" step="0.01" value="${m.requiredQty??''}"></label></div>${loc('mat',m)}<label>Blocos afetados (vírgula)<input id="matBlocks" value="${esc((m.affectedBlocks||[]).join(', '))}" placeholder="Ex.: 09, 10"></label><label>Atividade afetada<input id="matActivity" value="${esc(m.activity||'')}"></label><label>Status<select id="matStatus">${opts(['Em falta','Solicitado','Resolvido'],m.status||'Em falta')}</select></label><button id="saveMat" class="btn">Salvar</button></div>`} newMaterial.onclick=()=>{modal('Novo material',matForm());bindLoc('mat');saveMat.onclick=()=>saveMatFn()};function materials(){materialList.innerHTML=state.materials.map(m=>`<div class="section card"><div class="goal-head"><div><b>${esc(m.name)}</b><div class="small">${esc(m.qty)} • Disp.: ${m.availableQty??'—'} • Nec.: ${m.requiredQty??'—'} • Bl. ${m.block} • afeta ${esc(m.activity)} • ${esc(m.criticality||'Atenção')}</div></div>${menu(m.id,'Mat')}</div><span class="badge ${m.status==='Resolvido'?'green':m.urgency==='Alta'?'red':'yellow'}">${m.status}</span></div>`).join('')||'<div class="section card small">Nenhum material em falta.</div>'} document.addEventListener('click',e=>{if(e.target.classList.contains('editMat')){const m=state.materials.find(x=>x.id===e.target.dataset.id);modal('Editar material',matForm(m));bindLoc('mat');saveMat.onclick=()=>saveMatFn(m.id)}if(e.target.classList.contains('delMat')){state.materials=state.materials.filter(x=>x.id!==e.target.dataset.id);save()}});function saveMatFn(id=null){const m={id:id||newUuid(),name:matName.value.trim(),qty:matQty.value.trim(),urgency:matCrit.value==='Crítico'?'Alta':matCrit.value==='Atenção'?'Média':'Baixa',criticality:matCrit.value,availableQty:matAvail.value===''?'':+matAvail.value,requiredQty:matReq.value===''?'':+matReq.value,affectedBlocks:matBlocks.value.split(',').map(x=>x.trim()).filter(Boolean),block:matBlock.value,floor:matFloor.value,apt:matApt.value,activity:matActivity.value.trim(),status:matStatus.value};if(!m.name)return;state.materials=id?state.materials.map(x=>x.id===id?m:x):[...state.materials,m];document.getElementById('modal').classList.remove('show');save()}
@@ -778,7 +890,7 @@ function renderManagement(){const days=+(mgmtPeriod?.value||7);renderPlanVsReal(
 if(window.mgmtPeriod)mgmtPeriod.onchange=renderManagement;
 function mondayOfWeek(d=new Date()){const x=new Date(d);x.setHours(12,0,0,0);const day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);return x}
 function reportStats(start,end){const planned=state.goals.filter(g=>inRange(g.due,start,end)),done=state.goals.filter(g=>inRange(g.actual,start,end)),late=state.goals.filter(g=>gc(g)==='Atrasado'&&(!g.due||dateOnly(g.due)<=end)),attDates=Object.keys(state.attendance||{}).filter(d=>inRange(d,start,end));let abs=0,pres=0;attDates.forEach(d=>Object.values(state.attendance[d]||{}).forEach(r=>{if(r.status==='Falta')abs++;if(r.status==='Presente')pres++}));const critical=state.materials.filter(m=>m.status!=='Resolvido'&&(m.criticality==='Crítico'||m.urgency==='Alta')),adh=planned.length?Math.round(planned.filter(g=>g.actual&&dateOnly(g.actual)<=end).length/planned.length*100):(done.length?100:0);return{planned,done,late,abs,pres,critical,adh}}
-function renderWeeklyReport(){if(!window.reportStart)return;const s=dateOnly(reportStart.value),e=dateOnly(reportEnd.value);if(!s||!e)return;const r=reportStats(s,e),prod=productivityRows(Math.max(1,Math.round((e-s)/86400000)+1)).slice(0,6),att=attentionRanking().slice(0,5);reportArea.innerHTML=`<div class="reportHeader"><div><h2 style="margin:0">Relatório de Produção</h2><div class="small">${s.toLocaleDateString('pt-BR')} a ${e.toLocaleDateString('pt-BR')}</div></div><div><b>Sensia Produção V4.0.5</b></div></div><div class="reportKpis"><div class="reportKpi"><span>Planejado</span><strong>${r.planned.length}</strong></div><div class="reportKpi"><span>Concluído</span><strong>${r.done.length}</strong></div><div class="reportKpi"><span>Aderência</span><strong>${r.adh}%</strong></div><div class="reportKpi"><span>Atrasadas</span><strong>${r.late.length}</strong></div><div class="reportKpi"><span>Faltas</span><strong>${r.abs}</strong></div><div class="reportKpi"><span>Mat. críticos</span><strong>${r.critical.length}</strong></div></div><div class="reportSection"><h3>🚨 Principais pontos de atenção</h3>${att.length?`<ol class="reportList">${att.map(x=>`<li><b>Bl. ${x.g.block} — ${esc(x.g.activity)}</b>: ${x.reasons.join(', ')}</li>`).join('')}</ol>`:'<div class="small">Sem itens críticos calculados.</div>'}</div><div class="reportSection"><h3>👷 Produtividade por equipe</h3>${prod.length?`<table class="prodTable"><thead><tr><th>Equipe</th><th>Planejado</th><th>Concluído</th><th>Aderência</th><th>Efetivo médio</th></tr></thead><tbody>${prod.map(x=>`<tr><td>${esc(x.company)}</td><td>${x.planned}</td><td>${x.done}</td><td>${x.adherence}%</td><td>${x.avgHead}</td></tr>`).join('')}</tbody></table>`:'<div class="small">Sem dados suficientes.</div>'}</div><div class="reportSection"><h3>📦 Materiais críticos</h3>${r.critical.length?`<ul class="reportList">${r.critical.map(m=>`<li>${esc(m.name)} — Bl. ${esc(m.block||'—')} — afeta ${esc(m.activity||'—')}</li>`).join('')}</ul>`:'<div class="small">Nenhum material crítico aberto.</div>'}</div>`}
+function renderWeeklyReport(){if(!window.reportStart)return;const s=dateOnly(reportStart.value),e=dateOnly(reportEnd.value);if(!s||!e)return;const r=reportStats(s,e),prod=productivityRows(Math.max(1,Math.round((e-s)/86400000)+1)).slice(0,6),att=attentionRanking().slice(0,5);reportArea.innerHTML=`<div class="reportHeader"><div><h2 style="margin:0">Relatório de Produção</h2><div class="small">${s.toLocaleDateString('pt-BR')} a ${e.toLocaleDateString('pt-BR')}</div></div><div><b>Sensia Produção V4.5</b></div></div><div class="reportKpis"><div class="reportKpi"><span>Planejado</span><strong>${r.planned.length}</strong></div><div class="reportKpi"><span>Concluído</span><strong>${r.done.length}</strong></div><div class="reportKpi"><span>Aderência</span><strong>${r.adh}%</strong></div><div class="reportKpi"><span>Atrasadas</span><strong>${r.late.length}</strong></div><div class="reportKpi"><span>Faltas</span><strong>${r.abs}</strong></div><div class="reportKpi"><span>Mat. críticos</span><strong>${r.critical.length}</strong></div></div><div class="reportSection"><h3>🚨 Principais pontos de atenção</h3>${att.length?`<ol class="reportList">${att.map(x=>`<li><b>Bl. ${x.g.block} — ${esc(x.g.activity)}</b>: ${x.reasons.join(', ')}</li>`).join('')}</ol>`:'<div class="small">Sem itens críticos calculados.</div>'}</div><div class="reportSection"><h3>👷 Produtividade por equipe</h3>${prod.length?`<table class="prodTable"><thead><tr><th>Equipe</th><th>Planejado</th><th>Concluído</th><th>Aderência</th><th>Efetivo médio</th></tr></thead><tbody>${prod.map(x=>`<tr><td>${esc(x.company)}</td><td>${x.planned}</td><td>${x.done}</td><td>${x.adherence}%</td><td>${x.avgHead}</td></tr>`).join('')}</tbody></table>`:'<div class="small">Sem dados suficientes.</div>'}</div><div class="reportSection"><h3>📦 Materiais críticos</h3>${r.critical.length?`<ul class="reportList">${r.critical.map(m=>`<li>${esc(m.name)} — Bl. ${esc(m.block||'—')} — afeta ${esc(m.activity||'—')}</li>`).join('')}</ul>`:'<div class="small">Nenhum material crítico aberto.</div>'}</div>`}
 function reportCsvExport(){const s=dateOnly(reportStart.value),e=dateOnly(reportEnd.value),r=reportStats(s,e),rows=[['Relatório Sensia Produção'],['Período',reportStart.value,reportEnd.value],[],['Indicador','Valor'],['Planejado',r.planned.length],['Concluído',r.done.length],['Aderência',r.adh+'%'],['Atrasadas',r.late.length],['Faltas',r.abs],['Materiais críticos',r.critical.length],[],['Metas concluídas','Bloco','Pavimento','Apartamento','Atividade','Responsável','Data real'],...r.done.map(g=>['',g.block,g.floor,g.apt,g.activity,g.owner,g.actual])],q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',csv='\ufeff'+rows.map(r=>r.map(q).join(';')).join('\r\n'),b=new Blob([csv],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='relatorio-sensia-'+reportStart.value+'-a-'+reportEnd.value+'.csv';a.click();URL.revokeObjectURL(u)}
 function group(k){const m={};state.goals.forEach(g=>(m[g[k]||'—']||(m[g[k]||'—']=[])).push(g));return Object.entries(m).map(([x,v])=>[x,Math.round(v.reduce((s,g)=>s+(g.progress??(gc(g)==='Concluído'?100:gc(g)==='Em andamento'?50:0)),0)/v.length),v.length]).sort((a,b)=>b[1]-a[1])} function bars(id,r){document.getElementById(id).innerHTML=r.map(([k,p,n])=>`<div class="bar-row"><div class="bar-label"><span>${esc(k)}</span><span>${p}% • ${n}</span></div><div class="progress"><div style="width:${p}%"></div></div></div>`).join('')} function charts(){bars('chartBlock',group('block'));bars('chartActivity',group('activity'))}
 function aptStatus(b,a,act){const r=state.goals.filter(g=>g.block===b&&g.apt===a&&(!act||g.activity===act));if(!r.length)return 'Não iniciado';const s=r.map(gc);if(s.every(x=>x==='Concluído'))return 'Concluído';if(s.some(x=>x==='Atrasado'))return 'Atrasado';if(s.some(x=>x==='Em andamento'))return 'Em andamento';return 'Não iniciado'} function blockView(){const b=blockViewSelect.value||'01',act=activityViewSelect.value;let c={'Concluído':0,'Em andamento':0,'Atrasado':0,'Não iniciado':0},h='';['3º','2º','1º','Cobertura'].forEach(f=>{h+=`<div class="section card"><h2>${f}</h2><div class="apt-grid">`;APTS[f].forEach(a=>{const s=aptStatus(b,a,act);c[s]++;const cl=s==='Concluído'?'done':s==='Atrasado'?'delay':s==='Em andamento'?'progressing':'';h+=`<button class="apt ${cl}" data-apt="${a}" data-floor="${f}">${a}</button>`});h+='</div></div>'});blockPhysical.innerHTML=h;sDone.textContent=c['Concluído'];sProg.textContent=c['Em andamento'];sLate.textContent=c['Atrasado'];sNew.textContent=c['Não iniciado'];const t=Object.values(c).reduce((x,y)=>x+y,0);activitySummary.textContent=`${act||'Todas atividades'} • ${c['Concluído']}/${t} concluídos • ${Math.round(c['Concluído']/t*100)}%`} blockViewSelect.onchange=blockView;activityViewSelect.onchange=blockView;document.addEventListener('click',e=>{if(e.target.classList.contains('apt')&&!e.target.classList.contains('bulkApt'))openApt(blockViewSelect.value,e.target.dataset.floor,e.target.dataset.apt,activityViewSelect.value)});
@@ -827,6 +939,18 @@ function fillAptHistory(){aptHistBlock.innerHTML=opts(BLOCKS,aptHistBlock.value|
 function renderAptHistory(){fillAptHistory();const b=aptHistBlock.value,f=aptHistFloor.value,a=aptHistApt.value,r=state.goals.filter(g=>g.block===b&&g.floor===f&&g.apt===a).sort((x,y)=>String(x.activity).localeCompare(String(y.activity)));aptHistoryList.innerHTML=r.length?r.map(g=>{const s=gc(g),p=g.progress??(s==='Concluído'?100:s==='Em andamento'?50:0);return `<div class="section card"><div class="goal-head"><div><b>${esc(g.activity)}</b><div class="small">${esc(g.owner||'')} • Prazo ${g.due||'—'}</div></div><span class="badge ${s==='Concluído'?'green':s==='Atrasado'?'red':s==='Em andamento'?'yellow':''}">${s}</span></div><div class="progress" style="margin-top:8px"><div style="width:${p}%"></div></div><div class="small" style="margin-top:5px">${p}% • Planejado ${g.planned||'—'} • Real ${g.actual||'—'}</div></div>`}).join(''):'<div class="section card small">Nenhuma atividade cadastrada.</div>'}
 aptHistBlock.onchange=renderAptHistory;aptHistFloor.onchange=()=>{aptHistApt.innerHTML=opts(APTS[aptHistFloor.value]||[]);renderAptHistory()};aptHistApt.onchange=renderAptHistory;
 
+
+let importRows=[];
+function normHeader(s){return String(s||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ')}
+function cell(obj,names){for(const [k,v] of Object.entries(obj)){if(names.includes(normHeader(k)))return v}return ''}
+function excelDate(v){if(!v)return '';if(v instanceof Date&&!isNaN(v))return isoDate(v);if(typeof v==='number'&&window.XLSX){const d=XLSX.SSF.parse_date_code(v);if(d)return `${d.y}-${String(d.m).padStart(2,'0')}-${String(d.d).padStart(2,'0')}`}const s=String(v).trim();if(/^\d{4}-\d{2}-\d{2}$/.test(s))return s;const m=s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);return m?`${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`:''}
+function resolveUsers(raw){if(!raw)return [];const tokens=String(raw).split(/[,;|]/).map(x=>x.trim().toLowerCase()).filter(Boolean);const ids=[];tokens.forEach(t=>{const p=approvedProfiles().find(p=>String(p.email||'').toLowerCase()===t||String(p.display_name||'').toLowerCase()===t);if(p)ids.push(p.user_id)});return [...new Set(ids)]}
+function validateImportRow(obj,i){const block=String(cell(obj,['bloco'])).padStart(2,'0'),floor=String(cell(obj,['pavimento'])).trim(),apt=String(cell(obj,['apartamento','apto'])).trim()||'Não se aplica',activity=String(cell(obj,['atividade','servico','serviço'])).trim(),due=excelDate(cell(obj,['prazo','data prazo'])),priority=String(cell(obj,['prioridade'])).trim()||'Média',owner=String(cell(obj,['responsavel','responsável','equipe','empreiteiro'])).trim()||'MOP',planned=excelDate(cell(obj,['planejado','data planejada'])),userRaw=cell(obj,['usuario','usuário','usuarios','usuários','email usuario','email usuário']),assigneeIds=resolveUsers(userRaw);const errors=[];if(!BLOCKS.includes(block))errors.push('Bloco inválido');if(!FLOORS.includes(floor))errors.push('Pavimento inválido');if(!activity)errors.push('Atividade obrigatória');if(floor&&APTS[floor]&&!APTS[floor].includes(apt))errors.push('Apartamento inválido para o pavimento');if(!['Alta','Média','Baixa'].includes(priority))errors.push('Prioridade inválida');if(userRaw&&!assigneeIds.length)errors.push('Usuário não encontrado/aprovado');const existing=state.goals.find(g=>g.block===block&&g.floor===floor&&g.apt===apt&&String(g.activity).toLowerCase()===activity.toLowerCase());return{index:i+2,block,floor,apt,activity,due,priority,owner,planned,assigneeIds,userRaw:String(userRaw||''),errors,duplicate:!!existing,existingId:existing?.id||null}}
+function showImportPreview(){if(!window.importPreview)return;const ok=importRows.filter(r=>!r.errors.length&&!r.duplicate).length,dup=importRows.filter(r=>r.duplicate&&!r.errors.length).length,err=importRows.filter(r=>r.errors.length).length;importPreview.innerHTML=`<div class="section card"><div class="importStats"><div class="importStat"><span>Total</span><strong>${importRows.length}</strong></div><div class="importStat"><span>Prontas</span><strong>${ok}</strong></div><div class="importStat"><span>Duplicadas</span><strong>${dup}</strong></div><div class="importStat"><span>Com erro</span><strong>${err}</strong></div></div><div class="previewWrap" style="margin-top:10px"><table class="previewTable"><thead><tr><th>Linha</th><th>Local</th><th>Atividade</th><th>Prazo</th><th>Usuário</th><th>Situação</th></tr></thead><tbody>${importRows.map(r=>`<tr class="${r.errors.length?'rowError':r.duplicate?'rowDuplicate':'rowOk'}"><td>${r.index}</td><td>Bl. ${esc(r.block)} • ${esc(r.floor)} • ${esc(r.apt)}</td><td>${esc(r.activity)}</td><td>${esc(r.due||'—')}</td><td>${esc(r.userRaw||'—')}</td><td>${r.errors.length?esc(r.errors.join('; ')):r.duplicate?'Duplicada':'Pronta'}</td></tr>`).join('')}</tbody></table></div><button id="confirmGoalImport" class="btn" style="width:100%;margin-top:10px" ${!importRows.length||err===importRows.length?'disabled':''}>Confirmar importação</button></div>`;confirmGoalImport.onclick=applyGoalImport}
+if(window.goalImportFile)goalImportFile.onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const ab=await f.arrayBuffer(),wb=XLSX.read(ab,{type:'array',cellDates:true}),ws=wb.Sheets[wb.SheetNames[0]],raw=XLSX.utils.sheet_to_json(ws,{defval:'',raw:true});importRows=raw.map(validateImportRow);showImportPreview()}catch(err){importPreview.innerHTML=`<div class="section card">Não foi possível ler a planilha: ${esc(err.message)}</div>`}};
+function applyGoalImport(){if(!isAdmin())return;const mode=duplicateMode.value;let created=0,updated=0,ignored=0;for(const r of importRows){if(r.errors.length)continue;if(r.duplicate&&mode==='ignore'){ignored++;continue}const base={block:r.block,floor:r.floor,apt:r.apt,activity:r.activity,due:r.due,status:'Não iniciado',priority:r.priority,owner:r.owner,planned:r.planned,actual:'',delay_reason:'',notes:'',progress:0,assigneeIds:r.assigneeIds};if(r.duplicate&&mode==='update'){state.goals=state.goals.map(g=>g.id===r.existingId?{...g,...base}:g);updated++}else{state.goals.push({id:newUuid(),creatorId:cloudUser.id,...base});created++}}save();alert(`${created} meta(s) criada(s), ${updated} atualizada(s), ${ignored} duplicada(s) ignorada(s).`);importRows=[];goalImportFile.value='';showImportPreview()}
+if(window.downloadGoalTemplate)downloadGoalTemplate.onclick=()=>{const rows=[['Bloco','Pavimento','Apartamento','Atividade','Prazo','Prioridade','Responsável','Planejado','Usuário'],['02','2º','201','Cerâmica','20/08/2026','Alta','RR','18/08/2026','usuario@empresa.com']];const ws=XLSX.utils.aoa_to_sheet(rows),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Metas');const info=XLSX.utils.aoa_to_sheet([['ORIENTAÇÕES'],['Bloco: 01 a 12'],['Pavimento: 1º, 2º, 3º, Cobertura ou Área comum / Não se aplica'],['Apartamento deve corresponder ao pavimento'],['Usuário: use o e-mail do usuário aprovado. Para vários usuários, separe por vírgula.'],['Prioridade: Alta, Média ou Baixa']]);XLSX.utils.book_append_sheet(wb,info,'Leia-me');XLSX.writeFile(wb,'Modelo_Importacao_Metas_Sensia.xlsx')};
+
 function history(){const a=state.goals.filter(g=>g.status==='Concluído'||g.actual);historyList.innerHTML=a.map(g=>`<div class="item"><b>Bl. ${g.block} • ${esc(g.activity)} • ${esc(g.apt)}</b><div class="small">Planejado ${g.planned||'—'} • Real ${g.actual||'—'}</div></div>`).join('')||'<div class="small">Nenhuma conclusão registrada.</div>'}
 exportBtn.onclick=()=>{const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='sensia-v3-1-'+TODAY()+'.json';a.click();URL.revokeObjectURL(u)};exportCsv.onclick=()=>{const cols=['Bloco','Pavimento','Apartamento','Atividade','Status','Prazo','Prioridade','Responsável','Planejado','Real','Motivo atraso','Observações'],rows=state.goals.map(g=>[g.block,g.floor,g.apt,g.activity,gc(g),g.due,g.priority,g.owner,g.planned,g.actual,g.delay_reason,g.notes]),q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',csv='﻿'+[cols,...rows].map(r=>r.map(q).join(';')).join('\r\n'),b=new Blob([csv],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='sensia-metas-'+TODAY()+'.csv';a.click();URL.revokeObjectURL(u)};importFile.onchange=async e=>{try{state=JSON.parse(await e.target.files[0].text());save()}catch{alert('Backup inválido.')}};notifyPermission.onclick=async()=>{if('Notification'in window){const p=await Notification.requestPermission();if(p==='granted')new Notification('Sensia Produção',{body:'Notificações ativadas.'})}};
 
@@ -835,7 +959,7 @@ const reportMonday=mondayOfWeek();const reportSunday=new Date(reportMonday);repo
 
 function menu(id,type){
   const cfg={
-    Goal:{edit:'editGoal',dup:'dupGoal',del:'delGoal',duplicate:true},
+    Goal:isAdmin()?{edit:'editGoal',dup:'dupGoal',del:'delGoal',duplicate:true}:{edit:'editGoal',del:null,duplicate:false},
     Emp:{edit:'editEmp',del:'delEmp'},
     Con:{edit:'editCon',del:'delCon'},
     Mat:{edit:'editMat',del:'delMat'}
@@ -848,7 +972,7 @@ function menu(id,type){
     <div class="miniMenu">
       <button type="button" class="${cfg.edit}" data-id="${id}">Editar</button>
       ${cfg.duplicate?`<button type="button" class="${cfg.dup}" data-id="${id}">Duplicar</button>`:''}
-      <button type="button" class="${cfg.del} dangerText" data-id="${id}">Remover</button>
+      ${cfg.del?`<button type="button" class="${cfg.del} dangerText" data-id="${id}">Remover</button>`:''}
     </div>
   </div>`;
 }
@@ -873,4 +997,4 @@ document.addEventListener('click',e=>{
   }
 });
 
-function renderAll(){fill();dashboard();goals();employees();contractors();attendance();materials();alerts();charts();blockView();renderDependencies();fillAptHistory();renderAptHistory();history();renderManagement();renderWeeklyReport()} if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js?v=405'));renderAll();initializeCloud();</script></body></html>
+function renderAll(){fill();dashboard();goals();employees();contractors();attendance();materials();alerts();charts();blockView();renderDependencies();fillAptHistory();renderAptHistory();history();renderManagement();renderWeeklyReport();if(isAdmin()&&window.usersList)renderUsers();applyRoleUI()} if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js?v=45'));renderAll();initializeCloud();</script></body></html>
